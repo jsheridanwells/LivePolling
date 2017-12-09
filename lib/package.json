@@ -1,0 +1,38 @@
+{
+  "name": "livepolling",
+  "version": "1.0.0",
+  "description": "Create live polls and quizes during presentations",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jsheridanwells/LivePollingInterface.git"
+  },
+  "author": "Jeremy Sheridan Wells",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jsheridanwells/LivePollingInterface/issues"
+  },
+  "homepage": "https://github.com/jsheridanwells/LivePollingInterface#readme",
+  "devDependencies": {
+    "actioncable": "^5.1.4",
+    "angular": "^1.6.7",
+    "angular-route": "^1.6.7",
+    "browserify": "^14.5.0",
+    "connect": "^3.6.5",
+    "grunt": "^1.0.1",
+    "grunt-browserify": "^5.2.0",
+    "grunt-connect": "^0.2.0",
+    "grunt-contrib-connect": "^1.0.2",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "jshint": "^2.9.5",
+    "jshint-stylish": "^2.2.1",
+    "matchdep": "^2.0.0",
+    "sass": "^1.0.0-beta.4",
+    "watch": "^1.0.2"
+  }
+}
