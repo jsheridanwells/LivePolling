@@ -21,10 +21,12 @@
     "angular": "^1.6.7",
     "angular-route": "^1.6.7",
     "browserify": "^14.5.0",
+    "concat": "^1.0.3",
     "connect": "^3.6.5",
     "grunt": "^1.0.1",
     "grunt-browserify": "^5.2.0",
     "grunt-connect": "^0.2.0",
+    "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-connect": "^1.0.2",
     "grunt-contrib-jshint": "^1.1.0",
     "grunt-contrib-sass": "^1.0.0",
@@ -34,5 +36,6 @@
     "matchdep": "^2.0.0",
     "sass": "^1.0.0-beta.4",
     "watch": "^1.0.2"
-  }
+  },
+  "dependencies": {}
 }
