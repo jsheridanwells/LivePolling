@@ -15,6 +15,7 @@ app.config(($routeProvider) => {
     controller: 'userCtrl'
   })
   .when('/presentations', {
-    templateUrl: 'views/presentations.html'
+    templateUrl: 'views/presentations.html',
+    controller: 'presentationsCtrl'
   });
 });

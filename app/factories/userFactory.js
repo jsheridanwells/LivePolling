@@ -22,7 +22,6 @@ app.factory('userFactory', function($q, $http, api) {
   };
 
   const logIn = (user) => {
-    console.log('login firing');
     return $q((resolve, reject) => {
       let loginObj = angular.toJson({
         session: {
@@ -40,12 +39,22 @@ app.factory('userFactory', function($q, $http, api) {
   };
 
   const logOut = () => {
-    //log out the users
+    return $q((resolve, reject) => {
+      currentUser = null;
+      $http.delete(`${api.url}${api.userLogOut}`)
+      .then(() => resolve())
+      .catch(error => reject(error));
+    });
+  };
+
+  const getCurrentUser = () => {
+    return currentUser;
   };
 
   return {
     signUp,
     logIn,
-    logOut
+    logOut,
+    getCurrentUser
   };
 });

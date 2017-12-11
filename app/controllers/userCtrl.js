@@ -11,12 +11,12 @@ app.controller('userCtrl', function($scope, $window, userFactory) {
 
   $scope.signUp = (user) => {
     userFactory.signUp(user)
-    .then(response => console.log(response))
+    .then(response => $scope.logIn())
     .catch(error => console.log(error));
   };
 
-  $scope.logIn = (user) => {
-    userFactory.logIn(user).
+  $scope.logIn = () => {
+    userFactory.logIn($scope.user).
     then(userData => {
       $window.location.href = '#!/presentations';
     })
@@ -24,7 +24,9 @@ app.controller('userCtrl', function($scope, $window, userFactory) {
   };
 
   $scope.logOut = () => {
-    //log out the user
+    userFactory.logOut()
+    .then(() => $window.location.href = 'https://google.com')
+    .catch(error => console.log(error));
   };
 
 });
