@@ -22,13 +22,3 @@ app.factory('userFactory', function($q, $http, api) {
     signUp
   };
 });
-
-
-
-
-// $http({
-//   method  : 'POST',
-//   url     : 'http://example.com/clone.php',
-//   data    : $scope.user,
-//   headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
-// })
