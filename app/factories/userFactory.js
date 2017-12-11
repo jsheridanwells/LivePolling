@@ -2,7 +2,7 @@
 
 app.factory('userFactory', function($q, $http, api) {
 
-  let currentUser = null;
+  let currentUserToken = null;
 
   const signUp = (user) => {
     return $q((resolve, reject) => {
@@ -24,14 +24,12 @@ app.factory('userFactory', function($q, $http, api) {
   const logIn = (user) => {
     return $q((resolve, reject) => {
       let loginObj = angular.toJson({
-        session: {
-          email: user.email,
-          password: user.password
-        }
+        email: user.email, password: user.password
       });
       $http.post(`${api.url}${api.userLogIn}`, loginObj)
       .then((userData) => {
-        currentUser = userData.data;
+        console.log(userData);  // REMOVE THIS
+        currentUserToken = userData.data.auth_token;
         resolve(userData.data);
       })
       .catch((error) => reject(error));
@@ -40,21 +38,21 @@ app.factory('userFactory', function($q, $http, api) {
 
   const logOut = () => {
     return $q((resolve, reject) => {
-      currentUser = null;
+      currentUserToken = null;
       $http.delete(`${api.url}${api.userLogOut}`)
       .then(() => resolve())
       .catch(error => reject(error));
     });
   };
 
-  const getCurrentUser = () => {
-    return currentUser;
+  const getCurrentUserToken = () => {
+    return currentUserToken;
   };
 
   return {
     signUp,
     logIn,
     logOut,
-    getCurrentUser
+    getCurrentUserToken
   };
 });
