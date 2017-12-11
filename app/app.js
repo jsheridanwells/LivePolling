@@ -3,8 +3,15 @@ let app = angular.module('LivePolling', ['ngRoute']);
 
 // let getAuthorization = (userFactory) => new Promise((resolve, reject) => {
 //   userFactory.getCurrentUserToken()
-//   .then((token) => token ? resolve() : reject())
-//   .catch(error => console.log('error from getAuthoriation ', error));
+//   .then((token) => {
+//     if (token) {
+//       console.log('there\'s a token');
+//       resolve();
+//     } else {
+//       console.log('there\'s NO token');
+//       reject();
+//     }
+//   });
 // });
 
 app.config(($routeProvider) => {

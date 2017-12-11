@@ -13,6 +13,12 @@ app.controller('presentationsCtrl', function($scope, userFactory, presentationFa
     .catch(error => console.log('error in getAllPresentations: ', error));
   };
 
+  const showPresentation = (presentationId) => {
+    presentationFactory.getPresentation(presentationId, currentUserToken)
+    .then()
+    .catch();
+  };
+
   getAllPresentations();
 
 });

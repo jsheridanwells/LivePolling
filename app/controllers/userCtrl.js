@@ -18,6 +18,7 @@ app.controller('userCtrl', function($scope, $window, userFactory) {
   $scope.logIn = () => {
     userFactory.logIn($scope.user).
     then(userData => {
+      console.log('made it all the way through');
       $window.location.href = '#!/presentations';
     })
     .catch(error => console.log(error));
