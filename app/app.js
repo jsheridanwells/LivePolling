@@ -1,7 +1,11 @@
 'use strict';
 let app = angular.module('LivePolling', ['ngRoute']);
 
-
+// let getAuthorization = (userFactory) => new Promise((resolve, reject) => {
+//   userFactory.getCurrentUserToken()
+//   .then((token) => token ? resolve() : reject())
+//   .catch(error => console.log('error from getAuthoriation ', error));
+// });
 
 app.config(($routeProvider) => {
   $routeProvider
@@ -19,6 +23,7 @@ app.config(($routeProvider) => {
   .when('/presentations', {
     templateUrl: 'views/presentations.html',
     controller: 'presentationsCtrl'
+    // resolve: {getAuthorization}
   })
   .otherwise('/');
 });
