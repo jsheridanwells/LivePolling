@@ -1,6 +1,9 @@
 'use strict';
 
 app.factory('userFactory', function($q, $http, api) {
+
+  let currentUser = null;
+
   const signUp = (user) => {
     return $q((resolve, reject) => {
       let userObj = angular.toJson({
@@ -18,7 +21,40 @@ app.factory('userFactory', function($q, $http, api) {
     });
   };
 
+  const logIn = (user) => {
+    return $q((resolve, reject) => {
+      let loginObj = angular.toJson({
+        session: {
+          email: user.email,
+          password: user.password
+        }
+      });
+      $http.post(`${api.url}${api.userLogIn}`, loginObj)
+      .then((userData) => {
+        currentUser = userData.data;
+        resolve(userData.data);
+      })
+      .catch((error) => reject(error));
+    });
+  };
+
+  const logOut = () => {
+    return $q((resolve, reject) => {
+      currentUser = null;
+      $http.delete(`${api.url}${api.userLogOut}`)
+      .then(() => resolve())
+      .catch(error => reject(error));
+    });
+  };
+
+  const getCurrentUser = () => {
+    return currentUser;
+  };
+
   return {
-    signUp
+    signUp,
+    logIn,
+    logOut,
+    getCurrentUser
   };
 });
