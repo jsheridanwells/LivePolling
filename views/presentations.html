@@ -1,5 +1,9 @@
 <div class="container">
   <p>You've logged in! Awesome....</p>
 
+  <div ng-repeat="presentation in presentations">
+    <p>{{presentation.user_id}} : {{presentation.title}}</p>
+  </div>
+
   <a href="#" ng-click="logOut()">Now log out</a>
 </div>
