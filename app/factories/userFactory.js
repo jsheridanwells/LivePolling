@@ -37,12 +37,7 @@ app.factory('userFactory', function($q, $http, api) {
   };
 
   const logOut = () => {
-    return $q((resolve, reject) => {
-      currentUserToken = null;
-      $http.delete(`${api.url}${api.userLogOut}`)
-      .then(() => resolve())
-      .catch(error => reject(error));
-    });
+    currentUserToken = null;
   };
 
   const getCurrentUserToken = () => {

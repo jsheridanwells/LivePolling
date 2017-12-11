@@ -1,18 +1,19 @@
 'use strict';
 let app = angular.module('LivePolling', ['ngRoute']);
 
-// let getAuthorization = (userFactory) => new Promise((resolve, reject) => {
-//   userFactory.getCurrentUserToken()
-//   .then((token) => {
-//     if (token) {
-//       console.log('there\'s a token');
-//       resolve();
-//     } else {
-//       console.log('there\'s NO token');
-//       reject();
-//     }
-//   });
-// });
+let getAuthorization = (userFactory) => new Promise((resolve, reject) => {
+  userFactory.getCurrentUserToken()
+  .then((token) => {
+    console.log('we have a token?: ', token);
+    if (token) {
+      console.log('there\'s a token');
+      resolve();
+    } else {
+      console.log('there\'s NO token');
+      reject();
+    }
+  });
+});
 
 app.config(($routeProvider) => {
   $routeProvider
