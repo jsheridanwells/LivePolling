@@ -2,8 +2,8 @@
   <p>You've logged in! Awesome....</p>
 
   <div ng-repeat="presentation in presentations">
-    <p>{{presentation.user_id}} : {{presentation.title}}</p>
+    <p>
+      <a ng-href="#!/presentations/{{presentation.id}}">{{presentation.user_id}} : {{presentation.title}}</a>
+    </p>
   </div>
-
-  <a href="#" ng-click="logOut()">Now log out</a>
 </div>

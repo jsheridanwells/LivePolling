@@ -9,15 +9,26 @@ app.factory('presentationFactory', function($q, $http, api) {
         url: `${api.url}${api.presentationsAll}`,
         headers: {'authorization': token}
         })
-      .then(presentations => {
-        resolve(presentations.data);
+      .then(presentations => resolve(presentations.data))
+      .catch(error => reject(error));
+    });
+  };
+
+  const getPresentation = (presentationId, token) => {
+    return $q((resolve, reject) => {
+      $http({
+        method: 'GET',
+        url: `${api.url}${api.presentationsAll}/${presentationId}`,
+        headers: {'authorization': token}
       })
+      .then(presentation => resolve(presentation.data))
       .catch(error => reject(error));
     });
   };
 
   return {
-    getAllPresentations
+    getAllPresentations,
+    getPresentation
   };
 
 });

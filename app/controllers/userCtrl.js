@@ -1,12 +1,15 @@
 'use strict';
 
 app.controller('userCtrl', function($scope, $window, userFactory) {
+
+  // values filled for easy login,
+  // delete values on deploy
   $scope.user = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    passwordConfirmation: ''
+    firstName: 'Jeremy',
+    lastName: 'Wells',
+    email: 'example@example.com',
+    password: '123456',
+    passwordConfirmation: '123456'
   };
 
   $scope.signUp = () => {

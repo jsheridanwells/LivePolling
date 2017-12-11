@@ -1,6 +1,13 @@
 'use strict';
 
-app.controller('presentationsCtrl', function($scope, userFactory, presentationFactory) {
+app.controller('presentationsCtrl', function(
+    $scope,
+    $window,
+    $routeParams,
+    userFactory,
+    presentationFactory
+  ) {
+
   let currentUserToken = userFactory.getCurrentUserToken();
 
   $scope.presentations = [];
@@ -10,7 +17,12 @@ app.controller('presentationsCtrl', function($scope, userFactory, presentationFa
     .then(presentations => {
       $scope.presentations = presentations;
     })
-    .catch(error => console.log('error in getAllPresentations: ', error));
+    .catch(error => {
+      console.log('error in getAllPresentations: ', error);
+      if (error.status === 401) {
+        $window.location.href = '#!/login';
+      }
+    });
   };
 
   getAllPresentations();
