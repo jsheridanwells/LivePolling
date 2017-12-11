@@ -18,7 +18,6 @@ app.controller('presentationsCtrl', function(
       $scope.presentations = presentations;
     })
     .catch(error => {
-      console.log('error in getAllPresentations: ', error);
       if (error.status === 401) {
         $window.location.href = '#!/login';
       }
