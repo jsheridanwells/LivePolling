@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('userCtrl', function($scope) {
+app.controller('userCtrl', function($scope, userFactory) {
   $scope.user = {
     firstName: '',
     lastName: '',
@@ -10,7 +10,9 @@ app.controller('userCtrl', function($scope) {
   };
 
   $scope.signUp = (user) => {
-    console.log(user);
+    userFactory.signUp(user)
+    .then(response => console.log(response))
+    .catch(error => console.log(error));
   };
 
 });
