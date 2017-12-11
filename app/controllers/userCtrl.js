@@ -20,7 +20,7 @@ app.controller('userCtrl', function($scope, $window, userFactory) {
     then(userData => {
       $window.location.href = '#!/presentations';
     })
-    .catch();
+    .catch(error => console.log(error));
   };
 
   $scope.logOut = () => {

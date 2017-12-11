@@ -17,5 +17,6 @@ app.config(($routeProvider) => {
   .when('/presentations', {
     templateUrl: 'views/presentations.html',
     controller: 'presentationsCtrl'
-  });
+  })
+  .otherwise('/');
 });

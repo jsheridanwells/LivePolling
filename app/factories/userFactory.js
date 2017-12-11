@@ -32,7 +32,7 @@ app.factory('userFactory', function($q, $http, api) {
       $http.post(`${api.url}${api.userLogIn}`, loginObj)
       .then((userData) => {
         currentUser = userData.data;
-        resolve(userData);
+        resolve(userData.data);
       })
       .catch((error) => reject(error));
     });
