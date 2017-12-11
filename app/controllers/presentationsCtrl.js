@@ -1,8 +1,18 @@
 'use strict';
 
-app.controller('presentationsCtrl', function($scope, userFactory) {
-  let currentUser = userFactory.getCurrentUser();
+app.controller('presentationsCtrl', function($scope, userFactory, presentationFactory) {
+  let currentUserToken = userFactory.getCurrentUserToken();
 
-  console.log('current user is: ', currentUser);
+  $scope.presentations = [];
+
+  const getAllPresentations = () => {
+    presentationFactory.getAllPresentations(currentUserToken)
+    .then(presentations => {
+      $scope.presentations = presentations;
+    })
+    .catch(error => console.log('error in getAllPresentations: ', error));
+  };
+
+  getAllPresentations();
 
 });

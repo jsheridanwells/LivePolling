@@ -3,6 +3,8 @@
 app.constant('api', {
   url: 'http://localhost:3000',
   userModel: '/users',
-  userLogIn: '/login',
-  userLogOut: '/logout'
+  userLogIn: '/authenticate',
+  userLogOut: '/logout',
+
+  presentationsAll: '/presentations'
 });
