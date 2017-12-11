@@ -32,5 +32,10 @@ app.config(($routeProvider) => {
     controller: 'presentationsCtrl'
     // resolve: {getAuthorization}
   })
+  .when('/presentations/:presentationId', {
+    templateUrl: 'views/show-presentation.html',
+    controller: 'showPresentationCtrl'
+    // resolve: {getAuthorization}
+  })
   .otherwise('/');
 });
