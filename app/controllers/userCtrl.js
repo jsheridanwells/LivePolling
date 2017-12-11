@@ -9,8 +9,8 @@ app.controller('userCtrl', function($scope, $window, userFactory) {
     passwordConfirmation: ''
   };
 
-  $scope.signUp = (user) => {
-    userFactory.signUp(user)
+  $scope.signUp = () => {
+    userFactory.signUp($scope.user)
     .then(response => $scope.logIn())
     .catch(error => console.log(error));
   };
