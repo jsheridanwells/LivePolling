@@ -27,6 +27,7 @@ app.factory('presentationFactory', function($q, $http, api) {
   };
 
   const postPresentation = (presentationObj, token) => {
+    console.log('presentation object ', presentationObj);
     return $q((resolve, reject) => {
       $http({
         method:'POST',

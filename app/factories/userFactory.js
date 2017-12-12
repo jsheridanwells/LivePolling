@@ -46,6 +46,10 @@ app.factory('userFactory', function($q, $http, api) {
     return currentUserToken;
   };
 
+  const getCurrentUserId = () => {
+    return currentUserId;
+  };
+
   const showAuthorized = () => {
     return new Promise((resolve, reject) => {
       if (currentUserToken) {
@@ -61,6 +65,7 @@ app.factory('userFactory', function($q, $http, api) {
     logIn,
     logOut,
     getCurrentUserToken,
+    getCurrentUserId,
     showAuthorized
   };
 });
