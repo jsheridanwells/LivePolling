@@ -3,13 +3,18 @@
 app.controller('newPresentationCtrl', function(
   $scope,
   $window,
-  presentationFactory
+  presentationFactory,
+  userFactory
 ){
 
   $scope.presentation = {title: ''};
 
+  let currentUserToken = userFactory.getCurrentUserToken();
+
   $scope.createPresentation = () => {
-    console.log('working');
+    presentationFactory.postPresentation($scope.presentation, currentUserToken)
+    .then(newPresentation => console.log('new presentation', newPresentation))
+    .catch(error => console.log(error));
   };
 
 

@@ -18,7 +18,7 @@ app.factory('presentationFactory', function($q, $http, api) {
     return $q((resolve, reject) => {
       $http({
         method: 'GET',
-        url: `${api.url}${api.presentationsAll}/${presentationId}`,
+        url: `${api.url}${api.presentations}/${presentationId}`,
         headers: {'authorization': token}
       })
       .then(presentation => resolve(presentation.data))
@@ -26,9 +26,23 @@ app.factory('presentationFactory', function($q, $http, api) {
     });
   };
 
+  const postPresentation = (presentationObj, token) => {
+    return $q((resolve, reject) => {
+      $http({
+        method:'POST',
+        url: `${api.url}${api.presentations}`,
+        headers: {'authorization': token},
+        data: angular.toJson(presentationObj)
+      })
+      .then(data => resolve(data))
+      .catch(error => reject(error));
+    });
+  };
+
   return {
     getAllPresentations,
-    getPresentation
+    getPresentation,
+    postPresentation
   };
 
 });
