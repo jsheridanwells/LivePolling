@@ -1,17 +1,27 @@
-<div class="container">
+
   <h3>{{currentPresentation.title}}</h3>
   <div id="presentation-frame">
     <div class="row">
-      <div class="col-md-8 border">
-        <img src="http://placehold.it/600x400" alt="presentation placeholder">
+      <div class="col-md-1">
+        <p><a href="" ng-click="prevSlide()">Previous</a></p>
       </div>
-      <div class="col-md-4 border">
+      <div class="col-md-8 slide-frame">
+        <div class="poll-question">
+          <p>{{currentPresentation.polls[count].content}}</p>
+          <ul ng-repeat="item in currentPresentation.polls[count].items">
+            <li>{{item.content}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-2">
         <p>
           <a ng-href="#!/new-poll/{{currentPresentation.id}}">
             + Add Poll
           </a>
         </p>
       </div>
+      <div class="col-md-1">
+        <p><a href="" ng-click="nextSlide()">Next</a></p>
+      </div>
     </div>
   </div>
-</div>

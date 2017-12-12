@@ -10,6 +10,7 @@ app.controller('showPresentationCtrl', function(
 
   let currentUserToken = userFactory.getCurrentUserToken();
 
+  $scope.count = 0;
   $scope.currentPresentation = {};
 
   const showPresentation = () => {
@@ -24,6 +25,23 @@ app.controller('showPresentationCtrl', function(
   $scope.$on('$viewContentLoaded', () => {
     showPresentation();
   });
+
+  $scope.nextSlide = () => {
+    if ($scope.count < $scope.currentPresentation.polls.length - 1) {
+      $scope.count++;
+      console.log($scope.count);
+    } else {
+      $scope.count = 0;
+    }
+  };
+  $scope.prevSlide = () => {
+    if ($scope.count > 0) {
+      $scope.count--;
+      console.log($scope.count);
+    } else {
+      $scope.count = 0;
+    }
+  };
 
 
 });
