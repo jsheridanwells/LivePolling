@@ -33,7 +33,12 @@ app.config(($routeProvider) => {
   })
   .when('/presentations/:presentationId', {
     templateUrl: 'views/show-presentation.html',
-    controller: 'showPresentationCtrl',
+    controller: 'newPresentationCtrl',
+    resolve: {getAuthorization}
+  })
+  .when('/new-presentation', {
+    templateUrl: 'views/new-presentation.html',
+    controller: 'newPresentationCtrl',
     resolve: {getAuthorization}
   })
   .when('/new-poll/:presentationId', {
