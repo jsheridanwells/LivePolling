@@ -4,7 +4,6 @@ app.factory('presentationFactory', function($q, $http, api) {
 
   const getAllPresentations = (token) => {
     return $q((resolve, reject) => {
-      console.log('token ', token);
       $http({
         method: 'GET',
         url: `${api.url}${api.presentations}`,
@@ -16,6 +15,7 @@ app.factory('presentationFactory', function($q, $http, api) {
   };
 
   const getPresentation = (presentationId, token) => {
+    console.log('i am getting called 2: token ', token);
     return $q((resolve, reject) => {
       $http({
         method: 'GET',
