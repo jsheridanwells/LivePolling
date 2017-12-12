@@ -39,10 +39,23 @@ app.factory('presentationFactory', function($q, $http, api) {
     });
   };
 
+  const deletePresentation = (presentationId, token) => {
+    return $q((resolve, reject) => {
+      $http({
+        method: 'DELETE',
+        url: `${api.url}${api.presentations}/${presentationId}`,
+        headers: {'authorization': token},
+      })
+      .then(data => resolve(data))
+      .catch(error => reject(error));
+    });
+  };
+
   return {
     getAllPresentations,
     getPresentation,
-    postPresentation
+    postPresentation,
+    deletePresentation
   };
 
 });
