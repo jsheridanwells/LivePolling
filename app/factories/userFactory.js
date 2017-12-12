@@ -3,6 +3,7 @@
 app.factory('userFactory', function($q, $http, api) {
 
   let currentUserToken = null;
+  let currentUserId = null;
 
   const signUp = (user) => {
     return $q((resolve, reject) => {
@@ -28,7 +29,9 @@ app.factory('userFactory', function($q, $http, api) {
       });
       $http.post(`${api.url}${api.userLogIn}`, loginObj)
       .then((userData) => {
-        currentUserToken = userData.data.auth_token;
+        console.log('user data ', userData);
+        currentUserToken = userData.data.authorization_token;
+        currentUserId = userData.data.user_id;
         resolve(userData.data);
       })
       .catch((error) => reject(error));
