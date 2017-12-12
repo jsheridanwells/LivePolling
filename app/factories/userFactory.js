@@ -28,7 +28,6 @@ app.factory('userFactory', function($q, $http, api) {
       });
       $http.post(`${api.url}${api.userLogIn}`, loginObj)
       .then((userData) => {
-        console.log(userData);  // REMOVE THIS
         currentUserToken = userData.data.auth_token;
         resolve(userData.data);
       })

@@ -1,9 +1,12 @@
 <div class="container">
-  <p>You've logged in! Awesome....</p>
-
+  <h2>Your Presentations</h2>
   <div ng-repeat="presentation in presentations">
     <p>
-      <a ng-href="#!/presentations/{{presentation.id}}">{{presentation.user_id}} : {{presentation.title}}</a>
+      <h3>
+        <a ng-href="#!/presentations/{{presentation.id}}">
+          {{presentation.title}}
+        </a>
+      </h3>
     </p>
   </div>
 </div>
