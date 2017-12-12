@@ -43,10 +43,21 @@ app.factory('userFactory', function($q, $http, api) {
     return currentUserToken;
   };
 
+  const showAuthorized = () => {
+    return new Promise((resolve, reject) => {
+      if (currentUserToken) {
+        resolve(true);
+      } else {
+        resolve(false);
+      }
+    });
+  };
+
   return {
     signUp,
     logIn,
     logOut,
-    getCurrentUserToken
+    getCurrentUserToken,
+    showAuthorized
   };
 });
