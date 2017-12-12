@@ -24,8 +24,10 @@ app.controller('presentationsCtrl', function(
     });
   };
 
-  const createNewPresentation = () => {
-
+  $scope.deletePresentation = (presentationId) => {
+    presentationFactory.deletePresentation(presentationId, currentUserToken)
+    .then(data => getAllPresentations())
+    .catch(error => console.log(error));
   };
 
   getAllPresentations();
