@@ -5,27 +5,41 @@ app.controller('newPollCtrl', function(
   $routeParams,
   $window,
   pollFactory,
+  presentationFactory,
   userFactory
 ){
 
   let token = userFactory.getCurrentUserToken();
-  let currentPresentationId = $routeParams.presentationId;
+  $scope.currentPresentation = {};
+
+  const getCurrentPresentation = () => {
+    presentationFactory.getPresentation($routeParams.presentationId, token)
+    .then((presentation) => {
+      console.log(presentation);
+      $scope.currentPresentation = presentation;
+      $scope.poll.poll.presentation_id = presentation.id;
+    })
+    .catch(error => console.log(error));
+  };
 
   $scope.poll = {
-    presentation_id: currentPresentationId,
-    content: '',
-    items_attributes: [{content: ''},{content: ''}]
+    poll: {
+      content: '',
+      items_attributes: [{content: ''},{content: ''}]
+    }
   };
 
   $scope.addItem = () => {
-    $scope.poll.items.push({content: ''});
+    $scope.poll.poll.items_attributes.push({content: ''});
   };
 
   $scope.createPoll = () => {
     console.log('createPoll $scope ', $scope.poll, 'token is ', token);
     pollFactory.postNewPoll($scope.poll, token)
     .then(data => console.log('success ', data))
-    .catch(error => console.log('we got an error ', error));
+    .catch(error => console.log(error));
   };
+
+  getCurrentPresentation();
 
 });
