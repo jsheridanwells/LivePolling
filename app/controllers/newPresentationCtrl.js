@@ -17,7 +17,7 @@ app.controller('newPresentationCtrl', function(
 
   $scope.createPresentation = () => {
     presentationFactory.postPresentation($scope.object, currentUserToken)
-    .then(newPresentation => console.log('new presentation', newPresentation))
+    .then(newPresentation => $window.location.href = `#!/presentations/${newPresentation.data.id}`)
     .catch(error => console.log(error));
   };
 

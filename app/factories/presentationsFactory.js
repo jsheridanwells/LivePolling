@@ -4,9 +4,10 @@ app.factory('presentationFactory', function($q, $http, api) {
 
   const getAllPresentations = (token) => {
     return $q((resolve, reject) => {
+      console.log('token ', token);
       $http({
         method: 'GET',
-        url: `${api.url}${api.presentationsAll}`,
+        url: `${api.url}${api.presentations}`,
         headers: {'authorization': token}
         })
       .then(presentations => resolve(presentations.data))

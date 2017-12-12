@@ -30,6 +30,4 @@ app.controller('presentationsCtrl', function(
 
   getAllPresentations();
 
-  return {createNewPresentation};
-
 });

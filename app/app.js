@@ -28,8 +28,8 @@ app.config(($routeProvider) => {
   })
   .when('/presentations', {
     templateUrl: 'views/presentations.html',
-    controller: 'presentationsCtrl'
-    // resolve: {getAuthorization}
+    controller: 'presentationsCtrl',
+    resolve: {getAuthorization}
   })
   .when('/presentations/:presentationId', {
     templateUrl: 'views/show-presentation.html',
