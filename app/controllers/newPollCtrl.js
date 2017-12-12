@@ -11,17 +11,6 @@ app.controller('newPollCtrl', function(
 
   let token = userFactory.getCurrentUserToken();
   $scope.currentPresentation = {};
-
-  const getCurrentPresentation = () => {
-    presentationFactory.getPresentation($routeParams.presentationId, token)
-    .then((presentation) => {
-      console.log(presentation);
-      $scope.currentPresentation = presentation;
-      $scope.poll.poll.presentation_id = presentation.id;
-    })
-    .catch(error => console.log(error));
-  };
-
   $scope.poll = {
     poll: {
       content: '',
@@ -29,12 +18,20 @@ app.controller('newPollCtrl', function(
     }
   };
 
+  const getCurrentPresentation = () => {
+    presentationFactory.getPresentation($routeParams.presentationId, token)
+    .then((presentation) => {
+      $scope.currentPresentation = presentation;
+      $scope.poll.poll.presentation_id = presentation.id;
+    })
+    .catch(error => console.log(error));
+  };
+
   $scope.addItem = () => {
     $scope.poll.poll.items_attributes.push({content: ''});
   };
 
   $scope.createPoll = () => {
-    console.log('createPoll $scope ', $scope.poll, 'token is ', token);
     pollFactory.postNewPoll($scope.poll, token)
     .then(data => console.log('success ', data))
     .catch(error => console.log(error));
