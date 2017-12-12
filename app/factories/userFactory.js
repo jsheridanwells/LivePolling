@@ -29,7 +29,6 @@ app.factory('userFactory', function($q, $http, api) {
       });
       $http.post(`${api.url}${api.userLogIn}`, loginObj)
       .then((userData) => {
-        console.log('user data ', userData);
         currentUserToken = userData.data.authorization_token;
         currentUserId = userData.data.user_id;
         resolve(userData.data);
@@ -43,7 +42,6 @@ app.factory('userFactory', function($q, $http, api) {
   };
 
   const getCurrentUserToken = () => {
-    console.log('current user token from getter ', currentUserToken);
     return currentUserToken;
   };
 

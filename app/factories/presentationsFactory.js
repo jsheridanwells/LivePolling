@@ -15,7 +15,6 @@ app.factory('presentationFactory', function($q, $http, api) {
   };
 
   const getPresentation = (presentationId, token) => {
-    console.log('i am getting called 2: token ', token);
     return $q((resolve, reject) => {
       $http({
         method: 'GET',
@@ -28,7 +27,6 @@ app.factory('presentationFactory', function($q, $http, api) {
   };
 
   const postPresentation = (presentationObj, token) => {
-    console.log('presentation object ', presentationObj);
     return $q((resolve, reject) => {
       $http({
         method:'POST',
