@@ -15,7 +15,7 @@ app.controller('presentationsCtrl', function(
   const getAllPresentations = () => {
     presentationFactory.getAllPresentations(currentUserToken)
     .then(presentations => {
-      $scope.presentations = presentations;
+      $scope.presentations = presentations.presentations;
     })
     .catch(error => {
       if (error.status === 401) {

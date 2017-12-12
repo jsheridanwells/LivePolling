@@ -15,7 +15,8 @@ app.controller('showPresentationCtrl', function(
   const showPresentation = () => {
     presentationFactory.getPresentation($routeParams.presentationId, currentUserToken)
     .then(data => {
-      $scope.currentPresentation = data;
+      $scope.currentPresentation = data.presentation;
+      console.log('current presentation ', $scope.currentPresentation);
     })
     .catch(error => console.log(error));
   };
