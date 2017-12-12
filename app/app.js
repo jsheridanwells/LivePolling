@@ -4,7 +4,7 @@ let app = angular.module('LivePolling', ['ngRoute']);
 let getAuthorization = (userFactory) => new Promise((resolve, reject) => {
   userFactory.getCurrentUserToken()
   .then((token) => {
-    console.log('we have a token?: ', token);
+    console.log('do we have a token?: ', token);
     if (token) {
       console.log('there\'s a token');
       resolve();
@@ -36,6 +36,11 @@ app.config(($routeProvider) => {
   .when('/presentations/:presentationId', {
     templateUrl: 'views/show-presentation.html',
     controller: 'showPresentationCtrl'
+    // resolve: {getAuthorization}
+  })
+  .when('/new-poll/:presentationId', {
+    templateUrl: 'views/new-poll.html',
+    controller: 'newPollCtrl'
     // resolve: {getAuthorization}
   })
   .otherwise('/');

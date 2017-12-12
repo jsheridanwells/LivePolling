@@ -1,6 +1,17 @@
 <div class="container">
   <h3>{{currentPresentation.title}}</h3>
-  <div class="presentation-frame">
-    <p>Show Presentation</p>
+  <div id="presentation-frame">
+    <div class="row">
+      <div class="col-md-8 border">
+        <img src="http://placehold.it/600x400" alt="presentation placeholder">
+      </div>
+      <div class="col-md-4 border">
+        <p>
+          <a ng-href="#!/new-poll/{{currentPresentation.id}}">
+            + New Poll
+          </a>
+        </p>
+      </div>
+    </div>
   </div>
 </div>

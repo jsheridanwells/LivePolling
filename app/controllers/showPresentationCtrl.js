@@ -1,6 +1,12 @@
 'use strict';
 
-app.controller('showPresentationCtrl', function($scope, $routeParams, $window, presentationFactory, userFactory) {
+app.controller('showPresentationCtrl', function(
+  $scope,
+  $routeParams,
+  $window,
+  presentationFactory,
+  userFactory
+) {
 
   let currentUserToken = userFactory.getCurrentUserToken();
 
