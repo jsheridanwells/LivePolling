@@ -21,8 +21,8 @@ app.controller('newPollCtrl', function(
   const getCurrentPresentation = () => {
     presentationFactory.getPresentation($routeParams.presentationId, token)
     .then((presentation) => {
-      $scope.currentPresentation = presentation;
-      $scope.poll.poll.presentation_id = presentation.id;
+      $scope.currentPresentation = presentation.presentation;
+      $scope.poll.poll.presentation_id = presentation.presentation.id;
     })
     .catch(error => console.log(error));
   };
@@ -33,7 +33,7 @@ app.controller('newPollCtrl', function(
 
   $scope.createPoll = () => {
     pollFactory.postNewPoll($scope.poll, token)
-    .then(data => console.log('success ', data))
+    .then(data => $window.location.href = `#!presentations/${$routeParams.presentationId}`)
     .catch(error => console.log(error));
   };
 
