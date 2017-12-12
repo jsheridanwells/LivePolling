@@ -3,6 +3,7 @@
 app.factory('userFactory', function($q, $http, api) {
 
   let currentUserToken = null;
+  let currentUserId = null;
 
   const signUp = (user) => {
     return $q((resolve, reject) => {
@@ -28,7 +29,9 @@ app.factory('userFactory', function($q, $http, api) {
       });
       $http.post(`${api.url}${api.userLogIn}`, loginObj)
       .then((userData) => {
-        currentUserToken = userData.data.auth_token;
+        console.log('user data ', userData);
+        currentUserToken = userData.data.authorization_token;
+        currentUserId = userData.data.user_id;
         resolve(userData.data);
       })
       .catch((error) => reject(error));
@@ -40,13 +43,30 @@ app.factory('userFactory', function($q, $http, api) {
   };
 
   const getCurrentUserToken = () => {
+    console.log('current user token from getter ', currentUserToken);
     return currentUserToken;
+  };
+
+  const getCurrentUserId = () => {
+    return currentUserId;
+  };
+
+  const showAuthorized = () => {
+    return new Promise((resolve, reject) => {
+      if (currentUserToken) {
+        resolve(true);
+      } else {
+        resolve(false);
+      }
+    });
   };
 
   return {
     signUp,
     logIn,
     logOut,
-    getCurrentUserToken
+    getCurrentUserToken,
+    getCurrentUserId,
+    showAuthorized
   };
 });

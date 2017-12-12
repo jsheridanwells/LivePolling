@@ -24,6 +24,10 @@ app.controller('presentationsCtrl', function(
     });
   };
 
+  const createNewPresentation = () => {
+
+  };
+
   getAllPresentations();
 
 });

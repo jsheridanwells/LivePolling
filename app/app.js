@@ -1,16 +1,14 @@
 'use strict';
 let app = angular.module('LivePolling', ['ngRoute']);
 
-let getAuthorization = (userFactory) => new Promise((resolve, reject) => {
-  userFactory.getCurrentUserToken()
-  .then((token) => {
-    console.log('do we have a token?: ', token);
-    if (token) {
-      console.log('there\'s a token');
+let getAuthorization = (userFactory, $window) => new Promise((resolve, reject) => {
+  userFactory.showAuthorized()
+  .then((user) => {
+    if (user) {
       resolve();
     } else {
-      console.log('there\'s NO token');
       reject();
+      $window.location.href = '/';
     }
   });
 });
@@ -30,18 +28,23 @@ app.config(($routeProvider) => {
   })
   .when('/presentations', {
     templateUrl: 'views/presentations.html',
-    controller: 'presentationsCtrl'
-    // resolve: {getAuthorization}
+    controller: 'presentationsCtrl',
+    resolve: {getAuthorization}
   })
   .when('/presentations/:presentationId', {
     templateUrl: 'views/show-presentation.html',
-    controller: 'showPresentationCtrl'
-    // resolve: {getAuthorization}
+    controller: 'showPresentationCtrl',
+    resolve: {getAuthorization}
+  })
+  .when('/new-presentation', {
+    templateUrl: 'views/new-presentation.html',
+    controller: 'newPresentationCtrl',
+    resolve: {getAuthorization}
   })
   .when('/new-poll/:presentationId', {
     templateUrl: 'views/new-poll.html',
-    controller: 'newPollCtrl'
-    // resolve: {getAuthorization}
+    controller: 'newPollCtrl',
+    resolve: {getAuthorization}
   })
   .otherwise('/');
 });

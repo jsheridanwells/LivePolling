@@ -1,6 +1,10 @@
 'use strict';
 
-app.controller('navCtrl', function($scope, $window, userFactory) {
+app.controller('navCtrl', function(
+  $scope,
+  $window,
+  userFactory
+){
 
   $scope.loggedIn = () => userFactory.getCurrentUserToken();
 

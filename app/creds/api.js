@@ -5,6 +5,6 @@ app.constant('api', {
   userModel: '/users',
   userLogIn: '/authenticate',
 
-  presentationsAll: '/presentations',
+  presentations: '/presentations',
   polls: '/polls'
 });

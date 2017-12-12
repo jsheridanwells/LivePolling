@@ -6,7 +6,7 @@ app.factory('presentationFactory', function($q, $http, api) {
     return $q((resolve, reject) => {
       $http({
         method: 'GET',
-        url: `${api.url}${api.presentationsAll}`,
+        url: `${api.url}${api.presentations}`,
         headers: {'authorization': token}
         })
       .then(presentations => resolve(presentations.data))
@@ -15,10 +15,11 @@ app.factory('presentationFactory', function($q, $http, api) {
   };
 
   const getPresentation = (presentationId, token) => {
+    console.log('i am getting called 2: token ', token);
     return $q((resolve, reject) => {
       $http({
         method: 'GET',
-        url: `${api.url}${api.presentationsAll}/${presentationId}`,
+        url: `${api.url}${api.presentations}/${presentationId}`,
         headers: {'authorization': token}
       })
       .then(presentation => resolve(presentation.data))
@@ -26,9 +27,24 @@ app.factory('presentationFactory', function($q, $http, api) {
     });
   };
 
+  const postPresentation = (presentationObj, token) => {
+    console.log('presentation object ', presentationObj);
+    return $q((resolve, reject) => {
+      $http({
+        method:'POST',
+        url: `${api.url}${api.presentations}`,
+        headers: {'authorization': token},
+        data: angular.toJson(presentationObj)
+      })
+      .then(data => resolve(data))
+      .catch(error => reject(error));
+    });
+  };
+
   return {
     getAllPresentations,
-    getPresentation
+    getPresentation,
+    postPresentation
   };
 
 });
