@@ -51,6 +51,18 @@ app.factory('presentationFactory', function($q, $http, api) {
     });
   };
 
+  const showToParticipant = (presentationId) => {
+    console.log('firing 2');
+    return $q((resolve, reject) => {
+      $http.get(`${api.url}${api.showPresentation}/${presentationId}`)
+      .then(presentation => {
+        console.log('firing 3', presentation);
+        resolve(presentation.data);
+      })
+      .catch(error => reject(error));
+    });
+  };
+
   const deletePresentation = (presentationId, token) => {
     return $q((resolve, reject) => {
       $http({
@@ -68,6 +80,7 @@ app.factory('presentationFactory', function($q, $http, api) {
     getPresentation,
     postPresentation,
     toggleBroadcasting,
+    showToParticipant,
     deletePresentation
   };
 

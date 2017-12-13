@@ -8,6 +8,7 @@ app.constant('api', {
 
   presentations: '/presentations',
   broadcast: '/broadcast',
+  showPresentation: '/show-presentation',
 
   polls: '/polls'
 });

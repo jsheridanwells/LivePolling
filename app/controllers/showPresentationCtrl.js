@@ -10,7 +10,9 @@ app.controller('showPresentationCtrl', function(
 
   let currentUserToken = userFactory.getCurrentUserToken();
 
+  //this is temporary to be replaced by slide_count column in db
   $scope.count = 0;
+
   $scope.currentPresentation = {};
 
   const showPresentation = () => {
