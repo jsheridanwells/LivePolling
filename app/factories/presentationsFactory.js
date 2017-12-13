@@ -78,11 +78,9 @@ app.factory('presentationFactory', function($q, $http, api) {
   };
 
   const showToParticipant = (presentationId) => {
-    console.log('firing 2');
     return $q((resolve, reject) => {
       $http.get(`${api.url}${api.showPresentation}/${presentationId}`)
       .then(presentation => {
-        console.log('firing 3', presentation);
         resolve(presentation.data);
       })
       .catch(error => reject(error));

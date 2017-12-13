@@ -13,7 +13,7 @@
       </div>
       <div class="col-md-8 slide-frame">
         <div class="poll-question">
-          <p>{{currentPresentation.polls[count].content}}</p>
+          <p>{{currentPresentation.polls[currentPresentation.current_slide].content}}</p>
           <ul ng-repeat="item in currentPresentation.polls[currentPresentation.current_slide].items">
             <li>{{item.content}}</li>
           </ul>
