@@ -42,6 +42,7 @@ app.factory('userFactory', function($q, $http, api) {
   };
 
   const getCurrentUserToken = () => {
+    console.log('USER TOKEN IS: ', currentUserToken); // LEAVE THIS FOR TESTING FOR NOW
     return currentUserToken;
   };
 
