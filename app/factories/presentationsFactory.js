@@ -51,12 +51,36 @@ app.factory('presentationFactory', function($q, $http, api) {
     });
   };
 
+  const nextSlide = (presentationId, token) => {
+    return $q((resolve, reject) => {
+      $http({
+        method: 'PATCH',
+        url: `${api.url}${api.next}/${presentationId}`,
+        headers: {'authorization': token}
+      })
+      .then(presentation => resolve(presentation.data))
+      .catch(error => reject(error));
+
+    });
+  };
+
+  const prevSlide = (presentationId, token) => {
+    return $q((resolve, reject) => {
+      $http({
+        method: 'PATCH',
+        url: `${api.url}${api.prev}/${presentationId}`,
+        headers: {'authorization': token}
+      })
+      .then(presentation => resolve(presentation.data))
+      .catch(error => reject(error));
+
+    });
+  };
+
   const showToParticipant = (presentationId) => {
-    console.log('firing 2');
     return $q((resolve, reject) => {
       $http.get(`${api.url}${api.showPresentation}/${presentationId}`)
       .then(presentation => {
-        console.log('firing 3', presentation);
         resolve(presentation.data);
       })
       .catch(error => reject(error));
@@ -80,6 +104,8 @@ app.factory('presentationFactory', function($q, $http, api) {
     getPresentation,
     postPresentation,
     toggleBroadcasting,
+    nextSlide,
+    prevSlide,
     showToParticipant,
     deletePresentation
   };
