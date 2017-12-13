@@ -1,6 +1,8 @@
 @import 'nav';
+@import 'home';
 @import 'footer';
 @import 'presentations';
+@import 'forms';
 
 //INDEX STYLES
 
@@ -11,4 +13,5 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+  background-color: #ddd;
 }

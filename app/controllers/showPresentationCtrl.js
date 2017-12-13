@@ -17,19 +17,13 @@ app.controller('showPresentationCtrl', function(
     presentationFactory.getPresentation($routeParams.presentationId, currentUserToken)
     .then(data => {
       $scope.currentPresentation = data.presentation;
-      console.log('current presentation ', $scope.currentPresentation);
     })
     .catch(error => console.log(error));
   };
 
-  $scope.$on('$viewContentLoaded', () => {
-    showPresentation();
-  });
-
   $scope.nextSlide = () => {
     if ($scope.count < $scope.currentPresentation.polls.length - 1) {
       $scope.count++;
-      console.log($scope.count);
     } else {
       $scope.count = 0;
     }
@@ -37,11 +31,13 @@ app.controller('showPresentationCtrl', function(
   $scope.prevSlide = () => {
     if ($scope.count > 0) {
       $scope.count--;
-      console.log($scope.count);
     } else {
       $scope.count = 0;
     }
   };
 
+  $scope.$on('$viewContentLoaded', () => {
+    showPresentation();
+  });
 
 });
