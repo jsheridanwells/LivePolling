@@ -25,7 +25,7 @@ app.controller('showPresentationCtrl', function(
     presentationFactory.toggleBroadcasting($scope.currentPresentation.id, currentUserToken)
     .then(data => {
       $scope.currentPresentation = data.presentation;
-      alert('your presentation is not being broadcast');
+      alert('your presentation is now being broadcast');
     })
     .catch(error => console.log(error));
   };

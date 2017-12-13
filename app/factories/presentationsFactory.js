@@ -43,7 +43,7 @@ app.factory('presentationFactory', function($q, $http, api) {
     return $q((resolve, reject) => {
       $http({
         method: 'PATCH',
-        url: `${api.url}${api.presentations}${api.broadcast}`,
+        url: `${api.url}${api.broadcast}/${presentationId}`,
         headers: {'authorization': token}
       })
       .then(data => resolve(data))
