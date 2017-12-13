@@ -22,10 +22,16 @@ app.controller('showPresentationCtrl', function(
   };
 
   $scope.broadcast = () => {
+    console.log('firing 1');
     presentationFactory.toggleBroadcasting($scope.currentPresentation.id, currentUserToken)
     .then(data => {
       $scope.currentPresentation = data.presentation;
-      alert('your presentation is now being broadcast');
+      if ($scope.currentPresentation.broadcasting) {
+        alert('You are now broadcasting.');
+      } else {
+        alert('You broadcast has ended.');
+      }
+      showPresentation();
     })
     .catch(error => console.log(error));
   };

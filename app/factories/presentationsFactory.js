@@ -46,7 +46,7 @@ app.factory('presentationFactory', function($q, $http, api) {
         url: `${api.url}${api.broadcast}/${presentationId}`,
         headers: {'authorization': token}
       })
-      .then(data => resolve(data))
+      .then(presentation => resolve(presentation.data))
       .catch(error => reject(error));
     });
   };

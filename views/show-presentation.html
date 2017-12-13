@@ -1,6 +1,11 @@
 
   <h3>{{currentPresentation.title}}</h3>
-  <p><a href="" ng-click="broadcast()">Broadcast</a></p>
+  <div ng-if="currentPresentation.broadcasting">
+    <p><a href="" ng-click="broadcast()">End Broadcast</a></p>
+  </div>
+  <div ng-if="!currentPresentation.broadcasting">
+    <p><a href="" ng-click="broadcast()">Start Broadcast</a></p>
+  </div>
   <div id="presentation-frame">
     <div class="row">
       <div class="col-md-1">
