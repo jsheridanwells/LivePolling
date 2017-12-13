@@ -46,5 +46,9 @@ app.config(($routeProvider) => {
     controller: 'newPollCtrl',
     resolve: {getAuthorization}
   })
+  .when('/show/:presentationId', {
+    templateUrl: 'views/show-participant-presentation.html',
+    controller: 'participantCtrl'
+  })
   .otherwise('/');
 });

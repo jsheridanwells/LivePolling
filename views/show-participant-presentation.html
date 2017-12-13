@@ -1,0 +1,28 @@
+<h3>{{currentPresentation.title}}</h3>
+
+<div id="presentation-frame">
+  <div ng-if="currentPresentation.message">
+    <p>{{currentPresentation.message}}</p>
+  </div>
+  <div ng-if="!currentPresentation.message">
+    <div class="row">
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-8 slide-frame">
+          <div class="poll-question">
+            <p>{{currentPresentation.polls[count].content}}</p>
+            <ul ng-repeat="item in currentPresentation.polls[count].items">
+              <li>{{item.content}}</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-1">
+
+        </div>
+      </div>
+  </div>
+</duv>
