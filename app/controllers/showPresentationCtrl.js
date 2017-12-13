@@ -21,6 +21,15 @@ app.controller('showPresentationCtrl', function(
     .catch(error => console.log(error));
   };
 
+  $scope.broadcast = () => {
+    presentationFactory.toggleBroadcasting($scope.currentPresentation.id, currentUserToken)
+    .then(data => {
+      $scope.currentPresentation = data.presentation;
+      alert('your presentation is not being broadcast');
+    })
+    .catch(error => console.log(error));
+  };
+
   $scope.nextSlide = () => {
     if ($scope.count < $scope.currentPresentation.polls.length - 1) {
       $scope.count++;
