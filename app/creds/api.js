@@ -10,5 +10,8 @@ app.constant('api', {
   broadcast: '/broadcast',
   showPresentation: '/show-presentation',
 
+  next: '/next',
+  prev: '/prev',
+
   polls: '/polls'
 });
