@@ -39,12 +39,24 @@ app.factory('presentationFactory', function($q, $http, api) {
     });
   };
 
+  const toggleBroadcasting = (presentationId, token) => {
+    return $q((resolve, reject) => {
+      $http({
+        method: 'PATCH',
+        url: `${api.url}${api.broadcast}/${presentationId}`,
+        headers: {'authorization': token}
+      })
+      .then(presentation => resolve(presentation.data))
+      .catch(error => reject(error));
+    });
+  };
+
   const deletePresentation = (presentationId, token) => {
     return $q((resolve, reject) => {
       $http({
         method: 'DELETE',
         url: `${api.url}${api.presentations}/${presentationId}`,
-        headers: {'authorization': token},
+        headers: {'authorization': token}
       })
       .then(data => resolve(data))
       .catch(error => reject(error));
@@ -55,6 +67,7 @@ app.factory('presentationFactory', function($q, $http, api) {
     getAllPresentations,
     getPresentation,
     postPresentation,
+    toggleBroadcasting,
     deletePresentation
   };
 
