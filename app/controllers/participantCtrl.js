@@ -31,7 +31,7 @@ module.exports = function(
       let cable = ActionCable.createConsumer(api.ws);
       cable.subscriptions.create({
         channel: 'PresentationChannel',
-        id: $routeParams.presentationId
+        presentation_id: $routeParams.presentationId
       }, {
         received: (data) => {
           $scope.currentPresentation = data;
