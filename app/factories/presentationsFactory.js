@@ -58,7 +58,9 @@ module.exports = function($q, $http, api) {
         url: `${api.url}${api.next}/${presentationId}`,
         headers: {'authorization': token}
       })
-      .then(presentation => resolve(presentation.data))
+      .then(presentation => {
+        resolve(presentation.data);
+      })
       .catch(error => reject(error));
 
     });
