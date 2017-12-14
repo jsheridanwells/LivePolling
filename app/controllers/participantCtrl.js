@@ -12,19 +12,6 @@ module.exports = function(
 
   $scope.currentPresentation = {};
 
-  // const showPresentation = () => {
-  //   presentationFactory.showToParticipant($routeParams.presentationId)
-  //   .then(data => {
-  //     if (data.message) {
-  //       $scope.currentPresentation.message = data.message;
-  //       $scope.currentPresentation.title = data.title;
-  //     } else {
-  //       $scope.currentPresentation = data.presentation;
-  //     }
-  //   })
-  //   .catch(error => console.log(error));
-  // };
-
   const showPresentation = () => {
     presentationFactory.showToParticipant($routeParams.presentationId)
     .then(() => {

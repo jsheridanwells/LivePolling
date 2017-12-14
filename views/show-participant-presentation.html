@@ -1,28 +1,28 @@
-<h3>{{currentPresentation.title}}</h3>
+<div class="presentation-nav"></div>
 
-<div id="presentation-frame">
-  <div ng-if="currentPresentation.message">
-    <p>{{currentPresentation.message}}</p>
+<!-- PRESENTATION TITLE -->
+<div class="slide-title">
+  <h3 class="presentation-title">
+    <!-- TITLE GOES HERE -->
+  </h3>
+</div>
+
+<!-- SLIDE FRAME -->
+<div class="slide-frame">
+  <!-- POLL QUESTION -->
+  <div class="poll-question">
+    <h4>
+
+      <!-- QUESTION GOES HERE -->
+
+    </h4>
   </div>
-  <div ng-if="!currentPresentation.message">
-    <div class="row">
-        <div class="col-md-1">
-
-        </div>
-        <div class="col-md-8 slide-frame">
-          <div class="poll-question">
-            <p>{{currentPresentation.polls[currentPresentation.current_slide].content}}</p>
-            <ul ng-repeat="item in currentPresentation.polls[currentPresentation.current_slide].items">
-              <li>{{item.content}}</li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-2">
-
-        </div>
-        <div class="col-md-1">
-
-        </div>
-      </div>
-  </div>
+   <!-- ANSWER ITEMS -->
+   <ul class="answer-choices" ng-repeat="">
+    <a href="" ng-click="">
+     <li class="answer-item">
+      <!-- ANSWER ITEM GOES HERE -->
+     </li>
+    </a>
+   </ul>
 </div>

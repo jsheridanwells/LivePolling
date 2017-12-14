@@ -9,14 +9,6 @@
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
-.new-presentation-button {
-
-}
-
-.presentation-button {
-
-}
-
 .presentation-list {
   list-style-type: none;
   .presentation-list-item {
@@ -28,7 +20,33 @@
   }
 }
 
+// single presentations
+.presentation-nav {
+  height: 40px;
+  background-color: #333;
+  color: white;
+}
+
+.slide-control {
+
+}
+
+.slide-title {
+  margin: 2em auto;
+}
+
+h3.presentation-title {
+
+}
+
 .slide-frame {
   min-height: 80vh;
-  border: 1px solid #eee;
+}
+
+ul.answer-choices {
+  list-style-type: none;
+}
+
+li.answer-item {
+
 }

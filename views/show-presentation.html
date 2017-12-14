@@ -1,33 +1,49 @@
-
-  <h3>{{currentPresentation.title}}</h3>
-  <div ng-if="currentPresentation.broadcasting">
-    <p><a href="" ng-click="broadcast()">End Broadcast</a></p>
-  </div>
-  <div ng-if="!currentPresentation.broadcasting">
-    <p><a href="" ng-click="broadcast()">Start Broadcast</a></p>
-  </div>
-  <div id="presentation-frame">
-    <div class="row">
-      <div class="col-md-1">
-        <p><a href="" ng-click="prevSlide()">Previous</a></p>
-      </div>
-      <div class="col-md-8 slide-frame">
-        <div class="poll-question">
-          <p>{{currentPresentation.polls[currentPresentation.current_slide].content}}</p>
-          <ul ng-repeat="item in currentPresentation.polls[currentPresentation.current_slide].items">
-            <li>{{item.content}}</li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <p>
-          <a ng-href="#!/new-poll/{{currentPresentation.id}}">
-            + Add Poll
-          </a>
-        </p>
-      </div>
-      <div class="col-md-1">
-        <p><a href="" ng-click="nextSlide()">Next</a></p>
-      </div>
+<!-- PRESENTATION NAV BAR -->
+<div class="presentation-nav">
+  <div class="row">
+    <div class="col-2 slide-control">
+      <p><a href="" ng-click="prevSlide()">Previous</a></p>
+    </div>
+    <div class="col-4">
+      <p class="presentation-title">
+        <span ng-if="!currentPresentation.broadcasting">
+          <a href="" ng-click="broadcast()">Start Broadcast</a>
+        </span>
+        <span ng-if="currentPresentation.broadcasting">
+          <a href="" ng-click="broadcast()">End Broadcast</a>
+        </span>
+      </p>
+    </div>
+    <div class="col-4">
+      <p>
+        <a ng-href="#!/new-poll/{{currentPresentation.id}}">
+          + Add Poll
+        </a>
+      </p>
+    </div>
+    <div class="col-2 slide-control">
+      <p><a href="" ng-click="nextSlide()">Next</a></p>
     </div>
   </div>
+</div>
+
+<!-- PRESENTATION TITLE -->
+<div class="slide-title">
+  <h3 class="presentation-title">{{currentPresentation.title}}</h3>
+</div>
+
+<!-- SLIDE FRAME -->
+<div class="slide-frame">
+  <!-- POLL QUESTION -->
+  <div class="poll-question">
+    <h4>
+      {{currentPresentation.polls[currentPresentation.current_slide].content}}
+    </h4>
+  </div>
+   <!-- ANSWER ITEMS | PERCENTAGE OF RESPONSES -->
+   <ul class="answer-choices" ng-repeat="item in currentPresentation.polls[currentPresentation.current_slide].items">
+     <li class="answer-item">
+      {{item.content}} <span ng-if="(responsePercentageArr[$index] !== NaN)">{{responsePercentageArr[$index]}}</span>
+     </li>
+   </ul>
+</div>
