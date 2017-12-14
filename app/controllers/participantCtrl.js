@@ -3,18 +3,20 @@
 module.exports = function(
   $scope,
   $routeParams,
+  $timeout,
   presentationFactory,
   api
 ) {
 
   let ActionCable = require('../../lib/node_modules/actioncable/lib/assets/compiled/action_cable.js');
 
-
+  $scope.title = '';
   $scope.currentPresentation = {};
 
   const showPresentation = () => {
     presentationFactory.showToParticipant($routeParams.presentationId)
-    .then(() => {
+    .then((data) => {
+      $scope.title = data.presentation.title;
       let cable = ActionCable.createConsumer(api.ws);
       cable.subscriptions.create({
         channel: 'PresentationChannel',
@@ -22,10 +24,16 @@ module.exports = function(
       }, {
         received: (data) => {
           $scope.currentPresentation = data;
-          console.log('web socket data?', $scope.currentPresentation);
+          $timeout();
         }
       });
     })
+    .catch(error => console.log(error));
+  };
+
+  $scope.respond = (itemId) => {
+    presentationFactory.sendResponse(itemId, $routeParams.presentationId)
+    .then(data => console.log(data))
     .catch(error => console.log(error));
   };
 

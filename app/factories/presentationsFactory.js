@@ -89,6 +89,14 @@ module.exports = function($q, $http, api) {
     });
   };
 
+  const sendResponse = (itemId, presentationId) => {
+    return $q((resolve, reject) => {
+      $http.post(`${api.url}${api.responses}/${presentationId}`, angular.toJson({response: {item_id: itemId}}))
+      .then(data => resolve(data))
+      .catch(error => reject(error));
+    });
+  };
+
   const deletePresentation = (presentationId, token) => {
     return $q((resolve, reject) => {
       $http({
@@ -109,6 +117,7 @@ module.exports = function($q, $http, api) {
     nextSlide,
     prevSlide,
     showToParticipant,
+    sendResponse,
     deletePresentation
   };
 
