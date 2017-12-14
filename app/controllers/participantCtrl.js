@@ -26,6 +26,8 @@ app.controller('participantCtrl', function(
 
   $scope.$on('$viewContentLoaded', () => {
     showPresentation();
+    let action = ActionCable.new();
+    console.log('action?', action);
   });
 
 });
