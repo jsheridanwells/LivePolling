@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('showPresentationCtrl', function(
+module.exports = function(
   $scope,
   $routeParams,
   $window,
@@ -31,7 +31,9 @@ app.controller('showPresentationCtrl', function(
 
   $scope.nextSlide = () => {
     presentationFactory.nextSlide($scope.currentPresentation.id, currentUserToken)
-    .then(data => $scope.currentPresentation = data.presentation)
+    .then(data => {
+      $scope.currentPresentation = data.presentation;
+    })
     .catch(error => console.log(error));
   };
 
@@ -45,4 +47,4 @@ app.controller('showPresentationCtrl', function(
     showPresentation();
   });
 
-});
+};

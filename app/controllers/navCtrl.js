@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('navCtrl', function(
+module.exports = function(
   $scope,
   $window,
   userFactory
@@ -13,4 +13,4 @@ app.controller('navCtrl', function(
     $window.location.href = '/';
   };
 
-});
+};

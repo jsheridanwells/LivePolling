@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('userCtrl', function($scope, $window, userFactory) {
+module.exports = function($scope, $window, userFactory) {
 
   // values filled for easy login,
   // delete values on deploy
@@ -32,4 +32,4 @@ app.controller('userCtrl', function($scope, $window, userFactory) {
     .catch(error => console.log(error));
   };
 
-});
+};
