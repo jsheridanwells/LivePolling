@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('participantCtrl', function(
+module.exports = function(
   $scope,
   $routeParams,
   presentationFactory
@@ -30,4 +30,4 @@ app.controller('participantCtrl', function(
     console.log('action?', action);
   });
 
-});
+};

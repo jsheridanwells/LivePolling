@@ -1,6 +1,6 @@
 'use strict';
 
-app.constant('api', {
+module.exports = {
   url: 'http://localhost:3000',
   // url: 'https://ancient-sierra-59888.herokuapp.com',
 
@@ -15,4 +15,5 @@ app.constant('api', {
   prev: '/prev',
 
   polls: '/polls'
-});
+
+};

@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory('userFactory', function($q, $http, api) {
+module.exports = function($q, $http, api) {
 
   let currentUserToken = null;
   let currentUserId = null;
@@ -68,4 +68,4 @@ app.factory('userFactory', function($q, $http, api) {
     getCurrentUserId,
     showAuthorized
   };
-});
+};

@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('newPollCtrl', function(
+module.exports = function(
   $scope,
   $routeParams,
   $window,
@@ -39,4 +39,4 @@ app.controller('newPollCtrl', function(
 
   getCurrentPresentation();
 
-});
+};

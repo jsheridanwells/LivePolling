@@ -1,5 +1,14 @@
 'use strict';
+
+let angular = require('../lib/node_modules/angular');
+require('../lib/node_modules/angular-route');
 let app = angular.module('LivePolling', ['ngRoute']);
+
+require('./controllers');
+require('./creds');
+require('./directives');
+require('./factories');
+require('./services');
 
 let getAuthorization = (userFactory, $window) => new Promise((resolve, reject) => {
   userFactory.showAuthorized()

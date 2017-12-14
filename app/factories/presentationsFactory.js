@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory('presentationFactory', function($q, $http, api) {
+module.exports = function($q, $http, api) {
 
   const getAllPresentations = (token) => {
     return $q((resolve, reject) => {
@@ -110,4 +110,4 @@ app.factory('presentationFactory', function($q, $http, api) {
     deletePresentation
   };
 
-});
+};

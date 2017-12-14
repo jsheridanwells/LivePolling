@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('presentationsCtrl', function(
+module.exports = function(
     $scope,
     $window,
     $routeParams,
@@ -32,4 +32,4 @@ app.controller('presentationsCtrl', function(
 
   getAllPresentations();
 
-});
+};

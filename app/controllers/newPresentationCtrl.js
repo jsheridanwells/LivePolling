@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('newPresentationCtrl', function(
+module.exports = function(
   $scope,
   $window,
   presentationFactory,
@@ -22,4 +22,4 @@ app.controller('newPresentationCtrl', function(
   };
 
 
-});
+};

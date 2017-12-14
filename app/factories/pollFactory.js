@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory('pollFactory', function($q, $http, api) {
+module.exports = function($q, $http, api) {
 
   const postNewPoll = (pollObj, token) => {
     console.log('firing here 1');
@@ -19,4 +19,4 @@ app.factory('pollFactory', function($q, $http, api) {
   return {
     postNewPoll
   };
-});
+};
