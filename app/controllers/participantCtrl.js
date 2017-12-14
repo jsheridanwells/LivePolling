@@ -32,7 +32,7 @@ module.exports = function(
   };
 
   $scope.respond = (itemId) => {
-    presentationFactory.sendResponse(itemId)
+    presentationFactory.sendResponse(itemId, $routeParams.presentationId)
     .then(data => console.log(data))
     .catch(error => console.log(error));
   };

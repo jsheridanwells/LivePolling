@@ -4,11 +4,13 @@ module.exports = function(
   $scope,
   $routeParams,
   $window,
+  $timeout,
+  api,
   presentationFactory,
   userFactory,
   responseTallyService
 ) {
-
+  let ActionCable = require('../../lib/node_modules/actioncable/lib/assets/compiled/action_cable.js');
   let currentUserToken = userFactory.getCurrentUserToken();
 
   $scope.currentPresentation = {};
@@ -21,6 +23,19 @@ module.exports = function(
       $scope.responsePercentageArr = responseTallyService.tallyResponses($scope.currentPresentation.polls[$scope.currentPresentation.current_slide].items);
       console.log('current presentation data', $scope.currentPresentation);
       console.log('response percentage', $scope.responsePercentageArr);
+
+      let cable = ActionCable.createConsumer(api.ws);
+      cable.subscriptions.create({
+        channel: 'ResponseChannel',
+        presentation_id: $routeParams.presentationId
+      }, {
+        received: (data) => {
+          // $scope.currentPresentation = data;
+          console.log('data via websocket ', data);
+          $timeout();
+        }
+      });
+
     })
     .catch(error => console.log(error));
   };
