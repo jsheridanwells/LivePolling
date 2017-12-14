@@ -17,7 +17,6 @@ module.exports = function(
     presentationFactory.showToParticipant($routeParams.presentationId)
     .then((data) => {
       $scope.title = data.presentation.title;
-      console.log($scope.currentPresentation);
       let cable = ActionCable.createConsumer(api.ws);
       cable.subscriptions.create({
         channel: 'PresentationChannel',
@@ -25,13 +24,16 @@ module.exports = function(
       }, {
         received: (data) => {
           $scope.currentPresentation = data;
-          console.log('web socket data?', $scope.currentPresentation);
-          console.log('web socket data 2?', $scope.currentPresentation.current_poll);
-          console.log('web socket data 3?', $scope.currentPresentation.items);
           $timeout();
         }
       });
     })
+    .catch(error => console.log(error));
+  };
+
+  $scope.respond = (itemId) => {
+    presentationFactory.sendResponse(itemId)
+    .then(data => console.log(data))
     .catch(error => console.log(error));
   };
 

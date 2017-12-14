@@ -19,12 +19,12 @@
     </div>
      <!-- ANSWER ITEMS -->
      <ul class="answer-choices" ng-repeat="item in currentPresentation.items">
-      <!-- <a href="" ng-click=""> -->
+      <a href="" ng-click="respond(item.id)">
        <li class="answer-item">
         <!-- ANSWER ITEM GOES HERE -->
         {{item.content}}
        </li>
-      <!-- </a> -->
+      </a>
      </ul>
   </div>
 </div>
