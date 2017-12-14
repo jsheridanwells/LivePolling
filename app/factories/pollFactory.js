@@ -3,7 +3,6 @@
 module.exports = function($q, $http, api) {
 
   const postNewPoll = (pollObj, token) => {
-    console.log('firing here 1');
     return $q((resolve, reject) => {
       $http({
         method:'POST',

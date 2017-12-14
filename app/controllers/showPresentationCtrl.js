@@ -5,17 +5,22 @@ module.exports = function(
   $routeParams,
   $window,
   presentationFactory,
-  userFactory
+  userFactory,
+  responseTallyService
 ) {
 
   let currentUserToken = userFactory.getCurrentUserToken();
 
   $scope.currentPresentation = {};
+  $scope.responsePercentageArr = [];
 
   const showPresentation = () => {
     presentationFactory.getPresentation($routeParams.presentationId, currentUserToken)
     .then(data => {
       $scope.currentPresentation = data.presentation;
+      $scope.responsePercentageArr = responseTallyService.tallyResponses($scope.currentPresentation.polls[$scope.currentPresentation.current_slide].items);
+      console.log('current presentation data', $scope.currentPresentation);
+      console.log('response percentage', $scope.responsePercentageArr);
     })
     .catch(error => console.log(error));
   };
@@ -33,13 +38,17 @@ module.exports = function(
     presentationFactory.nextSlide($scope.currentPresentation.id, currentUserToken)
     .then(data => {
       $scope.currentPresentation = data.presentation;
+      $scope.responsePercentageArr = responseTallyService.tallyResponses($scope.currentPresentation.polls[$scope.currentPresentation.current_slide].items);
     })
     .catch(error => console.log(error));
   };
 
   $scope.prevSlide = () => {
     presentationFactory.prevSlide($scope.currentPresentation.id, currentUserToken)
-    .then(data => $scope.currentPresentation = data.presentation)
+    .then(data => {
+      $scope.currentPresentation = data.presentation;
+      $scope.responsePercentageArr = responseTallyService.tallyResponses($scope.currentPresentation.polls[$scope.currentPresentation.current_slide].items);
+    })
     .catch(error => console.log(error));
   };
 
