@@ -17,5 +17,25 @@ module.exports = function() {
     return percentageArr;
   };
 
-  return {tallyResponses};
+  const tallySocketResponses = (dataArr, currentItems) => {
+    let responseTotal = 0;
+    let percentageArr = [];
+    let cutArray = dataArr.slice((currentItems[0].id - 1), currentItems[currentItems.length - 1].id);
+    cutArray.forEach(item => responseTotal += item.length);
+    cutArray.forEach(item => {
+      let currentPercentage = (item.length / responseTotal * 100).toFixed(0);
+      if (!isNaN(currentPercentage)) {
+        percentageArr.push(`${currentPercentage}%`);
+      } else {
+        percentageArr.push('');
+      }
+    });
+    return percentageArr;
+
+  };
+
+  return {
+    tallyResponses,
+    tallySocketResponses
+  };
 };

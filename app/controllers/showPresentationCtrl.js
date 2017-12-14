@@ -29,9 +29,10 @@ module.exports = function(
         channel: 'ResponseChannel',
         presentation_id: $routeParams.presentationId
       }, {
-        received: (data) => {
-          // $scope.currentPresentation = data;
-          console.log('data via websocket ', data);
+        received: (responses) => {
+          console.log('data via websocket ', responses.data);
+          console.log('items going in', $scope.currentPresentation.polls[$scope.currentPresentation.current_slide].items);
+          $scope.responsePercentageArr = responseTallyService.tallySocketResponses(responses.data, $scope.currentPresentation.polls[$scope.currentPresentation.current_slide].items);
           $timeout();
         }
       });
