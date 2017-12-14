@@ -1,28 +1,30 @@
 <div class="presentation-nav"></div>
-
-<!-- PRESENTATION TITLE -->
-<div class="slide-title">
-  <h3 class="presentation-title">
-    <!-- TITLE GOES HERE -->
-  </h3>
-</div>
-
-<!-- SLIDE FRAME -->
-<div class="slide-frame">
-  <!-- POLL QUESTION -->
-  <div class="poll-question">
-    <h4>
-
-      <!-- QUESTION GOES HERE -->
-
-    </h4>
+<div class="container">
+  <!-- PRESENTATION TITLE -->
+  <div class="slide-title">
+    <h3 class="presentation-title">
+      <!-- TITLE GOES HERE -->
+      {{title}}
+    </h3>
   </div>
-   <!-- ANSWER ITEMS -->
-   <ul class="answer-choices" ng-repeat="">
-    <a href="" ng-click="">
-     <li class="answer-item">
-      <!-- ANSWER ITEM GOES HERE -->
-     </li>
-    </a>
-   </ul>
+
+  <!-- SLIDE FRAME -->
+  <div class="slide-frame">
+    <!-- POLL QUESTION -->
+    <div class="poll-question">
+      <!-- QUESTION GOES HERE -->
+      <h4>
+        {{currentPresentation.current_poll}}
+      </h4>
+    </div>
+     <!-- ANSWER ITEMS -->
+     <ul class="answer-choices" ng-repeat="item in currentPresentation.items">
+      <!-- <a href="" ng-click=""> -->
+       <li class="answer-item">
+        <!-- ANSWER ITEM GOES HERE -->
+        {{item.content}}
+       </li>
+      <!-- </a> -->
+     </ul>
+  </div>
 </div>
