@@ -26,14 +26,20 @@ module.exports = function(
   // };
 
   const showPresentation = () => {
-    let cable = ActionCable.createConsumer(api.ws);
-
-    cable.subscriptions.create('PresentationChannel', {
-      received: (data) => {
-        $scope.currentPresentation = data;
-        console.log('web socket data?', $scope.currentPresentation);
-      }
-    });
+    presentationFactory.showToParticipant($routeParams.presentationId)
+    .then(() => {
+      let cable = ActionCable.createConsumer(api.ws);
+      cable.subscriptions.create({
+        channel: 'PresentationChannel',
+        id: $routeParams.presentationId
+      }, {
+        received: (data) => {
+          $scope.currentPresentation = data;
+          console.log('web socket data?', $scope.currentPresentation);
+        }
+      });
+    })
+    .catch(error => console.log(error));
   };
 
   $scope.$on('$viewContentLoaded', () => {
