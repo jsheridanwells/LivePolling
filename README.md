@@ -1,5 +1,5 @@
  # Live Polling:
-__Present and Poll and Audience Instantly__
+__Present and Poll an Audience Instantly__
 
 ### [View the deployed version](http://jeremywells.io/live-polling).
 
