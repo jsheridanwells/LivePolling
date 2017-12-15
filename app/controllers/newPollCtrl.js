@@ -32,7 +32,6 @@ module.exports = function(
   };
 
   $scope.createPoll = () => {
-    console.log('scope poll', $scope.poll);
     pollFactory.postNewPoll($scope.poll, token)
     .then(data => $window.location.href = `#!presentations/${$routeParams.presentationId}`)
     .catch(error => console.log(error));

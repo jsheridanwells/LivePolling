@@ -21,8 +21,6 @@ module.exports = function(
     .then(data => {
       $scope.currentPresentation = data.presentation;
       $scope.responsePercentageArr = responseTallyService.tallyResponses($scope.currentPresentation.polls[$scope.currentPresentation.current_slide].items);
-      console.log('current presentation data', $scope.currentPresentation);
-      console.log('response percentage', $scope.responsePercentageArr);
 
       let cable = ActionCable.createConsumer(api.ws);
       cable.subscriptions.create({
@@ -30,8 +28,6 @@ module.exports = function(
         presentation_id: $routeParams.presentationId
       }, {
         received: (responses) => {
-          console.log('data via websocket ', responses.data);
-          console.log('items going in', $scope.currentPresentation.polls[$scope.currentPresentation.current_slide].items);
           $scope.responsePercentageArr = responseTallyService.tallySocketResponses(responses.data);
           $timeout();
         }

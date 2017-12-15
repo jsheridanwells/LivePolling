@@ -18,7 +18,6 @@ module.exports = function() {
   };
 
   const tallySocketResponses = (dataArr) => {
-    console.log('dataArr ', dataArr);
     let total = dataArr.reduce((a,b) => a + b);
       return dataArr.map(count => (((count / total) * 100).toFixed()).toString() + '%');
   };

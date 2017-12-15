@@ -24,7 +24,6 @@ module.exports = function(
       }, {
         received: (data) => {
           $scope.currentPresentation = data;
-          console.log('incomingdata', $scope.currentPresentation);
           $timeout();
         }
       });
@@ -32,11 +31,7 @@ module.exports = function(
     .catch(error => console.log(error));
   };
 
-
-  // bug is in $scope.currentPresentation.current_poll_id
-  // current_poll_id not created on first item
   $scope.respond = (itemId) => {
-    console.log('respond input', itemId, $routeParams.presentationId, $scope.currentPresentation.current_poll_id);
     presentationFactory.sendResponse(itemId, $routeParams.presentationId, $scope.currentPresentation.current_poll_id)
     .then(data => console.log(data))
     .catch(error => console.log(error));
