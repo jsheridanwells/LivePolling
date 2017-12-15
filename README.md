@@ -1,7 +1,7 @@
  # Live Polling:
 __Present and Poll and Audience Instantly__
 
-### [View the deployed version].(http://jeremywells.io/live-polling)
+### [View the deployed version](http://jeremywells.io/live-polling).
 
 This is the browser interface for the LivePolling app.
 
