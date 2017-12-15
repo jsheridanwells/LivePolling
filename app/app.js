@@ -10,6 +10,9 @@ require('./directives');
 require('./factories');
 require('./services');
 
+// called by ng-routes for restricted views
+// resolves true or rejects false depending on existence of user auth token
+// resolve authorizes access to views, reject redirects user to /home view
 let getAuthorization = (userFactory, $window) => new Promise((resolve, reject) => {
   userFactory.showAuthorized()
   .then((user) => {

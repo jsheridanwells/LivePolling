@@ -4,6 +4,7 @@ module.exports = function($scope, $window, userFactory) {
 
   // values filled for easy login,
   // delete values on deploy
+  //creates model for holding form data for creating new user
   $scope.user = {
     firstName: 'Jeremy',
     lastName: 'Wells',
@@ -12,12 +13,17 @@ module.exports = function($scope, $window, userFactory) {
     passwordConfirmation: '123456'
   };
 
+  // posts user data to db endpoint post 'signup' 'users#create'
+  // calls login() function on return to generate auth token for user
   $scope.signUp = () => {
     userFactory.signUp($scope.user)
     .then(response => $scope.logIn())
     .catch(error => console.log(error));
   };
 
+  // takes email and password from user model
+  // calls post 'authenticate' 'authentication#authenticate' endpoint
+  // redirects to /presentations #index view
   $scope.logIn = () => {
     userFactory.logIn($scope.user).
     then(userData => {
@@ -26,9 +32,10 @@ module.exports = function($scope, $window, userFactory) {
     .catch(error => console.log(error));
   };
 
+  // destroys current auth token
   $scope.logOut = () => {
     userFactory.logOut()
-    .then(() => $window.location.href = 'https://google.com')
+    .then(() => $window.location.href = '/')
     .catch(error => console.log(error));
   };
 

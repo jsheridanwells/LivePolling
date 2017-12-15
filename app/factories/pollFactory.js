@@ -2,6 +2,8 @@
 
 module.exports = function($q, $http, api) {
 
+  // takes poll data and auth token, takes fields from api const
+  // posts to polls resource
   const postNewPoll = (pollObj, token) => {
     return $q((resolve, reject) => {
       $http({

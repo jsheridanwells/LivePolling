@@ -2,6 +2,8 @@
 
 module.exports = function($q, $http, api) {
 
+  // takes auth token, takes fields from api const
+  // calls presentations#index endpoint
   const getAllPresentations = (token) => {
     return $q((resolve, reject) => {
       $http({
@@ -14,6 +16,9 @@ module.exports = function($q, $http, api) {
     });
   };
 
+
+  // takes presentation id and auth token, takes fields from api constant
+  // gets to presentations resource
   const getPresentation = (presentationId, token) => {
     return $q((resolve, reject) => {
       $http({
@@ -26,6 +31,8 @@ module.exports = function($q, $http, api) {
     });
   };
 
+  // takes presentation data and auth token, takes fields from api constant
+  // posts to presentations resource
   const postPresentation = (presentationObj, token) => {
     return $q((resolve, reject) => {
       $http({
@@ -39,6 +46,10 @@ module.exports = function($q, $http, api) {
     });
   };
 
+  // takes presentations id and auth token, takes fields from api constant
+  // patches presentations#broadcast
+  // toggles presentations_broadcasting boolean
+  // broadcasting:true makes presentation data available publicly
   const toggleBroadcasting = (presentationId, token) => {
     return $q((resolve, reject) => {
       $http({
@@ -51,6 +62,9 @@ module.exports = function($q, $http, api) {
     });
   };
 
+  // takes presentation id and auth token, takes fields from api constant
+  // patches presentations#next_slide, increments integer of presentations_current_slide column
+  // returned data is transmitted via websocket to change data in show-participant view
   const nextSlide = (presentationId, token) => {
     return $q((resolve, reject) => {
       $http({
@@ -66,6 +80,9 @@ module.exports = function($q, $http, api) {
     });
   };
 
+  // takes presentation id and auth token, takes fields from api constant
+  // patches presentations#prev_slide, decrements integer of presentations_current_slide column
+  // returned data is transmitted via websocket to change data in show-participant view
   const prevSlide = (presentationId, token) => {
     return $q((resolve, reject) => {
       $http({
@@ -79,6 +96,9 @@ module.exports = function($q, $http, api) {
     });
   };
 
+  // takes presentation id
+  // if presentations_broadcasting column is set to true
+  // presentation data is made avaiable to user w/o auth
   const showToParticipant = (presentationId) => {
     return $q((resolve, reject) => {
       $http.get(`${api.url}${api.showPresentation}/${presentationId}`)
@@ -89,6 +109,9 @@ module.exports = function($q, $http, api) {
     });
   };
 
+  // takes poll item id, presentation id, poll id and fields from api constant
+  // calls post 'respond/:presentation_id/:poll_id' 'responses#add' endpoint
+  // adds item to response table w/ selected item id, used to count number of responses by item id
   const sendResponse = (itemId, presentationId, pollId) => {
     return $q((resolve, reject) => {
       $http.post(`${api.url}${api.responses}/${presentationId}/${pollId}`, angular.toJson({response: {item_id: itemId}}))
@@ -97,6 +120,9 @@ module.exports = function($q, $http, api) {
     });
   };
 
+  // takes presentation id and auth token, takes api constant
+  // calls delete to presentations resource
+  // removes presentation from database
   const deletePresentation = (presentationId, token) => {
     return $q((resolve, reject) => {
       $http({
