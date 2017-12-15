@@ -10,12 +10,22 @@ module.exports = function(
   userFactory,
   responseTallyService
 ) {
+  // instantiates ActionCable JS module
   let ActionCable = require('../../lib/node_modules/actioncable/lib/assets/compiled/action_cable.js');
+  // holds authtoken to pass into api calls
   let currentUserToken = userFactory.getCurrentUserToken();
 
+  // creates model for current presentation data
   $scope.currentPresentation = {};
+  // holds array of percentage responses for each poll item displayed
+  // updated via websocket subscription
   $scope.responsePercentageArr = [];
 
+  // calls presentations/:id' presentations#show' endpoint
+  // populates currentPresentation object
+  // creates subscription to response_channel_#(presentationID)
+  // when users at the show-to-participant view interact with a response object
+  // data is streamed to current user
   const showPresentation = () => {
     presentationFactory.getPresentation($routeParams.presentationId, currentUserToken)
     .then(data => {
@@ -37,6 +47,10 @@ module.exports = function(
     .catch(error => console.log(error));
   };
 
+  // takes id of current presentation and user auth token
+  // calls patch 'broadcast/:id' 'presentations#broadcast' endpoint
+  // toggles boolean in presentations_broadcasting db column
+  // data in presentations with broadcasting:true are made available w/o auth
   $scope.broadcast = () => {
     presentationFactory.toggleBroadcasting($scope.currentPresentation.id, currentUserToken)
     .then(data => {
@@ -46,6 +60,10 @@ module.exports = function(
     .catch(error => console.log(error));
   };
 
+  // takes id of current presentation and user auth token
+  // calls patch 'next/:id', 'presentations#next_slide' endpoint
+  // increments integer in presentations_current_slide db column
+  // determines current slide index in current presentation for presenters and viewers
   $scope.nextSlide = () => {
     presentationFactory.nextSlide($scope.currentPresentation.id, currentUserToken)
     .then(data => {
@@ -55,6 +73,11 @@ module.exports = function(
     .catch(error => console.log(error));
   };
 
+
+  // takes id of current presentation and user auth token
+  // calls patch 'next/:id', 'presentations#next_slide' endpoint
+  // decrements integer in presentations_current_slide db column
+  // determines current slide index in current presentation for presenters and viewers
   $scope.prevSlide = () => {
     presentationFactory.prevSlide($scope.currentPresentation.id, currentUserToken)
     .then(data => {
@@ -64,6 +87,7 @@ module.exports = function(
     .catch(error => console.log(error));
   };
 
+  // loads current presentation data when view loads
   $scope.$on('$viewContentLoaded', () => {
     showPresentation();
   });
