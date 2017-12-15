@@ -12,6 +12,7 @@ module.exports = function(
 
   $scope.title = '';
   $scope.currentPresentation = {};
+  $scope.activated = true;
 
   const showPresentation = () => {
     presentationFactory.showToParticipant($routeParams.presentationId)
@@ -23,6 +24,7 @@ module.exports = function(
         presentation_id: $routeParams.presentationId
       }, {
         received: (data) => {
+          $scope.activated = true;
           $scope.currentPresentation = data;
           $timeout();
         }
@@ -32,6 +34,7 @@ module.exports = function(
   };
 
   $scope.respond = (itemId) => {
+    $scope.activated = false;
     presentationFactory.sendResponse(itemId, $routeParams.presentationId, $scope.currentPresentation.current_poll_id)
     .then(data => console.log(data))
     .catch(error => console.log(error));
