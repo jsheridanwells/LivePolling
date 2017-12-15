@@ -89,9 +89,9 @@ module.exports = function($q, $http, api) {
     });
   };
 
-  const sendResponse = (itemId, presentationId) => {
+  const sendResponse = (itemId, presentationId, pollId) => {
     return $q((resolve, reject) => {
-      $http.post(`${api.url}${api.responses}/${presentationId}`, angular.toJson({response: {item_id: itemId}}))
+      $http.post(`${api.url}${api.responses}/${presentationId}/${pollId}`, angular.toJson({response: {item_id: itemId}}))
       .then(data => resolve(data))
       .catch(error => reject(error));
     });

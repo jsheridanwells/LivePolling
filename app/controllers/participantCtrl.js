@@ -24,6 +24,7 @@ module.exports = function(
       }, {
         received: (data) => {
           $scope.currentPresentation = data;
+          console.log('incomingdata', $scope.currentPresentation);
           $timeout();
         }
       });
@@ -32,7 +33,7 @@ module.exports = function(
   };
 
   $scope.respond = (itemId) => {
-    presentationFactory.sendResponse(itemId, $routeParams.presentationId)
+    presentationFactory.sendResponse(itemId, $routeParams.presentationId, $scope.currentPresentation.current_poll_id)
     .then(data => console.log(data))
     .catch(error => console.log(error));
   };

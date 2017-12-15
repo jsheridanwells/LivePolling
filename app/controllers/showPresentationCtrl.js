@@ -32,7 +32,7 @@ module.exports = function(
         received: (responses) => {
           console.log('data via websocket ', responses.data);
           console.log('items going in', $scope.currentPresentation.polls[$scope.currentPresentation.current_slide].items);
-          $scope.responsePercentageArr = responseTallyService.tallySocketResponses(responses.data, $scope.currentPresentation.polls[$scope.currentPresentation.current_slide].items);
+          $scope.responsePercentageArr = responseTallyService.tallySocketResponses(responses.data);
           $timeout();
         }
       });
