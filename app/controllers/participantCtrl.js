@@ -18,7 +18,7 @@ module.exports = function(
   // after user fires respond(), reset to false to disable ng-click elements
   $scope.activated = true;
   $scope.response = {};
-  // $scope.response.written = '';
+  $scope.response.written = null;
   // calls show-presentation/:id' presentations#show_to_participant' endpoint
   // populates currentPresentation object
   // creates subscription to presentation_channel_#(presentationID)
@@ -47,7 +47,12 @@ module.exports = function(
   $scope.respond = (itemId) => {
     console.log('getting send to respond: ', $scope.response.written);
     $scope.activated = false;
-    presentationFactory.sendResponse(itemId, $routeParams.presentationId, $scope.currentPresentation.current_poll_id)
+    presentationFactory.sendResponse(
+      itemId,
+      $routeParams.presentationId,
+      $scope.currentPresentation.current_poll_id,
+      $scope.response.written
+    )
     .then(data => console.log(data))
     .catch(error => console.log(error));
   };
