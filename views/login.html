@@ -1,11 +1,16 @@
 <div class="container">
   <div id="home">
-    <div class="jumbotron mt-5">
+    <div class="jumbotron mt-5 splash">
       <h1 class="display-3">LivePolling</h1>
       <div class="form-group">
         <input type="email" class="form-control signup-form" ng-model="user.email" placeholder="Email" value="example@example.com">
         <input type="password" class="form-control signup-form" ng-model="user.password" placeholder="Password" value="123456">
         <button class="btn btn-primary sign-up-btn" ng-click="logIn()">Log In</button>
+      </div>
+      <div class="login-redirect">
+        <p class="redirect-text">
+          No account? <a ng-href="#!/signup">Sign up here</a>.
+        </p>
       </div>
     </div>
   </div>
