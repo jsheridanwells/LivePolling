@@ -8,7 +8,7 @@
         <div class="form-group">
           <input type="text" class="form-control poll-question" placeholder="Question" ng-model="poll.poll.content">
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-ig="">
           <p>Answer Items:</p>
           <div ng-repeat=" item in poll.poll.items_attributes ">
             <input type="text" class="form-control poll-items" ng-model="item.content">
@@ -39,11 +39,11 @@
           <option value="3">Do Not Show Results</option>s
         </select>
         <div class="feedback-type-explanation">
-          <p ng-if="poll.poll.feedbackType === '1'">
+          <p ng-if="poll.poll.feedbackType == 1">
             The audience will see the results of the poll as it is being displayed.
           </p>
-          <p ng-if="poll.poll.feedbackType === '2'">The audience will see the poll after all responses have been submitted.</p>
-          <p ng-if="poll.poll.feedbackType === '3'">The results of this poll will not be shown to the audience.</p>
+          <p ng-if="poll.poll.feedbackType == 2">The audience will see the poll after all responses have been submitted.</p>
+          <p ng-if="poll.poll.feedbackType == 3">The results of this poll will not be shown to the audience.</p>
         </div>
       </div>
     </div>
