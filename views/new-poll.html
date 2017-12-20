@@ -2,22 +2,52 @@
   <div class="poll-title">
     <h3>{{currentPresentation.title}}: New Poll</h3>
   </div>
-  <div class="poll-body">
-    <div class="form-group">
-      <input type="text" class="form-control poll-question" placeholder="Question" ng-model="poll.poll.content">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="poll-body">
+        <div class="form-group">
+          <input type="text" class="form-control poll-question" placeholder="Question" ng-model="poll.poll.content">
+        </div>
+        <div class="form-group">
+          <p>Answer Items:</p>
+          <div ng-repeat=" item in poll.poll.items_attributes ">
+            <input type="text" class="form-control poll-items" ng-model="item.content">
+          </div>
+          <div class="add-item-frame">
+            <a href="" ng-click="addItem()" class="float-right">+ Add Item </a>
+          </div>
+          <div class="poll-buttons">
+            <button class="btn btn-primary" ng-click="createPoll()">Create Poll</button>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="form-group">
-      <p>Answer Items:</p>
-      <div ng-repeat=" item in poll.poll.items_attributes ">
-        <input type="text" class="form-control poll-items" ng-model="item.content">
+    <div class="col-md-4">
+      <div class="poll-selector-box">
+        <h5>Response Type:</h5>
+        <select class="custom-select" ng-model="poll.poll.responseType">
+          <option value="1">Multiple Choice</option>
+          <option value="2">True / False</option>
+          <option value="3">Written Response</option>
+        </select>
       </div>
-      <div class="add-item-frame">
-        <a href="" ng-click="addItem()" class="float-right">+ Add Item </a>
-      </div>
-      <div class="poll-buttons">
-        <button class="btn btn-primary" ng-click="createPoll()">Create Poll</button>
+      <div class="poll-selector-box">
+        <h5>Feedback Type:</h5>
+        <select class="custom-select" ng-model="poll.poll.feedbackType">
+          <option value="1">Live Results</option>
+          <option value="2">Results on Next Slide</option>
+          <option value="3">Do Not Show Results</option>s
+        </select>
+        <div class="feedback-type-explanation">
+          <p ng-if="poll.poll.feedbackType === '1'">
+            The audience will see the results of the poll as it is being displayed.
+          </p>
+          <p ng-if="poll.poll.feedbackType === '2'">The audience will see the poll after all responses have been submitted.</p>
+          <p ng-if="poll.poll.feedbackType === '3'">The results of this poll will not be shown to the audience.</p>
+        </div>
       </div>
     </div>
+  </div>
   </div>
 
 </div>

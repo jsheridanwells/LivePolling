@@ -17,7 +17,9 @@ module.exports = function(
   $scope.poll = {
     poll: {
       content: '',
-      items_attributes: [{content: ''},{content: ''}]
+      items_attributes: [{content: ''},{content: ''}],
+      responseType: '1',
+      feedbackType: '1'
     }
   };
 
