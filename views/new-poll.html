@@ -10,7 +10,7 @@
         </div>
         <div class="form-group" ng-if="poll.response_type == 1">
           <p>Answer Items:</p>
-          <div ng-repeat=" item in poll.items_attributes ">
+          <div ng-repeat=" item in multipleChoice ">
             <div class="input-group">
               <input type="text" class="form-control" ng-model="item.content">
               <span class="input-group-addon" ng-click="removeItem($index)"> X </span>
