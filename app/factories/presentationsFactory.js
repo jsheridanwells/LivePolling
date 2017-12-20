@@ -112,9 +112,12 @@ module.exports = function($q, $http, api) {
   // takes poll item id, presentation id, poll id and fields from api constant
   // calls post 'respond/:presentation_id/:poll_id' 'responses#add' endpoint
   // adds item to response table w/ selected item id, used to count number of responses by item id
-  const sendResponse = (itemId, presentationId, pollId) => {
+  const sendResponse = (itemId, presentationId, pollId, responseWritten) => {
     return $q((resolve, reject) => {
-      $http.post(`${api.url}${api.responses}/${presentationId}/${pollId}`, angular.toJson({response: {item_id: itemId}}))
+      $http.post(
+        `${api.url}${api.responses}/${presentationId}/${pollId}`,
+        angular.toJson({response: {item_id: itemId, written: responseWritten}})
+      )
       .then(data => resolve(data))
       .catch(error => reject(error));
     });

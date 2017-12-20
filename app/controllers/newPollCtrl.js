@@ -15,9 +15,31 @@ module.exports = function(
   $scope.currentPresentation = {};
   //creates model for holding form data for creating new poll
   $scope.poll = {
-    poll: {
       content: '',
-      items_attributes: [{content: ''},{content: ''}]
+      items_attributes: [],
+      response_type: '1',
+      feedback_type: '1'
+  };
+  //holds reponse_type items rendered to ng-model
+  //saved as item attributes when createPoll() is called
+  $scope.multipleChoice = [{content: ''},{content: ''}];
+  $scope.trueFalse = [{content: 'True'},{content: 'False'}];
+  $scope.writtenResponse = [{content: 'Written Response'}];
+
+  // returns correct items_attributes array depending on responseType select
+  // called in createPoll()
+  // take in response type id (1, 2, or 3)
+  // coerces responseType datatype because values come from html5 elements
+  const selectResponseType = (responseTypeId) => {
+    if (responseTypeId == 1) {
+      return $scope.multipleChoice;
+    } else if (responseTypeId == 2) {
+      return $scope.trueFalse;
+    } else if (responseTypeId == 3) {
+      return $scope.writtenResponse;
+    }
+    else {
+      console.error('response_type is invalid');
     }
   };
 
@@ -27,20 +49,24 @@ module.exports = function(
     presentationFactory.getPresentation($routeParams.presentationId, token)
     .then((presentation) => {
       $scope.currentPresentation = presentation.presentation;
-      $scope.poll.poll.presentation_id = presentation.presentation.id;
+      $scope.poll.presentation_id = presentation.presentation.id;
     })
     .catch(error => console.log(error));
   };
 
   // adds new item object to poll.items array
-  $scope.addItem = () => {
-    $scope.poll.poll.items_attributes.push({content: ''});
-  };
+  $scope.addItem = () => $scope.multipleChoice.push({content: ''});
+
+  //removes item object from poll.items array
+  $scope.removeItem = (index) => $scope.multipleChoice.splice(index, 1);
 
   // takes poll data object and user token
   // calls post /polls#create endpoint
   $scope.createPoll = () => {
-    pollFactory.postNewPoll($scope.poll, token)
+    let pollObj = {};
+    pollObj.poll = $scope.poll;
+    pollObj.poll.items_attributes = selectResponseType($scope.poll.response_type);
+    pollFactory.postNewPoll(pollObj, token)
     .then(data => $window.location.href = `#!presentations/${$routeParams.presentationId}`)
     .catch(error => console.log(error));
   };
