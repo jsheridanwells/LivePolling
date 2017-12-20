@@ -17,25 +17,30 @@
         {{currentPresentation.current_poll}}
       </h4>
     </div>
-     <!-- ACTIVE ANSWER ITEMS -->
-     <div ng-if="activated">
-       <ul class="answer-choices" ng-repeat="item in currentPresentation.items">
-        <a href="" ng-click="respond(item.id)">
-         <li class="answer-item">
-          <!-- ANSWER ITEM GOES HERE -->
-          {{item.content}}
-         </li>
-        </a>
-       </ul>
-     </div>
-     <!-- DISABLED ANSWER ITEMS -->
-     <div ng-if="!activated">
-       <ul class="answer-choices" ng-repeat="item in currentPresentation.items">
-         <li class="answer-item">
-          <!-- ANSWER ITEM GOES HERE -->
-          {{item.content}}
-         </li>
-       </ul>
-     </div>
+    <div ng-if=" currentPresentation.current_poll_response_type != 3 ">
+       <!-- ACTIVE ANSWER ITEMS -->
+       <div ng-if="activated">
+         <ul class="answer-choices" ng-repeat="item in currentPresentation.items">
+          <a href="" ng-click="respond(item.id)">
+           <li class="answer-item">
+            <!-- ANSWER ITEM GOES HERE -->
+            {{item.content}}
+           </li>
+          </a>
+         </ul>
+       </div>
+       <!-- DISABLED ANSWER ITEMS -->
+       <div ng-if="!activated">
+         <ul class="answer-choices" ng-repeat="item in currentPresentation.items">
+           <li class="answer-item">
+            <!-- ANSWER ITEM GOES HERE -->
+            {{item.content}}
+           </li>
+         </ul>
+       </div>
+    </div>
+    <div ng-if=" currentPresentation.current_poll_response_type == 3 ">
+      written response box goes here
+    </div>
   </div>
 </div>

@@ -31,6 +31,7 @@ module.exports = function(
         presentation_id: $routeParams.presentationId
       }, {
         received: (data) => {
+          console.log(data);
           $scope.activated = true;
           $scope.currentPresentation = data;
           $timeout();
