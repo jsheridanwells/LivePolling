@@ -35,9 +35,10 @@ module.exports = function(
   };
 
   // adds new item object to poll.items array
-  $scope.addItem = () => {
-    $scope.poll.poll.items_attributes.push({content: ''});
-  };
+  $scope.addItem = () => $scope.poll.poll.items_attributes.push({content: ''});
+
+  //removes item object from poll.items array
+  $scope.removeItem = (index) => $scope.poll.poll.items_attributes.splice(index, 1);
 
   // takes poll data object and user token
   // calls post /polls#create endpoint

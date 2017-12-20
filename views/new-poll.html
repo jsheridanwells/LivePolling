@@ -11,13 +11,13 @@
         <div class="form-group" ng-if="poll.poll.responseType == 1">
           <p>Answer Items:</p>
           <div ng-repeat=" item in poll.poll.items_attributes ">
-            <input type="text" class="form-control poll-items" ng-model="item.content">
+            <div class="input-group">
+              <input type="text" class="form-control" ng-model="item.content">
+              <span class="input-group-addon" ng-click="removeItem($index)"> X </span>
+            </div>
           </div>
           <div class="add-item-frame">
             <a href="" ng-click="addItem()" class="float-right">+ Add Item </a>
-          </div>
-          <div class="poll-buttons">
-            <button class="btn btn-primary" ng-click="createPoll()">Create Poll</button>
           </div>
         </div>
         <div ng-if="poll.poll.responseType == 2">
@@ -35,8 +35,10 @@
           </div>
         </div>
         <div ng-if="poll.poll.responseType == 3">
-          <h4>The audience's written responses will go here</h4>
-          <textarea name="" id="" cols="30" rows="10"></textarea>
+          <textarea name="written-response-box" id="" cols="30" rows="10" placeholder="The audience's written responses will go here" readonly></textarea>
+        </div>
+        <div class="poll-buttons">
+          <button class="btn btn-primary" ng-click="createPoll()">Create Poll</button>
         </div>
       </div>
     </div>
