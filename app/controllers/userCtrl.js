@@ -13,6 +13,8 @@ module.exports = function($scope, $window, userFactory) {
     passwordConfirmation: '123456'
   };
 
+  $scope.loginError = false;
+
   // posts user data to db endpoint post 'signup' 'users#create'
   // calls login() function on return to generate auth token for user
   $scope.signUp = () => {
@@ -29,14 +31,14 @@ module.exports = function($scope, $window, userFactory) {
     then(userData => {
       $window.location.href = '#!/presentations';
     })
-    .catch(error => console.log(error));
+    .catch(() => $scope.loginError = true);
   };
 
   // destroys current auth token
   $scope.logOut = () => {
     userFactory.logOut()
     .then(() => $window.location.href = '/')
-    .catch(error => console.log(error));
+    .catch((error => console.log(error)));
   };
 
 };

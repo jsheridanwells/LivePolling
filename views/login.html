@@ -1,6 +1,13 @@
 <div class="container">
   <div id="home">
     <div class="jumbotron mt-5 splash">
+      <div class="flash-space">
+        <div ng-if="loginError">
+          <p class="error-text">
+            There was an error logging in. Try again.
+          </p>
+        </div>
+      </div>
       <h1 class="display-3">LivePolling</h1>
       <div class="form-group">
         <input type="email" class="form-control signup-form" ng-model="user.email" placeholder="Email" value="example@example.com">
