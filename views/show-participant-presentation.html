@@ -40,7 +40,18 @@
        </div>
     </div>
     <div ng-if=" currentPresentation.current_poll_response_type == 3 ">
-      written response box goes here
+      <div ng-if="activated">
+        <div class="response-text-area">
+          <textarea id="" cols="30" rows="10" ng-model="response.written"></textarea>
+        </div>
+        <div class="response-text-area-button">
+          <button class="btn btn-primary" ng-click="respond(currentPresentation.items[0].id)">Send Response</button>
+        </div>
+      </div>
+      <div ng-if="!activated">
+        <p>Your response has been sent.</p>
+        <p>{{response.written}}</p>
+      </div>
     </div>
   </div>
 </div>
