@@ -6,11 +6,11 @@
     <div class="col-md-8">
       <div class="poll-body">
         <div class="form-group">
-          <input type="text" class="form-control poll-question" placeholder="Question" ng-model="poll.poll.content">
+          <input type="text" class="form-control poll-question" placeholder="Question" ng-model="poll.content">
         </div>
-        <div class="form-group" ng-if="poll.poll.responseType == 1">
+        <div class="form-group" ng-if="poll.response_type == 1">
           <p>Answer Items:</p>
-          <div ng-repeat=" item in poll.poll.items_attributes ">
+          <div ng-repeat=" item in poll.items_attributes ">
             <div class="input-group">
               <input type="text" class="form-control" ng-model="item.content">
               <span class="input-group-addon" ng-click="removeItem($index)"> X </span>
@@ -20,7 +20,7 @@
             <a href="" ng-click="addItem()" class="float-right">+ Add Item </a>
           </div>
         </div>
-        <div ng-if="poll.poll.responseType == 2">
+        <div ng-if="poll.response_type == 2">
           <div class="form-check">
             <label for="true" class="form-check-label">
               <input class="form-check-input"type="checkbox" name="true" disabled>
@@ -34,7 +34,7 @@
             </label>
           </div>
         </div>
-        <div ng-if="poll.poll.responseType == 3">
+        <div ng-if="poll.response_type == 3">
           <textarea name="written-response-box" id="" cols="30" rows="10" placeholder="The audience's written responses will go here" readonly></textarea>
         </div>
         <div class="poll-buttons">
@@ -45,7 +45,7 @@
     <div class="col-md-4">
       <div class="poll-selector-box">
         <h5>Response Type:</h5>
-        <select class="custom-select" ng-model="poll.poll.responseType">
+        <select class="custom-select" ng-model="poll.response_type">
           <option value="1">Multiple Choice</option>
           <option value="2">True / False</option>
           <option value="3">Written Response</option>
@@ -53,17 +53,17 @@
       </div>
       <div class="poll-selector-box">
         <h5>Feedback Type:</h5>
-        <select class="custom-select" ng-model="poll.poll.feedbackType">
+        <select class="custom-select" ng-model="poll.feedback_type">
           <option value="1">Live Results</option>
           <option value="2">Results on Next Slide</option>
           <option value="3">Do Not Show Results</option>s
         </select>
         <div class="feedback-type-explanation">
-          <p ng-if="poll.poll.feedbackType == 1">
+          <p ng-if="poll.feedback_type == 1">
             The audience will see the results of the poll as it is being displayed.
           </p>
-          <p ng-if="poll.poll.feedbackType == 2">The audience will see the poll after all responses have been submitted.</p>
-          <p ng-if="poll.poll.feedbackType == 3">The results of this poll will not be shown to the audience.</p>
+          <p ng-if="poll.feedback_type == 2">The audience will see the poll after all responses have been sub_titted.</p>
+          <p ng-if="poll.feedbackType == 3">The results of this poll will not be shown to the audience.</p>
         </div>
       </div>
     </div>
