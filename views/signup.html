@@ -2,12 +2,19 @@
   <div id="home">
     <div class="jumbotron mt-5 splash">
       <div class="flash-space">
+        <!-- SPACE FOR ERROR MESSAGES -->
         <div ng-if="loginError">
-          <p class="error-text">
-            There was an error logging in. Try again.
-          </p>
+          <div ng-repeat=" errorType in errorTypes ">
+            <p class="error-text">
+              {{errorType}}:
+              <span ng-repeat=" error in errorVals[$index] ">
+                {{error}},
+              </span>
+            </p>
+          </div>
         </div>
       </div>
+      <!-- SIGN UP FORM -->
       <h1 class="display-3">LivePolling</h1>
       <div class="form-group">
         <input type="text" class="form-control signup-form" ng-model="user.firstName" placeholder="First Name">
