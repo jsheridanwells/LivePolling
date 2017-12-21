@@ -33,8 +33,8 @@ module.exports = function(
       }, {
         received: (data) => {
           console.log('showPresentation channel data', data);
-          $scope.activated = true;
           $scope.currentPresentation = data;
+          $scope.activated = $scope.currentPresentation.responding_active;
           $timeout();
         }
       });
