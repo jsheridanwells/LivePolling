@@ -62,7 +62,10 @@
     </div>
      <!-- ANSWER ITEMS | PERCENTAGE OF RESPONSES -->
      <ul class="answer-choices" ng-repeat="item in currentPresentation.polls[currentPresentation.current_slide].items">
-       <li class="answer-item">
+      <div>
+
+      </div>
+       <li class="answer-item" ng-class=" (resultsVisible && item.correct) ? 'correct' : '' ">
         {{item.content}}
         <span ng-if=" resultsVisible ">
           <span ng-if="(responsePercentageArr[$index] !== NaN)">{{responsePercentageArr[$index]}}</span>

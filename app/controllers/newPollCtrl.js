@@ -22,8 +22,8 @@ module.exports = function(
   };
   //holds reponse_type items rendered to ng-model
   //saved as item attributes when createPoll() is called
-  $scope.multipleChoice = [{content: ''},{content: ''}];
-  $scope.trueFalse = [{content: 'True'},{content: 'False'}];
+  $scope.multipleChoice = [{content: '', correct: false},{content: '', correct: false}];
+  $scope.trueFalse = [{content: 'True', correct: false},{content: 'False', correct: false}];
   $scope.writtenResponse = [{content: 'Written Response'}];
 
   // returns correct items_attributes array depending on responseType select
@@ -65,6 +65,7 @@ module.exports = function(
   $scope.createPoll = () => {
     let pollObj = {};
     pollObj.poll = $scope.poll;
+    console.log('scope.poll', $scope.poll);
     pollObj.poll.items_attributes = selectResponseType($scope.poll.response_type);
     pollFactory.postNewPoll(pollObj, token)
     .then(data => $window.location.href = `#!presentations/${$routeParams.presentationId}`)

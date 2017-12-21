@@ -1,13 +1,16 @@
 <div class="container">
+  <!-- PRESENTATION TITLE  -->
   <div class="poll-title">
     <h3>{{currentPresentation.title}}: New Poll</h3>
   </div>
   <div class="row">
     <div class="col-md-8">
       <div class="poll-body">
+        <!-- ENTER THE POLL QUESTION -->
         <div class="form-group">
           <input type="text" class="form-control poll-question" placeholder="Question" ng-model="poll.content">
         </div>
+        <!-- IF MULTIPLE CHOICE -->
         <div class="form-group" ng-if="poll.response_type == 1">
           <p>Answer Items:</p>
           <div ng-repeat=" item in multipleChoice ">
@@ -15,34 +18,45 @@
               <input type="text" class="form-control" ng-model="item.content">
               <span class="input-group-addon" ng-click="removeItem($index)"> X </span>
             </div>
+            <div class="input-group d-flex justify-content-end">
+              <label for="correct">
+                <input type="checkbox" class="form-check-input" ng-model="item.correct">
+                Correct
+              </label>
+            </div>
+            <hr>
           </div>
           <div class="add-item-frame">
             <a href="" ng-click="addItem()" class="float-right">+ Add Item </a>
           </div>
         </div>
+        <!-- IF TRUE FALSE -->
         <div ng-if="poll.response_type == 2">
-          <div class="form-check">
-            <label for="true" class="form-check-label">
-              <input class="form-check-input"type="checkbox" name="true" disabled>
-              True
+
+          <div ng-repeat=" item in trueFalse ">
+            <h4>
+              {{item.content}}
+            </h4>
+            <label for="correct">
+              <input type="checkbox" class="form-check-input" ng-model="item.correct">
+              Correct
             </label>
+            <hr>
           </div>
-          <div class="form-check">
-            <label for="false" class="form-check-label">
-              <input class="form-check-input"type="checkbox" name="false" disabled>
-              False
-            </label>
-          </div>
+
         </div>
+        <!-- IF WRITTEN RESPONSE -->
         <div ng-if="poll.response_type == 3">
           <textarea name="written-response-box" id="" cols="30" rows="10" placeholder="The audience's written responses will go here" readonly></textarea>
         </div>
+        <!-- SUBMIT BUTTON -->
         <div class="poll-buttons">
           <button class="btn btn-primary" ng-click="createPoll()">Create Poll</button>
         </div>
       </div>
     </div>
     <div class="col-md-4">
+      <!-- SELECT RESPONSE TYPE -->
       <div class="poll-selector-box">
         <h5>Response Type:</h5>
         <select class="custom-select" ng-model="poll.response_type">
@@ -51,6 +65,7 @@
           <option value="3">Written Response</option>
         </select>
       </div>
+      <!-- SELECT FEEDBACK TYPE -->
       <div class="poll-selector-box">
         <h5>Feedback Type:</h5>
         <select class="custom-select" ng-model="poll.feedback_type">
@@ -58,6 +73,7 @@
           <option value="2">Results on Next Slide</option>
           <option value="3">Do Not Show Results</option>s
         </select>
+        <!-- DESCRIPTIONS OF FEEDBACK TYPES -->
         <div class="feedback-type-explanation">
           <p ng-if="poll.feedback_type == 1">
             The audience will see the results of the poll as it is being displayed.
