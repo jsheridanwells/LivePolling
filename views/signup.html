@@ -1,6 +1,20 @@
 <div class="container">
   <div id="home">
-    <div class="jumbotron mt-5">
+    <div class="jumbotron mt-5 splash">
+      <div class="flash-space">
+        <!-- SPACE FOR ERROR MESSAGES -->
+        <div ng-if="loginError">
+          <div ng-repeat=" errorType in errorTypes ">
+            <p class="error-text">
+              {{errorType}}:
+              <span ng-repeat=" error in errorVals[$index] ">
+                {{error}},
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- SIGN UP FORM -->
       <h1 class="display-3">LivePolling</h1>
       <div class="form-group">
         <input type="text" class="form-control signup-form" ng-model="user.firstName" placeholder="First Name">
@@ -9,6 +23,11 @@
         <input type="password" class="form-control signup-form" ng-model="user.password" placeholder="Password">
         <input type="password" class="form-control signup-form" ng-model="user.passwordConfirmation" placeholder="Password Confirmation">
         <button class="btn btn-primary sign-up-btn" ng-click="signUp()">Sign Up</button>
+      </div>
+      <div class="login-redirect">
+        <p class="redirect-text">
+          Already have an account? <a ng-href="#!/login">Log in here</a>.
+        </p>
       </div>
     </div>
   </div>
