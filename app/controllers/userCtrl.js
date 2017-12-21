@@ -8,9 +8,9 @@ module.exports = function($scope, $window, userFactory, stringService) {
   $scope.user = {
     firstName: '',
     lastName: '',
-    email: '',
-    password: '',
-    passwordConfirmation: ''
+    email: 'example@example.com',
+    password: '123456',
+    passwordConfirmation: '123456'
   };
 
   $scope.loginError = false;
