@@ -103,7 +103,7 @@ module.exports = function($q, $http, api) {
     return $q((resolve, reject) => {
       $http({
         method: 'GET',
-        url: `${api.url}${api.showResults}${presentationId}`,
+        url: `${api.url}${api.showResults}/${presentationId}`,
         headers: {'authorization': token}
       })
       .then(response => resolve(response))
