@@ -21,6 +21,9 @@ module.exports = function(
   // updated via websocket subscription
   $scope.responsePercentageArr = [];
 
+  // shows and hides results of polls if results are to be shown on the next slide
+  $scope.resultsVisible = false;
+
   // calls presentations/:id' presentations#show' endpoint
   // populates currentPresentation object
   // creates subscription to response_channel_#(presentationID)
@@ -73,7 +76,6 @@ module.exports = function(
     .catch(error => console.log(error));
   };
 
-
   // takes id of current presentation and user auth token
   // calls patch 'next/:id', 'presentations#next_slide' endpoint
   // decrements integer in presentations_current_slide db column
@@ -84,6 +86,15 @@ module.exports = function(
       $scope.currentPresentation = data.presentation;
       $scope.responsePercentageArr = responseTallyService.tallyResponses($scope.currentPresentation.polls[$scope.currentPresentation.current_slide].items);
     })
+    .catch(error => console.log(error));
+  };
+
+  // disables responding in participants' view
+  // by sending { responding: false } message via websockets via presentations_#:id channel
+  // shows results by setting $scope.resultsVisible to true
+  $scope.showResults = () => {
+    presentationFactory.showResults($scope.currentPresentation.id, currentUserToken)
+    .then(() => $scope.resultsVisible = true)
     .catch(error => console.log(error));
   };
 

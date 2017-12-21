@@ -54,7 +54,23 @@
   </div>
  <!-- VIEW FOR RESULTS ON NEXT SLIDE -->
   <div ng-if=" (currentPresentation.polls[currentPresentation.current_slide].feedback_type == 2) ">
-
+    <!-- POLL QUESTION -->
+    <div class="poll-question">
+      <h4>
+        {{currentPresentation.polls[currentPresentation.current_slide].content}}
+      </h4>
+    </div>
+     <!-- ANSWER ITEMS | PERCENTAGE OF RESPONSES -->
+     <ul class="answer-choices" ng-repeat="item in currentPresentation.polls[currentPresentation.current_slide].items">
+       <li class="answer-item">
+        {{item.content}}
+        <span ng-if=" resultsVisible ">
+          <span ng-if="(responsePercentageArr[$index] !== NaN)">{{responsePercentageArr[$index]}}</span>
+        </span>
+       </li>
+     </ul>
+     <div class="show-results-button">
+       <button ng-click="showResults()">Show Results</button>
+     </div>
   </div>
-
 </div>
