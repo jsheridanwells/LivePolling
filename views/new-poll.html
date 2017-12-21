@@ -18,6 +18,13 @@
               <input type="text" class="form-control" ng-model="item.content">
               <span class="input-group-addon" ng-click="removeItem($index)"> X </span>
             </div>
+            <div class="input-group d-flex justify-content-end">
+              <label for="correct">
+                <input type="checkbox" class="form-check-input" ng-model="item.correct">
+                Correct
+              </label>
+            </div>
+            <hr>
           </div>
           <div class="add-item-frame">
             <a href="" ng-click="addItem()" class="float-right">+ Add Item </a>
@@ -25,18 +32,18 @@
         </div>
         <!-- IF TRUE FALSE -->
         <div ng-if="poll.response_type == 2">
-          <div class="form-check">
-            <label for="true" class="form-check-label">
-              <input class="form-check-input"type="checkbox" name="true" disabled>
-              True
+
+          <div ng-repeat=" item in trueFalse ">
+            <h4>
+              {{item.content}}
+            </h4>
+            <label for="correct">
+              <input type="checkbox" class="form-check-input" ng-model="item.correct">
+              Correct
             </label>
+            <hr>
           </div>
-          <div class="form-check">
-            <label for="false" class="form-check-label">
-              <input class="form-check-input"type="checkbox" name="false" disabled>
-              False
-            </label>
-          </div>
+
         </div>
         <!-- IF WRITTEN RESPONSE -->
         <div ng-if="poll.response_type == 3">

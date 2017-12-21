@@ -65,6 +65,7 @@ module.exports = function(
   $scope.createPoll = () => {
     let pollObj = {};
     pollObj.poll = $scope.poll;
+    console.log('scope.poll', $scope.poll);
     pollObj.poll.items_attributes = selectResponseType($scope.poll.response_type);
     pollFactory.postNewPoll(pollObj, token)
     .then(data => $window.location.href = `#!presentations/${$routeParams.presentationId}`)
