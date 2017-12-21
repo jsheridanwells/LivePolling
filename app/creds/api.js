@@ -15,6 +15,7 @@ module.exports = {
   showPresentation: '/show-presentation',
   next: '/next',
   prev: '/prev',
+  showResults: '/show-results',
   polls: '/polls',
   responses: '/respond'
 };

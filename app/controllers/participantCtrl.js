@@ -32,9 +32,9 @@ module.exports = function(
         presentation_id: $routeParams.presentationId
       }, {
         received: (data) => {
-          console.log(data);
-          $scope.activated = true;
+          console.log('showPresentation channel data', data);
           $scope.currentPresentation = data;
+          $scope.activated = $scope.currentPresentation.responding_active;
           $timeout();
         }
       });

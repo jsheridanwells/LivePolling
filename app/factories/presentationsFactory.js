@@ -96,6 +96,21 @@ module.exports = function($q, $http, api) {
     });
   };
 
+  // takes presentationId and authToken from presentationsController
+  // hits show-results endpoint which disables responding in participant view
+  // by sending { responding: false } message via presentations_#:id channel
+  const showResults = (presentationId, token) => {
+    return $q((resolve, reject) => {
+      $http({
+        method: 'GET',
+        url: `${api.url}${api.showResults}/${presentationId}`,
+        headers: {'authorization': token}
+      })
+      .then(response => resolve(response))
+      .catch(error => reject(error));
+    });
+  };
+
   // takes presentation id
   // if presentations_broadcasting column is set to true
   // presentation data is made avaiable to user w/o auth
@@ -145,6 +160,7 @@ module.exports = function($q, $http, api) {
     toggleBroadcasting,
     nextSlide,
     prevSlide,
+    showResults,
     showToParticipant,
     sendResponse,
     deletePresentation
