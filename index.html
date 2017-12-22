@@ -14,11 +14,13 @@
     <div ng-app="LivePolling">
         <div class="row" ng-controller="navCtrl">
             <div ng-if="loggedIn()">
-                <div class="col-sm-3 col-md-2 d-none d-sm-block sidebar side-nav">
+                <div class="col-sm-3 col-md-2 d-none d-sm-block sidebar">
                     <div ng-include="'views/nav.html'"></div>
                 </div>
             </div>
-            <div ng-view class="col-sm-9 ml-sm-auto col-md-10 pt-3 main-frame"></div>
+            <div ng-view class="col-sm-9 ml-sm-auto col-md-10 pt-3 main-frame">
+
+            </div>
         </div>
         <div ng-include="'views/footer.html'"></div>
     </div>
