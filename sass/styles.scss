@@ -4,6 +4,7 @@
 @import 'presentations';
 @import 'forms';
 @import 'colors';
+@import 'media';
 
 //INDEX STYLES
 
@@ -21,10 +22,13 @@ body {
 
 a {
   color: inherit;
-  text-decoration: none;
 }
 
 a.traditional {
   color: $white;
   text-decoration: underline;
+}
+
+a.traditional:hover {
+  color: red;
 }
