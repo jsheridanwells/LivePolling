@@ -1,4 +1,5 @@
 @import 'colors';
+@import 'fonts';
 
 .splash {
   max-width: 800px;
@@ -9,4 +10,9 @@
 
 .display-3, .lead {
   color: white;
+}
+
+.display-3 {
+  font-family: $comfortaa;
+  -webkit-text-stroke: 1px $medGray;
 }
