@@ -33,20 +33,38 @@ a.new-presentation-button {
 }
 
 .presentation-list {
+
   list-style-type: none;
+
   .presentation-list-item {
+    margin-bottom: 5px;
     background-color: $white;
     padding: 2em;
     @include cardShadow();
   }
+
   .presentation-list-item:hover {
     @include cardShadowHover();
   }
+
+  h3.presentation-title {
+    color: $blue;
+  }
+
+  p.author {
+    font-size: 0.8em;
+    color: $lightGray;
+  }
+
+  .delete-icon {
+    color: $lightGray;
+  }
+
+  .delete-icon:hover {
+    color: $red;
+  }
 }
 
-h3.presentation-title {
-  color: $blue;
-}
 
 // single presentations
 .presentation-nav {

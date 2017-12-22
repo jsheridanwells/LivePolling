@@ -7,14 +7,25 @@
     <div class="presentations-list-frame">
       <ul class="presentation-list">
         <li class="presentation-list-item" ng-repeat="presentation in presentations">
-          <h3 class="presentation-title">
-            <a ng-href="#!/presentations/{{presentation.id}}">
-              {{presentation.title}}
-            </a>
-          </h3>
-          <p>
-            <a href="" ng-click="deletePresentation(presentation.id)"> X Delete</a>
-          </p>
+          <div class="container">
+            <div class="row">
+              <div class="col-10">
+                <h3 class="presentation-title">
+                  <a ng-href="#!/presentations/{{presentation.id}}">
+                    {{presentation.title}}
+                  </a>
+                </h3>
+                <p class="author">
+                  Jeremy Sheridan Wells
+                </p>
+              </div>
+              <div class="col-2">
+                <a href="" ng-click="deletePresentation(presentation.id)">
+                  <i class="fa fa-trash-o fa-2x delete-icon" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+          </div>
         </li>
       </ul>
     </div>
