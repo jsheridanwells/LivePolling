@@ -4,16 +4,18 @@
        + New Presentation
       </a>
     </div>
-    <ul class="presentation-list">
-      <li class="presentation-list-item" ng-repeat="presentation in presentations">
-        <h3>
-          <a ng-href="#!/presentations/{{presentation.id}}">
-            {{presentation.title}}
-          </a>
-        </h3>
-        <p>
-          <a href="" ng-click="deletePresentation(presentation.id)"> X Delete</a>
-        </p>
-      </li>
-    </ul>
+    <div class="presentations-list-frame">
+      <ul class="presentation-list">
+        <li class="presentation-list-item" ng-repeat="presentation in presentations">
+          <h3 class="presentation-title">
+            <a ng-href="#!/presentations/{{presentation.id}}">
+              {{presentation.title}}
+            </a>
+          </h3>
+          <p>
+            <a href="" ng-click="deletePresentation(presentation.id)"> X Delete</a>
+          </p>
+        </li>
+      </ul>
+    </div>
   </div>
