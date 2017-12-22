@@ -5,6 +5,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Font Awesome -->
+    <script src="https://use.fontawesome.com/eb9eedb508.js"></script>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="lib/node_modules/bootstrap/dist/css/bootstrap.css">
@@ -14,13 +16,15 @@
     <div ng-app="LivePolling">
         <div class="row" ng-controller="navCtrl">
             <div ng-if="loggedIn()">
-                <div class="col-sm-3 col-md-2 d-none d-sm-block sidebar side-nav">
+                <div class="col-sm-3 col-md-2 d-none d-sm-block sidebar">
                     <div ng-include="'views/nav.html'"></div>
                 </div>
             </div>
-            <div ng-view class="col-sm-9 ml-sm-auto col-md-10 pt-3 main-frame"></div>
+            <div ng-view class="col-sm-9 ml-sm-auto col-md-10 main-frame">
+
+            </div>
         </div>
-        <div ng-include="'views/footer.html'"></div>
+        <!-- <div ng-include="'views/footer.html'"></div> -->
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

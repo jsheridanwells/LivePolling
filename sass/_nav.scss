@@ -1,6 +1,10 @@
+@import 'fonts';
+@import 'colors';
+@import 'media';
+
 .sidebar {
   position: fixed;
-  top: 10px;
+  top: -20px;
   bottom: 0;
   left: 0;
   z-index: 1000;
@@ -8,20 +12,35 @@
   overflow-x: hidden;
   overflow-y: auto;
   border-right: 1px solid #eee;
+  background-color: $white;
 }
 
-.sidebar .nav {
-  margin-bottom: 20px;
+.nav-logo-box {
+  background-color: $medYellow;
+  margin: 0;
+  text-align: center;
+  height: 80px;
 }
 
-.sidebar .nav-item {
-  width: 100%;
+a.nav-logo {
+  font-family: $comfortaa;
+  font-size: 3em;
+  color: $white;
+  -webkit-text-stroke: 1px $medGray;
+  margin-left: -50px;
 }
 
-.sidebar .nav-item + .nav-item {
-  margin-left: 20px;
+.nav-list {
+  list-style-type: none;
 }
 
-.sidebar .nav-link {
-  border-radius: 0;
+li.nav-item {
+  font-family: $quattroCento;
+  margin-bottom: 1.2em;
+}
+
+i.nav-icon {
+  @media screen and (max-width: $break-tablet) {
+    display: none;
+  }
 }

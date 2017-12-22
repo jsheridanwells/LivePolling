@@ -1,10 +1,11 @@
 @import 'media';
 @import 'fonts';
+@import 'buttons';
 
 .flash-space {
   min-height: 30px;
   p.error-text {
-    color: red;
+    color: $red;
   }
 }
 
@@ -25,15 +26,7 @@
 }
 
 a.splash-button, a.splash-button:hover {
-  display: block;
-  border: 1px solid $white;
-  width: 150px;
-  color: $white;
-  background-color: $darkGray;
-  padding: 0.5em 2em;
-  text-align: center;
-  cursor: pointer;
-  text-decoration: none;
+  @include button($darkGray, $white);
 }
 
 a.splash-button:hover {
