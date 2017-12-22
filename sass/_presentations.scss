@@ -1,3 +1,23 @@
+@import 'buttons';
+@import 'colors';
+
+
+.new-presentation-button-box {
+  height: 80px;
+  background-color: $white;
+  width: 105%;
+  margin-left: -10px;
+  position: fixed;
+  top: 0;
+  left: -20px;
+}
+
+a.new-presentation-button {
+  @include button($darkGray, $white);
+  width: 250px;
+  height: 60px;
+  margin: 10px 0;
+}
 // PRESENTATIONS LIST
 
 @mixin cardShadow {

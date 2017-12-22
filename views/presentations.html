@@ -1,17 +1,19 @@
-<div class="container">
-  <div class="new-presentation-button">
-    <p class="presentation-button"><a ng-href="#!/new-presentation"> + New Presentation</a></p>
+  <div class="presentations-partial">
+    <div class="new-presentation-button-box d-flex justify-content-end">
+      <a class="new-presentation-button mr-5" ng-href="#!/new-presentation">
+       + New Presentation
+      </a>
+    </div>
+    <ul class="presentation-list">
+      <li class="presentation-list-item" ng-repeat="presentation in presentations">
+        <h3>
+          <a ng-href="#!/presentations/{{presentation.id}}">
+            {{presentation.title}}
+          </a>
+        </h3>
+        <p>
+          <a href="" ng-click="deletePresentation(presentation.id)"> X Delete</a>
+        </p>
+      </li>
+    </ul>
   </div>
-  <ul class="presentation-list">
-    <li class="presentation-list-item" ng-repeat="presentation in presentations">
-      <h3>
-        <a ng-href="#!/presentations/{{presentation.id}}">
-          {{presentation.title}}
-        </a>
-      </h3>
-      <p>
-        <a href="" ng-click="deletePresentation(presentation.id)"> X Delete</a>
-      </p>
-    </li>
-  </ul>
-</div>
