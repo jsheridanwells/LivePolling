@@ -1,18 +1,22 @@
 @import 'colors';
 @import 'fonts';
+@import 'media';
 
 .splash {
-  max-width: 800px;
+  max-width: 700px;
   background-image: url('../assets/img/pencils.jpg');
   background-size: cover;
   box-shadow: 5px 5px 5px #555;
 }
 
 .display-3, .lead {
-  color: white;
+  color: $white;
 }
 
 .display-3 {
   font-family: $comfortaa;
   -webkit-text-stroke: 1px $medGray;
+  @media screen and (max-width: $break-tablet) {
+    font-size: 3.5em;
+  }
 }

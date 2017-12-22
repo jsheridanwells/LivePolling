@@ -18,12 +18,14 @@ body {
   background-color: $white;
 }
 
-// LINKS IN GENERAL
 
+
+// LINKS IN GENERAL
 a {
   color: inherit;
+  text-decoration: none;
 }
-
+// HIGHLIGHTING LINKS
 a.traditional {
   color: $white;
   text-decoration: underline;
