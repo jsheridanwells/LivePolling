@@ -1,5 +1,6 @@
 @import 'fonts';
 @import 'colors';
+@import 'media';
 
 .sidebar {
   position: fixed;
@@ -36,4 +37,10 @@ a.nav-logo {
 li.nav-item {
   font-family: $quattroCento;
   margin-bottom: 1.2em;
+}
+
+i.nav-icon {
+  @media screen and (max-width: $break-tablet) {
+    display: none;
+  }
 }

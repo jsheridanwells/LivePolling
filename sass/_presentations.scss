@@ -18,6 +18,7 @@
   position: fixed;
   top: 0;
   left: -20px;
+  z-index: 999;
 }
 
 a.new-presentation-button {
@@ -26,6 +27,11 @@ a.new-presentation-button {
   height: 60px;
   margin: 10px 0;
 }
+
+a.new-presentation-button:hover {
+  background-color: $darkGrayHover;
+}
+
 // PRESENTATIONS LIST
 .presentations-list-frame {
   margin-top: 90px;
@@ -49,6 +55,12 @@ a.new-presentation-button {
 
   h3.presentation-title {
     color: $blue;
+  }
+
+   h3.presentation-title:hover {
+    a {
+        color: inherit;
+      }
   }
 
   p.author {
