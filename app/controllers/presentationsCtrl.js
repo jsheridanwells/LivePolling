@@ -8,6 +8,9 @@ module.exports = function(
     presentationFactory
   ) {
 
+  // holds current user information
+  $scope.currentUser = userFactory.getCurrentUser();
+
   // holds authtoken to pass into api calls
   let currentUserToken = userFactory.getCurrentUserToken();
 

@@ -2,7 +2,8 @@
 
 module.exports = function($q, $http, api) {
 
-  // stores user id and user auth token
+  // stores user, id and user auth token
+  let currentUser = null;
   let currentUserToken = null;
   let currentUserId = null;
 
@@ -37,6 +38,10 @@ module.exports = function($q, $http, api) {
       });
       $http.post(`${api.url}${api.userLogIn}`, loginObj)
       .then((userData) => {
+        currentUser = {
+          firstName: userData.data.first_name,
+          lastName: userData.data.last_name
+        };
         currentUserToken = userData.data.authorization_token;
         currentUserId = userData.data.user_id;
         resolve(userData.data);
@@ -48,6 +53,11 @@ module.exports = function($q, $http, api) {
   // destroys current user token
   const logOut = () => {
     currentUserToken = null;
+  };
+
+  // returns current user o other controllers
+  const getCurrentUser = () => {
+    return currentUser;
   };
 
   // returns current user token to other controllers
@@ -77,6 +87,7 @@ module.exports = function($q, $http, api) {
     signUp,
     logIn,
     logOut,
+    getCurrentUser,
     getCurrentUserToken,
     getCurrentUserId,
     showAuthorized
