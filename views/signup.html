@@ -22,11 +22,13 @@
         <input type="email" class="form-control signup-form" ng-model="user.email" placeholder="Email">
         <input type="password" class="form-control signup-form" ng-model="user.password" placeholder="Password">
         <input type="password" class="form-control signup-form" ng-model="user.passwordConfirmation" placeholder="Password Confirmation">
-        <button class="btn btn-primary sign-up-btn" ng-click="signUp()">Sign Up</button>
+        <div class="button-field d-flex justify-content-end">
+          <a href="" class="splash-button" ng-click="signUp()">Sign Up</a>
+        </div>
       </div>
       <div class="login-redirect">
         <p class="redirect-text">
-          Already have an account? <a ng-href="#!/login">Log in here</a>.
+          Already have an account? <a class="traditional" ng-href="#!/login">Log in here</a>.
         </p>
       </div>
     </div>

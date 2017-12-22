@@ -3,6 +3,8 @@
 @import 'footer';
 @import 'presentations';
 @import 'forms';
+@import 'colors';
+@import 'media';
 
 //INDEX STYLES
 
@@ -11,7 +13,32 @@ html {
   min-height: 100%;
 }
 body {
-  /* Margin bottom by footer height */
+  /* Margin bottom for footer height */
   margin-bottom: 60px;
-  background-color: #ddd;
+  background-color: $white;
+}
+
+// TEXT P IN GENERAL
+p {
+  font-family: $workSans;
+}
+
+// HEADINGS IN GENERAL
+@mixin quattroCento() {
+  font-family: $quattroCento;
+}
+
+// LINKS IN GENERAL
+a {
+  color: inherit;
+  text-decoration: none;
+}
+// HIGHLIGHTING LINKS
+a.traditional {
+  color: $white;
+  text-decoration: underline;
+}
+
+a.traditional:hover {
+  color: red;
 }
