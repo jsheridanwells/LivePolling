@@ -1,10 +1,11 @@
+@import 'media';
+@import 'colors';
+@import 'fonts';
 @import 'nav';
 @import 'home';
 @import 'footer';
 @import 'presentations';
 @import 'forms';
-@import 'colors';
-@import 'media';
 
 //INDEX STYLES
 
@@ -16,6 +17,7 @@ body {
   /* Margin bottom for footer height */
   margin-bottom: 60px;
   background-color: $offWhite;
+  font-family: $workSans;
 }
 
 // TEXT P IN GENERAL
