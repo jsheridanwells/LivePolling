@@ -5,6 +5,11 @@
   <div class="presentations-list-frame">
     <div ng-if="formError" class="flash-space">
     <!-- SPACE FOR ERROR MESSAGES -->
+      <div class="close">
+        <span ng-click="clearErrors()">
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </span>
+      </div>
       <h3 class="error-title">
         Whoops!
       </h3>

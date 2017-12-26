@@ -33,5 +33,8 @@ module.exports = function(
     });
   };
 
+  $scope.clearErrors = () => {
+    $scope.formError = false;
+  };
 
 };
