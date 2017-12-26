@@ -1,0 +1,16 @@
+@import 'colors';
+
+.flash-space {
+  min-height: 30px;
+  background-color: $white;
+  padding: 2em;
+  margin-bottom: 2em;
+
+  h3.error-title {
+    color: $red
+  }
+
+  p.error-text {
+    @extend h3.error-title
+  }
+}

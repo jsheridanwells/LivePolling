@@ -2,12 +2,11 @@
   <div id="home">
     <div class="jumbotron mt-5 splash">
       <!-- SPACE FOR ERROR MESSAGES -->
-      <div class="flash-space">
-        <div ng-if="loginError">
-          <p class="error-text">
-            There was an error logging in. Try again.
-          </p>
-        </div>
+      <div class="flash-space" ng-if="loginError">
+        <h3 class="error-text">Whoops!</h3>
+        <p class="error-text">
+          There was an error logging in. Try again.
+        </p>
       </div>
       <!-- LOG IN FORM -->
       <h1 class="display-3">LivePolling</h1>
