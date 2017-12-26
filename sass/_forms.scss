@@ -2,12 +2,7 @@
 @import 'fonts';
 @import 'buttons';
 
-.flash-space {
-  min-height: 30px;
-  p.error-text {
-    color: $red;
-  }
-}
+// SIGN UP AND LOG IN
 
 .signup-form {
   margin: 0.5em;
@@ -31,4 +26,10 @@ a.splash-button, a.splash-button:hover {
 
 a.splash-button:hover {
   background-color: $darkGrayHover;
+}
+
+// NEW PRESENTATION
+h3.form-title {
+  font-family: $quattroCento;
+  color: $blue
 }
