@@ -4,7 +4,8 @@ module.exports = function(
   $scope,
   $window,
   presentationFactory,
-  userFactory
+  userFactory,
+  errorService
 ){
 
   // create model for creating a new presentation
@@ -14,6 +15,8 @@ module.exports = function(
     user_id: userFactory.getCurrentUserId(),
     title: ''
   };
+  $scope.formError = false;
+  $scope.errors = {};
 
   // holds authtoken to pass into api calls
   let currentUserToken = userFactory.getCurrentUserToken();
@@ -24,7 +27,10 @@ module.exports = function(
   $scope.createPresentation = () => {
     presentationFactory.postPresentation($scope.object, currentUserToken)
     .then(newPresentation => $window.location.href = `#!/presentations/${newPresentation.data.presentation.id}`)
-    .catch(error => console.log(error));
+    .catch(error => {
+      $scope.formError = true;
+      $scope.errors = errorService.renderErrors(error.data);
+    });
   };
 
 
