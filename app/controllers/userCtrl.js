@@ -1,6 +1,11 @@
 'use strict';
 
-module.exports = function($scope, $window, userFactory, stringService) {
+module.exports = function(
+  $scope,
+  $window,
+  userFactory,
+  errorService
+) {
 
   // values filled for easy login,
   // delete values on deploy
@@ -14,8 +19,7 @@ module.exports = function($scope, $window, userFactory, stringService) {
   };
 
   $scope.loginError = false;
-  $scope.errorTypes = [];
-  $scope.errorVals = [];
+  $scope.errors = {};
 
   // posts user data to db endpoint post 'signup' 'users#create'
   // calls login() function on return to generate auth token for user
@@ -24,7 +28,8 @@ module.exports = function($scope, $window, userFactory, stringService) {
     .then(response => $scope.logIn())
     .catch(error => {
       $scope.loginError = true;
-      renderErrors(error.data);
+      $scope.errors = errorService.renderErrors(error.data);
+      console.log('$scope.errors ', $scope.errors);
     });
   };
 
@@ -44,15 +49,6 @@ module.exports = function($scope, $window, userFactory, stringService) {
     userFactory.logOut()
     .then(() => $window.location.href = '/')
     .catch((error => console.log(error)));
-  };
-
-
-  // takes data from sign up errors
-  // creates errorType and errorValues arrays, removes underscores in names
-  const renderErrors = (errorData) => {
-    let rawErrorTypes = Object.keys(errorData);
-    $scope.errorTypes = rawErrorTypes.map(string => stringService.removeUnderscores(string));
-    $scope.errorVals = Object.values(errorData);
   };
 
 };

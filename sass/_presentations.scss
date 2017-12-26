@@ -1,5 +1,6 @@
 @import 'buttons';
 @import 'colors';
+@import 'fonts';
 
 @mixin cardShadow {
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -55,6 +56,8 @@ a.new-presentation-button:hover {
 
   h3.presentation-title {
     color: $blue;
+    font-family: $quattroCento;
+
   }
 
    h3.presentation-title:hover {
@@ -77,6 +80,28 @@ a.new-presentation-button:hover {
   }
 }
 
+.create-presentations-message-box {
+  background-color: $white;
+  width: 90%;
+  height: 90%;
+  margin: 5%;
+  padding: 10%;
+
+  @include cardShadow();
+  p {
+    font-family: $workSans;
+    font-size: 2.5em;
+
+    p.smaller {
+      font-size: 0.1em;
+    }
+
+    a {
+      color: $blue;
+      font-size: 0.5em;
+    }
+  }
+}
 
 // single presentations
 .presentation-nav {

@@ -1,10 +1,41 @@
-<div class="container">
-  <h2>Create a New Presentation</h2>
-  <div class="form-group">
-    <label for="new-presentation-title">Presentation Title:</label>
-    <input type="text" class="form-control" name="new-presentation-title" ng-model="object.presentation.title">
+<div class="presentations-partial" ng-keyup=" $event.keyCode == 27 ? clearErrors() : null ">
+  <div class="new-presentation-button-box">
+
   </div>
-  <div class="create-presentation-button">
-    <button class="btn btn-primary" ng-click="createPresentation()">Create Presentation</button>
+  <div class="presentations-list-frame">
+    <div ng-if="formError" class="flash-space">
+    <!-- SPACE FOR ERROR MESSAGES -->
+      <div class="close">
+        <span ng-click="clearErrors()">
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </span>
+      </div>
+      <h3 class="error-title">
+        Whoops!
+      </h3>
+      <p class="error-text">
+        We can't make your presentation yet. Please fix the following errors:
+      </p>
+      <div ng-repeat=" errorType in errors.types ">
+        <p class="error-text ml-5">
+          {{errorType}}:
+          <span ng-repeat=" error in errors.values[$index] ">
+            {{error}},
+          </span>
+        </p>
+      </div>
+    </div>
+    <div class="create-presentations-message-box">
+      <h3 class="form-title">Create a New Presentation</h2>
+      <div class="form-group">
+        <label for="new-presentation-title">Presentation Title:</label>
+        <input type="text" class="form-control" name="new-presentation-title" ng-model="object.presentation.title" ng-keyup=" $event.keyCode == 13 ? createPresentation() : null ">
+      </div>
+      <div class="button-field d-flex justify-content-end">
+        <a class="new-presentation-button" href="" ng-click="createPresentation()">
+          Create Presentation
+        </a>
+      </div>
+    </div>
   </div>
 </div>
