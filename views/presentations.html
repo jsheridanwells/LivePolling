@@ -6,28 +6,52 @@
       </a>
     </div>
     <div class="presentations-list-frame">
-      <ul class="presentation-list">
-        <li class="presentation-list-item" ng-repeat="presentation in presentations">
-          <div class="container">
-            <div class="row">
-              <div class="col-10">
-                <h3 class="presentation-title">
-                  <a ng-href="#!/presentations/{{presentation.id}}">
-                    {{presentation.title}}
+      <!-- SHOW ALL PRESENTATIONS ASSOCIATED WITH A USER IF THERE ARE PRESENTATIONS -->
+      <div ng-if="presentations.length !== 0">
+        <ul class="presentation-list">
+          <li class="presentation-list-item" ng-repeat="presentation in presentations">
+            <div class="container">
+              <div class="row">
+                <div class="col-10">
+                  <h3 class="presentation-title">
+                    <a ng-href="#!/presentations/{{presentation.id}}">
+                      {{presentation.title}}
+                    </a>
+                  </h3>
+                  <p class="author">
+                    By {{currentUser.firstName}} {{currentUser.lastName}}
+                  </p>
+                </div>
+                <div class="col-2">
+                  <a href="" ng-click="deletePresentation(presentation.id)">
+                    <i class="fa fa-trash-o fa-2x delete-icon" aria-hidden="true"></i>
                   </a>
-                </h3>
-                <p class="author">
-                  By {{currentUser.firstName}} {{currentUser.lastName}}
-                </p>
-              </div>
-              <div class="col-2">
-                <a href="" ng-click="deletePresentation(presentation.id)">
-                  <i class="fa fa-trash-o fa-2x delete-icon" aria-hidden="true"></i>
-                </a>
+                </div>
               </div>
             </div>
+          </li>
+        </ul>
+      </div>
+      <!-- IF THERE ARE NO PRESENTATIONS, PROMPT THE USER TO CREATE ONE -->
+      <div ng-if="presentations.length == 0">
+        <div class="create-presentations-message-box">
+          <p class="create-presentations-message">
+            <strong>
+              Welcome to LivePolling!
+            </strong>
+          </p>
+          <p class="create-presentations-message">
+            You do not have any presentations.
+          </p>
+          <div class="d-flex justify-content-end">
+            <p>
+              <a ng-href="#!/new-presentation">
+                Let's create a presentation now.
+                <i class="fa fa-arrow-right" aria-hidden="true"></i>
+              </a>
+            </p>
           </div>
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
   </div>
