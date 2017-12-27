@@ -3,7 +3,7 @@
 @import 'fonts';
 @import 'media';
 
-@mixin cardShadow {
+@mixin cardShadow() {
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
@@ -15,11 +15,10 @@
 .presentation-button-box {
   min-height: 80px;
   background-color: #ccc;
-  width: 105%;
-  margin-left: -10px;
-  position: relative;
+  width: 85%;
+  position: fixed;
   top: 0;
-  left: -20px;
+  left: 15%;
   z-index: 999;
   @media screen and (min-width: $break-tablet) {
     height: 80px;
@@ -39,7 +38,7 @@ a.new-presentation-button:hover {
 
 // PRESENTATIONS LIST
 .presentations-list-frame {
-  margin-top: 20px;
+  margin-top: 90px;
   padding-right: 10px;
 }
 
@@ -108,6 +107,7 @@ a.new-presentation-button:hover {
 }
 
 //SHOW PRESENTATION STYLES
+// PRESENTATION NAV
 h1.presentation-title {
   margin-left: 1em;
   overflow: hidden;
@@ -130,7 +130,27 @@ ul.presentation-buttons {
   }
 }
 
+//PRESENTATION FRAME
+.single-presentation-frame {
+  margin: 1.5em auto 60px;
+  height: 500px;
+  padding: 2em;
+  background-color: $white;
+  @include cardShadow();
+}
+
 //turns correct answer green
 .correct {
   color: $green;
+}
+
+// PRESENTATION CONTROLS (FIXED FOOTER)
+.presentation-controls {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  background-color: $darkGray;
+  color: $white;
 }
