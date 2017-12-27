@@ -1,79 +1,26 @@
+<div class="presentations-partial">
 <!-- PRESENTATION NAV BAR -->
-<div class="presentation-nav">
-  <div class="row">
-    <div class="col-2 slide-control">
-      <p><a href="" ng-click="prevSlide()">Previous</a></p>
-    </div>
-    <div class="col-4">
-      <p class="presentation-title">
-        <span ng-if="!currentPresentation.broadcasting">
-          <a href="" ng-click="broadcast()">Start Broadcast</a>
-        </span>
-        <span ng-if="currentPresentation.broadcasting">
-          <a href="" ng-click="broadcast()">End Broadcast</a>
-        </span>
+  <div class="presentation-button-box d-flex" ng-include=" 'views/presentation-nav.html' "></div>
+
+  <!-- PRESENTATION SPACE -->
+  <div class="presentation-space">
+    <div class="create-presentations-message-box" ng-if=" currentPresentation.polls.length == 0 ">
+      <p class="create-presentations-message">
+        Let's add some content to your presentation
       </p>
+      <a ng-href="#!/new-poll/{{currentPresentation.id}}">
+        <p class="create-presentations-message">
+          Create a new poll.
+          <i class="fa fa-arrow-right" aria-hidden="true"></i>
+        </p>
+      </a>
     </div>
-    <div class="col-4">
-      <p>
-        <a ng-href="#!/new-poll/{{currentPresentation.id}}">
-          + Add Poll
-        </a>
-      </p>
-    </div>
-    <div class="col-2 slide-control">
-      <p><a href="" ng-click="nextSlide()">Next</a></p>
+    <div class="single-presentation-frame" ng-if=" currentPresentation.polls.length > 0 ">
+      <div ng-include=" 'views/show-poll.html' "></div>
     </div>
   </div>
-</div>
 
-<!-- PRESENTATION TITLE -->
-<div class="slide-title">
-  <h3 class="presentation-title">{{currentPresentation.title}}</h3>
-</div>
+  <!-- PRESENTATION CONTROLS -->
+  <div class="presentation-controls d-flex" ng-include=" 'views/presentation-controls.html' "></div>
 
-<!-- SLIDE FRAME -->
-<div class="slide-frame">
-  <!-- VIEW FOR LIVE RESULTS AND NO RESULTS -->
-  <div ng-if=" (currentPresentation.polls[currentPresentation.current_slide].feedback_type != 2) ">
-    <!-- POLL QUESTION -->
-    <div class="poll-question">
-      <h4>
-        {{currentPresentation.polls[currentPresentation.current_slide].content}}
-      </h4>
-    </div>
-     <!-- ANSWER ITEMS | PERCENTAGE OF RESPONSES -->
-     <ul class="answer-choices" ng-repeat="item in currentPresentation.polls[currentPresentation.current_slide].items">
-       <li class="answer-item">
-        {{item.content}}
-        <span ng-if=" (currentPresentation.polls[currentPresentation.current_slide].feedback_type == 1) ">
-          <span ng-if="(responsePercentageArr[$index] !== NaN)">{{responsePercentageArr[$index]}}</span>
-        </span>
-       </li>
-     </ul>
-  </div>
- <!-- VIEW FOR RESULTS ON NEXT SLIDE -->
-  <div ng-if=" (currentPresentation.polls[currentPresentation.current_slide].feedback_type == 2) ">
-    <!-- POLL QUESTION -->
-    <div class="poll-question">
-      <h4>
-        {{currentPresentation.polls[currentPresentation.current_slide].content}}
-      </h4>
-    </div>
-     <!-- ANSWER ITEMS | PERCENTAGE OF RESPONSES -->
-     <ul class="answer-choices" ng-repeat="item in currentPresentation.polls[currentPresentation.current_slide].items">
-      <div>
-
-      </div>
-       <li class="answer-item" ng-class=" (resultsVisible && item.correct) ? 'correct' : '' ">
-        {{item.content}}
-        <span ng-if=" resultsVisible ">
-          <span ng-if="(responsePercentageArr[$index] !== NaN)">{{responsePercentageArr[$index]}}</span>
-        </span>
-       </li>
-     </ul>
-     <div class="show-results-button">
-       <button ng-click="showResults()">Show Results</button>
-     </div>
-  </div>
 </div>

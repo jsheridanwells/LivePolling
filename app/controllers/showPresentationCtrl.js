@@ -33,7 +33,9 @@ module.exports = function(
     presentationFactory.getPresentation($routeParams.presentationId, currentUserToken)
     .then(data => {
       $scope.currentPresentation = data.presentation;
-      $scope.responsePercentageArr = responseTallyService.tallyResponses($scope.currentPresentation.polls[$scope.currentPresentation.current_slide].items);
+      if ($scope.currentPresentation.polls.length > 0) {
+        $scope.responsePercentageArr = responseTallyService.tallyResponses($scope.currentPresentation.polls[$scope.currentPresentation.current_slide].items);
+      }
       console.log('current presentation, ', $scope.currentPresentation);
       let cable = ActionCable.createConsumer(api.ws);
       cable.subscriptions.create({
