@@ -3,8 +3,21 @@
   <div class="presentation-button-box d-flex" ng-include=" 'views/presentation-nav.html' "></div>
 
   <!-- PRESENTATION SPACE -->
-  <div class="single-presentation-frame">
-    <h1>This is a presentation</h1>
+  <div class="presentation-space">
+    <div class="create-presentations-message-box" ng-if=" currentPresentation.polls.length == 0 ">
+      <p class="create-presentations-message">
+        Let's add some content to your presentation
+      </p>
+      <a ng-href="#!/new-poll/{{currentPresentation.id}}">
+        <p class="create-presentations-message">
+          Create a new poll.
+          <i class="fa fa-arrow-right" aria-hidden="true"></i>
+        </p>
+      </a>
+    </div>
+    <div class="single-presentation-frame" ng-if=" currentPresentation.polls.length > 0 ">
+      <div ng-include=" 'views/show-poll.html' "></div>
+    </div>
   </div>
 
   <!-- PRESENTATION CONTROLS -->

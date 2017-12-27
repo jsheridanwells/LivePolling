@@ -87,7 +87,7 @@ a.new-presentation-button:hover {
   background-color: $white;
   width: 90%;
   height: 90%;
-  margin: 5%;
+  margin: 10% auto;
   padding: 10%;
 
   @include cardShadow();
