@@ -19,9 +19,8 @@ let getAuthorization = (userFactory, $window) => new Promise((resolve, reject) =
     if (user) {
       resolve();
     } else {
-      return true;  // TEMPORARILY DISABLED AUTHENTICATION FOR DEVELOPMENT
-      // reject();
-      // $window.location.href = '/';
+      reject();
+      $window.location.href = '/';
     }
   });
 });
