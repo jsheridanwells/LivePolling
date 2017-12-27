@@ -16,7 +16,7 @@
   background-color: #ccc;
   width: 105%;
   margin-left: -10px;
-  position: fixed;
+  position: relative;
   top: 0;
   left: -20px;
   z-index: 999;
@@ -103,38 +103,14 @@ a.new-presentation-button:hover {
   }
 }
 
-// single presentations
-.presentation-nav {
-  height: 40px;
-  background-color: #333;
-  color: white;
-}
-
-.slide-control {
+//SHOW PRESENTATION STYLES
+.new-presentation-button-box
+h1.presentation-title {
 
 }
 
-.slide-title {
-  margin: 2em auto;
-}
-
-h3.presentation-title {
-
-}
-
-.slide-frame {
-  min-height: 80vh;
-}
-
-ul.answer-choices {
-  list-style-type: none;
-}
-
-li.answer-item {
-
-}
 
 //turns correct answer green
 .correct {
-  color: green;
+  color: $green;
 }
