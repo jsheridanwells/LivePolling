@@ -157,4 +157,9 @@ ul.presentation-buttons {
   color: $white;
   z-index: 999;
 
+  p.small, .small {
+    color: $white;
+    font-size: 0.9em;
+  }
+
 }

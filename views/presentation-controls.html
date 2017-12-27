@@ -5,7 +5,17 @@
     </a>
   </div>
   <div class="col-10 d-flex justify-content-center">
-    0/15
+    <div ng-if=" currentPresentation.polls.length == 0 ">
+      <p class="small">No slides yet.</p>
+    </div>
+    <div ng-if=" currentPresentation.polls.length > 0 ">
+      <span class="small">
+        {{currentPresentation.current_slide + 1}}
+      </span>&nbsp;/&nbsp;
+      <span class="small">
+        {{currentPresentation.polls.length}}
+      </span>
+    </div>
   </div>
   <div class="col-1 d-flex justify-content-start">
     <a href="" ng-click="nextSlide()">
