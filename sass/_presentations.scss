@@ -90,7 +90,7 @@ a.new-presentation-button:hover {
   @include cardShadow();
   p {
     font-family: $workSans;
-    font-size: 2.5em;
+    font-size: 1.5em;
 
     p.smaller {
       font-size: 0.1em;
@@ -98,7 +98,7 @@ a.new-presentation-button:hover {
 
     a {
       color: $blue;
-      font-size: 0.5em;
+      font-size: 1.0em;
     }
   }
 }
