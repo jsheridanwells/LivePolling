@@ -8,23 +8,6 @@
   </div>
 
   <!-- PRESENTATION CONTROLS -->
-  <div class="presentation-controls">
-    <div class="row">
-      <div class="col-1 d-flex justify-content-end">
-        <a href="" ng-click="prevSlide()">
-          <i class="fa fa-chevron-left" aria-hidden="true"></i>
-        </a>
-      </div>
-      <div class="col-10 d-flex justify-content-center">
-        0/15
-      </div>
-      <div class="col-1 d-flex justify-content-start">
-        <a href="" ng-click="nextSlide()">
-          <i class="fa fa-chevron-right" aria-hidden="true"></i>
-        </a>
-      </div>
-    </div>
-
-  </div>
+  <div class="presentation-controls d-flex" ng-include=" 'views/presentation-controls.html' "></div>
 
 </div>
