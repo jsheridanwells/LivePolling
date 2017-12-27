@@ -1,6 +1,7 @@
 @import 'buttons';
 @import 'colors';
 @import 'fonts';
+@import 'media';
 
 @mixin cardShadow {
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -11,8 +12,8 @@
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
-.new-presentation-button-box {
-  height: 80px;
+.presentation-button-box {
+  min-height: 80px;
   background-color: #ccc;
   width: 105%;
   margin-left: -10px;
@@ -20,6 +21,9 @@
   top: 0;
   left: -20px;
   z-index: 999;
+  @media screen and (min-width: $break-tablet) {
+    height: 80px;
+  }
 }
 
 a.new-presentation-button {
@@ -35,8 +39,8 @@ a.new-presentation-button:hover {
 
 // PRESENTATIONS LIST
 .presentations-list-frame {
-  margin-top: 90px;
-  padding-right: 15px;
+  margin-top: 20px;
+  padding-right: 10px;
 }
 
 .presentation-list {
@@ -104,11 +108,27 @@ a.new-presentation-button:hover {
 }
 
 //SHOW PRESENTATION STYLES
-.new-presentation-button-box
 h1.presentation-title {
-
+  margin-left: 1em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 1em;
+  @media screen and (min-width: $break-med) {
+    font-size: 2.3em;
+  }
 }
 
+ul.presentation-buttons {
+  list-style-type: none;
+  li.presentation-button {
+    display: inline-block;
+    width: 33%;
+    margin-top: 1.7em;
+    text-align: center;
+    font-size: 0.8em;
+  }
+}
 
 //turns correct answer green
 .correct {
