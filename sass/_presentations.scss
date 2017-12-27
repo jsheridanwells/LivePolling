@@ -132,8 +132,8 @@ ul.presentation-buttons {
 
 //PRESENTATION FRAME
 .single-presentation-frame {
-  margin: 1.5em auto 60px;
-  height: 500px;
+  margin: 90px auto 60px;
+  height: 100%;
   padding: 2em;
   background-color: $white;
   @include cardShadow();
@@ -146,11 +146,14 @@ ul.presentation-buttons {
 
 // PRESENTATION CONTROLS (FIXED FOOTER)
 .presentation-controls {
-  position: absolute;
+  margin: 0.3em auto;
+  width: 83%;
+  position: fixed;
   bottom: 0;
-  width: 100%;
-  height: 60px;
-  line-height: 60px;
+  left: 17%;
+  height: 30px;
+  line-height: 30px;
   background-color: $darkGray;
   color: $white;
+  z-index: 999;
 }
