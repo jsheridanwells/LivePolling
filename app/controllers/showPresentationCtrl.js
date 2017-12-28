@@ -55,6 +55,13 @@ module.exports = function(
     .catch(error => console.log(error));
   };
 
+  const setToZero = () => {
+    let presentationObj = {presentation: {current_slide: 0}};
+    presentationFactory.editPresentation(presentationObj, $routeParams.presentationId, currentUserToken)
+    .then(data => $scope.currentPresentation = data.presentation)
+    .catch(error => console.log(error));
+  };
+
   // sets editTitle to true to enable form for updating presentation title
   $scope.toggleEditTitle = () => {
     $scope.editTitle = !$scope.editTitle;
@@ -123,7 +130,7 @@ module.exports = function(
 
   // loads current presentation data when view loads
   $scope.$on('$viewContentLoaded', () => {
-    showPresentation();
+    setToZero();
   });
 
 };
