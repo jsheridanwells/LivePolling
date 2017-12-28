@@ -29,7 +29,7 @@
             <div ng-repeat=" item in multipleChoice ">
               <div class="input-group">
                 <input type="text" class="form-control" ng-model="item.content">
-                <span class="input-group-addon" ng-click="removeItem($index)"> X </span>
+                <span class="input-group-addon" ng-if=" multipleChoice.length > 2 " ng-click="removeItem($index)"> X </span>
               </div>
               <div class="input-group d-flex justify-content-end">
                 <label for="correct">
@@ -99,9 +99,7 @@
       <div class="row">
         <div class="col-12 poll-buttons d-flex justify-content-end">
           <!-- SUBMIT BUTTON -->
-          <!-- <div class="poll-buttons"> -->
-            <a href="" class="new-presentation-button" ng-click="createPoll()">Create Poll</a>
-          <!-- </div> -->
+          <a href="" class="new-presentation-button" ng-click="createPoll()">Create Poll</a>
         </div>
       </div>
     </div>

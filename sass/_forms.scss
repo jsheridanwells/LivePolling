@@ -50,6 +50,7 @@ h3.form-title {
 
 input.poll-question {
   margin-bottom: 2em;
+  font-size: 1.8em;
 }
 
 .select-box {
@@ -59,7 +60,14 @@ input.poll-question {
 
 p.select-label {
   font-size: 0.8em;
+  margin: 0;
 }
+
+.custom-select {
+  font-size: 0.8em;
+  margin: 0 auto 1em;
+}
+
 .feedback-type-explanation {
   p {
     font-size: 0.8em;
@@ -67,9 +75,6 @@ p.select-label {
   }
 }
 
-.custom-select {
-  font-size: 0.8em;
-}
 
 .poll-buttons {
   margin-top: 2em;
