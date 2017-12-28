@@ -47,7 +47,6 @@ module.exports = function($q, $http, api) {
   };
 
   const editPresentation = (presentationObj, presentationId, token) => {
-    console.log('firing', presentationObj);
     return $q((resolve, reject) => {
       $http({
         method: 'PATCH',
