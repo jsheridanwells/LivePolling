@@ -129,6 +129,7 @@ module.exports = function(
   };
 
   // loads current presentation data when view loads
+  // sets current slide index to zero
   $scope.$on('$viewContentLoaded', () => {
     setToZero();
   });
