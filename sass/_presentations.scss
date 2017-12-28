@@ -109,6 +109,7 @@ a.new-presentation-button:hover {
 //SHOW PRESENTATION STYLES
 // PRESENTATION NAV
 h1.presentation-title {
+  cursor: pointer;
   margin-left: 1em;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -119,6 +120,19 @@ h1.presentation-title {
   }
 }
 
+.title-input {
+  font-size: 2em;
+  margin-left: 1em;
+}
+
+i.title-input-button {
+  cursor: pointer;
+}
+
+i.title-input-button:hover {
+  color: $white;
+}
+
 ul.presentation-buttons {
   list-style-type: none;
   li.presentation-button {
@@ -127,6 +141,10 @@ ul.presentation-buttons {
     margin-top: 1.7em;
     text-align: center;
     font-size: 0.8em;
+    .disabled-button {
+      color: $lightGray;
+      cursor: default;
+    }
   }
 }
 
@@ -160,6 +178,15 @@ ul.presentation-buttons {
   p.small, .small {
     color: $white;
     font-size: 0.9em;
+  }
+
+  .slide-arrow {
+
+  }
+
+  i.disabled {
+    color: $lightGray;
+    cursor: default;
   }
 
 }

@@ -24,6 +24,9 @@ module.exports = function(
   // shows and hides results of polls if results are to be shown on the next slide
   $scope.resultsVisible = false;
 
+  // makes title field editable in presentation nav bar
+  $scope.editTitle = false;
+
   // calls presentations/:id' presentations#show' endpoint
   // populates currentPresentation object
   // creates subscription to response_channel_#(presentationID)
@@ -51,6 +54,31 @@ module.exports = function(
     })
     .catch(error => console.log(error));
   };
+
+  const setToZero = () => {
+    let presentationObj = {presentation: {current_slide: 0}};
+    presentationFactory.editPresentation(presentationObj, $routeParams.presentationId, currentUserToken)
+    .then(data => $scope.currentPresentation = data.presentation)
+    .catch(error => console.log(error));
+  };
+
+  // sets editTitle to true to enable form for updating presentation title
+  $scope.toggleEditTitle = () => {
+    $scope.editTitle = !$scope.editTitle;
+  };
+
+  // changes attributes of current presentation in database
+  $scope.updatePresentation = () => {
+    let presentationObj = {};
+    presentationObj.presentation = $scope.currentPresentation;
+    presentationFactory.editPresentation(presentationObj, $scope.currentPresentation.id, currentUserToken)
+    .then(data => {
+      $scope.editTitle = false;
+      $scope.currentPresentation = data.presentation;
+    })
+    .catch(error => console.log(error));
+  };
+
 
   // takes id of current presentation and user auth token
   // calls patch 'broadcast/:id' 'presentations#broadcast' endpoint
@@ -101,8 +129,9 @@ module.exports = function(
   };
 
   // loads current presentation data when view loads
+  // sets current slide index to zero
   $scope.$on('$viewContentLoaded', () => {
-    showPresentation();
+    setToZero();
   });
 
 };

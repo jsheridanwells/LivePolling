@@ -1,8 +1,15 @@
 <div class="presentation-controls d-flex row">
-  <div class="col-1 d-flex justify-content-end">
-    <a href="" ng-click="prevSlide()">
-      <i class="fa fa-chevron-left" aria-hidden="true"></i>
-    </a>
+  <div class="col-1 d-flex justify-content-end slide-arrow">
+      <!-- IF THERE ARE POLLS, ENABLE SLIDE CONTROLS -->
+      <div ng-if=" currentPresentation.polls.length == 0 || currentPresentation.current_slide == 0 ">
+        <i class="fa fa-chevron-left disabled" aria-hidden="true"></i>
+      </div>
+      <!-- IF THERE ARE NO POLLS, DISABLE SLIDE CONTROLS -->
+      <div ng-if=" currentPresentation.polls.length > 0 && currentPresentation.current_slide != 0">
+        <a href="" ng-click="prevSlide()">
+          <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        </a>
+      </div>
   </div>
   <div class="col-10 d-flex justify-content-center">
     <div ng-if=" currentPresentation.polls.length == 0 ">
@@ -17,9 +24,16 @@
       </span>
     </div>
   </div>
-  <div class="col-1 d-flex justify-content-start">
-    <a href="" ng-click="nextSlide()">
-      <i class="fa fa-chevron-right" aria-hidden="true"></i>
-    </a>
+  <div class="col-1 d-flex justify-content-start slide-arrow">
+      <!-- IF THERE ARE POLLS, ENABLE SLIDE CONTROLS -->
+      <div ng-if=" currentPresentation.polls.length == 0 || currentPresentation.current_slide + 1 == currentPresentation.polls.length ">
+        <i class="fa fa-chevron-right disabled" aria-hidden="true"></i>
+      </div>
+      <!-- IF THERE ARE NO POLLS, DISABLE SLIDE CONTROLS -->
+      <div ng-if=" currentPresentation.polls.length > 0 && currentPresentation.current_slide + 1 != currentPresentation.polls.length ">
+        <a href="" ng-click="nextSlide()">
+          <i class="fa fa-chevron-right" aria-hidden="true"></i>
+        </a>
+      </div>
   </div>
 </div>

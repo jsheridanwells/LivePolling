@@ -46,6 +46,19 @@ module.exports = function($q, $http, api) {
     });
   };
 
+  const editPresentation = (presentationObj, presentationId, token) => {
+    return $q((resolve, reject) => {
+      $http({
+        method: 'PATCH',
+        url: `${api.url}${api.presentations}/${presentationId}`,
+        headers: {'authorization': token},
+        data: angular.toJson(presentationObj)
+      })
+      .then(presentation => resolve(presentation.data))
+      .catch(error => reject(error));
+    });
+  };
+
   // takes presentations id and auth token, takes fields from api constant
   // patches presentations#broadcast
   // toggles presentations_broadcasting boolean
@@ -157,6 +170,7 @@ module.exports = function($q, $http, api) {
     getAllPresentations,
     getPresentation,
     postPresentation,
+    editPresentation,
     toggleBroadcasting,
     nextSlide,
     prevSlide,
