@@ -127,6 +127,10 @@ ul.presentation-buttons {
     margin-top: 1.7em;
     text-align: center;
     font-size: 0.8em;
+    .disabled-button {
+      color: $lightGray;
+      cursor: default;
+    }
   }
 }
 

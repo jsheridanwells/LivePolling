@@ -15,19 +15,29 @@
           </a>
         </li>
         <li class="presentation-button">
-          <!-- BROADCAST -->
-          <div ng-if="!currentPresentation.broadcasting">
-            <a href="" ng-click="broadcast()">
+          <!-- IF THERE ARE NO POLLS, DISABLE BROADCAST -->
+          <div ng-if=" currentPresentation.polls.length == 0 ">
+            <span class="disabled-button">
               <i class="fa fa-eye fa-3x" aria-hidden="true"></i><br>
               Broadcast
-            </a>
+            </span>
           </div>
-          <!-- END THE BROADCAST -->
-          <div ng-if="currentPresentation.broadcasting">
-            <a href="" ng-click="broadcast()">
-              <i class="fa fa-eye-slash fa-3x" aria-hidden="true"></i><br>
-              End Broadcast
-            </a>
+          <!-- IF THERE ARE POLLS, ENABLE BROADCAST -->
+          <div ng-if=" currentPresentation.polls.length > 0 ">
+            <!-- BROADCAST -->
+            <div ng-if="!currentPresentation.broadcasting">
+              <a href="" ng-click="broadcast()">
+                <i class="fa fa-eye fa-3x" aria-hidden="true"></i><br>
+                Broadcast
+              </a>
+            </div>
+            <!-- END THE BROADCAST -->
+            <div ng-if="currentPresentation.broadcasting">
+              <a href="" ng-click="broadcast()">
+                <i class="fa fa-eye-slash fa-3x" aria-hidden="true"></i><br>
+                End Broadcast
+              </a>
+            </div>
           </div>
         </li>
         <!-- SEE RESULTS -->
