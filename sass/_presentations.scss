@@ -166,4 +166,13 @@ ul.presentation-buttons {
     font-size: 0.9em;
   }
 
+  .slide-arrow {
+
+  }
+
+  i.disabled {
+    color: $lightGray;
+    cursor: default;
+  }
+
 }
