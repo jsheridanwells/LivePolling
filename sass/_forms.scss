@@ -1,9 +1,14 @@
 @import 'media';
 @import 'fonts';
 @import 'buttons';
+@import 'colors';
+
+@mixin cardShadow() {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
 
 // SIGN UP AND LOG IN
-
 .signup-form {
   margin: 0.5em;
   font-family: $workSans;
@@ -32,4 +37,46 @@ a.splash-button:hover {
 h3.form-title {
   font-family: $quattroCento;
   color: $blue
+}
+
+// NEW POLL
+
+.poll-form {
+  @include cardShadow();
+  background-color: $white;
+  margin: 2em;
+  padding: 2em;
+}
+
+input.poll-question {
+  margin-bottom: 2em;
+  font-size: 1.8em;
+}
+
+.select-box {
+  background-color: $offWhite;
+  padding-left: 1em;
+}
+
+p.select-label {
+  font-size: 0.8em;
+  margin: 0;
+}
+
+.custom-select {
+  font-size: 0.8em;
+  margin: 0 auto 1em;
+}
+
+.feedback-type-explanation {
+  p {
+    font-size: 0.8em;
+    color: $green;
+  }
+}
+
+
+.poll-buttons {
+  margin-top: 2em;
+  padding-right: 2em;
 }
