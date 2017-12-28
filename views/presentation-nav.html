@@ -1,9 +1,18 @@
 <div class="row presentation-button-box d-flex">
     <div class="col-md-7 col-sm-6 justify-content-center align-self-center">
       <!-- PRESENTATION TITLE -->
-      <h1 class="presentation-title">
-        {{currentPresentation.title}}
-      </h1>
+      <!-- IF EDIT-TITLE IS FALSE, SHOW TITLE -->
+      <div ng-if="!editTitle">
+        <h1 class="presentation-title" ng-click=" toggleEditTitle() ">
+          {{currentPresentation.title}}
+        </h1>
+      </div>
+      <!-- IF EDIT-TITLE IS TRUE, SHOW INPUT -->
+      <div ng-if="editTitle">
+        <input type="text" class="title-input" ng-model=" currentPresentation.title ">
+        <i class="fa fa-check fa-2x m2 title-input-button" aria-hidden="true" alt="save changes" ng-click=" updatePresentation() "></i>
+        <i class="fa fa-times fa-2x m2 title-input-button" aria-hidden="true" alt="cancel" ng-click=" toggleEditTitle() "></i>
+      </div>
     </div>
     <div class="col-md-5 col-sm-6 justify-content-center align-self-center">
       <ul class="presentation-buttons d-flex mr-2">
