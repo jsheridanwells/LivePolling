@@ -11,6 +11,8 @@ module.exports = function(
 
   // holds authtoken to pass into api calls
   let token = userFactory.getCurrentUserToken();
+  //used to toggle create or update button/function
+  $scope.edit = false;
   // holds presentation data rendered in initial view
   $scope.currentPresentation = {};
   //creates model for holding form data for creating new poll
@@ -47,6 +49,7 @@ module.exports = function(
   // populates currentPresentation object
   const getCurrentPresentation = () => {
     if ($routeParams.pollId) {
+      $scope.edit = true;
       $scope.currentPresentation.title = 'Edit Poll';
       $scope.currentPresentation.id = $routeParams.presentationId;
       pollFactory.getPoll($routeParams.pollId, token)
@@ -84,6 +87,15 @@ module.exports = function(
     pollObj.poll = $scope.poll;
     pollObj.poll.items_attributes = selectResponseType($scope.poll.response_type);
     pollFactory.postNewPoll(pollObj, token)
+    .then(data => $window.location.href = `#!presentations/${$routeParams.presentationId}`)
+    .catch(error => console.log(error));
+  };
+
+  $scope.editPoll = () => {
+    let pollObj = {};
+    pollObj.poll = $scope.poll;
+    pollObj.poll.items_attributes = selectResponseType($scope.poll.response_type);
+    pollFactory.updatePoll(pollObj, $routeParams.pollId, token)
     .then(data => $window.location.href = `#!presentations/${$routeParams.presentationId}`)
     .catch(error => console.log(error));
   };
