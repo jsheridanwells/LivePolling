@@ -17,7 +17,20 @@ module.exports = function($q, $http, api) {
     });
   };
 
+  const deletePoll = (pollId, token) => {
+    return $q((resolve, reject) => {
+      $http({
+        method:'DELETE',
+        url: `${api.url}${api.polls}/${pollId}`,
+        headers: {'authorization': token},
+      })
+      .then(presentation => resolve(presentation.data))
+      .catch(error => reject(error));
+    });
+  };
+
   return {
-    postNewPoll
+    postNewPoll,
+    deletePoll
   };
 };

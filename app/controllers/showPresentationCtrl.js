@@ -7,6 +7,7 @@ module.exports = function(
   $timeout,
   api,
   presentationFactory,
+  pollFactory,
   userFactory,
   responseTallyService
 ) {
@@ -55,8 +56,9 @@ module.exports = function(
     .catch(error => console.log(error));
   };
 
-  const setToZero = () => {
-    let presentationObj = {presentation: {current_slide: 0}};
+  // used for changing slideNumber after loading, editing, and deleting slides
+  const setSlideNumber = (slideNumber) => {
+    let presentationObj = {presentation: {current_slide: slideNumber}};
     presentationFactory.editPresentation(presentationObj, $routeParams.presentationId, currentUserToken)
     .then(data => $scope.currentPresentation = data.presentation)
     .catch(error => console.log(error));
@@ -128,10 +130,15 @@ module.exports = function(
     .catch(error => console.log(error));
   };
 
+  $scope.deletePoll = (pollId) => {
+    pollFactory.deletePoll(pollId, currentUserToken)
+    .then(data => $scope.currentPresentation = data.presentation)
+    .catch(error => console.log(error));
+  };
+
   // loads current presentation data when view loads
-  // sets current slide index to zero
   $scope.$on('$viewContentLoaded', () => {
-    setToZero();
+    showPresentation();
   });
 
 };
