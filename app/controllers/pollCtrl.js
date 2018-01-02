@@ -47,9 +47,10 @@ module.exports = function(
   // populates currentPresentation object
   const getCurrentPresentation = () => {
     presentationFactory.getPresentation($routeParams.presentationId, token)
-    .then((presentation) => {
-      $scope.currentPresentation = presentation.presentation;
-      $scope.poll.presentation_id = presentation.presentation.id;
+    .then((data) => {
+      console.log(data);
+      $scope.currentPresentation = data.presentation;
+      $scope.poll.presentation_id = data.presentation.id;
     })
     .catch(error => console.log(error));
   };
@@ -65,7 +66,6 @@ module.exports = function(
   $scope.createPoll = () => {
     let pollObj = {};
     pollObj.poll = $scope.poll;
-    console.log('scope.poll', $scope.poll);
     pollObj.poll.items_attributes = selectResponseType($scope.poll.response_type);
     pollFactory.postNewPoll(pollObj, token)
     .then(data => $window.location.href = `#!presentations/${$routeParams.presentationId}`)

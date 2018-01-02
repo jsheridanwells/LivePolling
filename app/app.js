@@ -59,7 +59,9 @@ app.config(($routeProvider) => {
     resolve: {getAuthorization}
   })
   .when('/edit-poll/:presentationId/:pollId', {
-
+    templateUrl: 'views/poll-form.html',
+    controller: 'pollCtrl',
+    resolve: {getAuthorization}
   })
   .when('/show/:presentationId', {
     templateUrl: 'views/show-participant-presentation.html',
