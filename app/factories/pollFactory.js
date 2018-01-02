@@ -17,6 +17,10 @@ module.exports = function($q, $http, api) {
     });
   };
 
+  const editPoll = (pollObj, pollId, token) => {
+
+  };
+
   const deletePoll = (pollId, token) => {
     return $q((resolve, reject) => {
       $http({
@@ -31,6 +35,7 @@ module.exports = function($q, $http, api) {
 
   return {
     postNewPoll,
+    editPoll,
     deletePoll
   };
 };
