@@ -42,4 +42,8 @@
        <button ng-click="showResults()">Show Results</button>
      </div>
   </div>
+  <div class="edit-delete-poll-controls d-flex justify-content-end">
+    <a href="">Edit</a> |
+    <a href="" ng-click="deletePoll(currentPresentation.polls[currentPresentation.current_slide].id)">Delete</a>
+  </div>
 </div>
