@@ -24,10 +24,7 @@ module.exports = function($q, $http, api) {
         url: `${api.url}${api.polls}/${pollId}`,
         headers: {'authorization': token},
       })
-      .then(presentation => {
-        console.log('data from delete', presentation.data);
-        resolve(presentation.data);
-      })
+      .then(presentation => resolve(presentation.data))
       .catch(error => reject(error));
     });
   };

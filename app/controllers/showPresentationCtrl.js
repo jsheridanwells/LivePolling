@@ -132,10 +132,7 @@ module.exports = function(
 
   $scope.deletePoll = (pollId) => {
     pollFactory.deletePoll(pollId, currentUserToken)
-    .then((data) => {
-      $scope.currentPresentation = data.presentation;
-      console.log('$scope.currentPresentation', $scope.currentPresentation);
-    })
+    .then(data => $scope.currentPresentation = data.presentation)
     .catch(error => console.log(error));
   };
 
