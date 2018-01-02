@@ -46,13 +46,29 @@ module.exports = function(
   // calls /presentations/:id#show endpoint
   // populates currentPresentation object
   const getCurrentPresentation = () => {
-    presentationFactory.getPresentation($routeParams.presentationId, token)
-    .then((data) => {
-      console.log(data);
-      $scope.currentPresentation = data.presentation;
-      $scope.poll.presentation_id = data.presentation.id;
-    })
-    .catch(error => console.log(error));
+    if ($routeParams.pollId) {
+      $scope.currentPresentation.title = 'Edit Poll';
+      $scope.currentPresentation.id = $routeParams.presentationId;
+      pollFactory.getPoll($routeParams.pollId, token)
+      .then(poll => {
+        $scope.poll = poll.data.poll;
+        if ($scope.poll.response_type == 1) {
+          $scope.multipleChoice = $scope.poll.items;
+        } else if ($scope.poll.response_type == 2) {
+          $scope.trueFalse = $scope.poll.items;
+        }
+        $scope.poll.response_type = $scope.poll.response_type.toString();
+        $scope.poll.feedback_type = $scope.poll.feedback_type.toString();
+      })
+      .catch(error => console.log(error));
+    } else {
+      presentationFactory.getPresentation($routeParams.presentationId, token)
+      .then((data) => {
+        $scope.currentPresentation = data.presentation;
+        $scope.poll.presentation_id = data.presentation.id;
+      })
+      .catch(error => console.log(error));
+    }
   };
 
   // adds new item object to poll.items array

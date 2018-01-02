@@ -17,6 +17,18 @@ module.exports = function($q, $http, api) {
     });
   };
 
+  const getPoll = (pollId, token) => {
+    return $q((resolve, reject) => {
+      $http({
+        method: 'GET',
+        url: `${api.url}${api.polls}/${pollId}`,
+        headers: {'authorization': token}
+      })
+      .then(data => resolve(data))
+      .catch(error => reject(error));
+    });
+  };
+
   const editPoll = (pollObj, pollId, token) => {
 
   };
@@ -35,6 +47,7 @@ module.exports = function($q, $http, api) {
 
   return {
     postNewPoll,
+    getPoll,
     editPoll,
     deletePoll
   };
