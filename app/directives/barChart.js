@@ -46,6 +46,12 @@ module.exports = function() {
             .attr('x', 0)
             .attr('width', d => x(d));
 
+      bars.append('text')
+            .attr('class', 'label')
+            .attr('y', d => (y(d) + y.rangeBand() /2) + 4)
+            .attr('x', d => x(d) + 3)
+            .text(d => d + '%');
+
 
     });
 
