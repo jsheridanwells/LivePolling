@@ -41,6 +41,7 @@ module.exports = function(
         $scope.responsePercentageArr = responseTallyService.tallyResponses($scope.currentPresentation.polls[$scope.currentPresentation.current_slide].items);
       }
       console.log('current presentation, ', $scope.currentPresentation);
+      console.log('response arr ', $scope.responsePercentageArr);
       let cable = ActionCable.createConsumer(api.ws);
       cable.subscriptions.create({
         channel: 'ResponseChannel',
