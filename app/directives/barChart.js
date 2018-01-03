@@ -11,7 +11,9 @@ module.exports = function() {
 
     let svg = d3.select(el[0]).append('svg')
       .attr('width', width + margin.right + margin.left)
-      .attr('height', height + margin.top + margin.bottom);
+      .attr('height', height + margin.top + margin.bottom)
+      .append('g')
+      .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
     scope.$watch('data', function() {
 
