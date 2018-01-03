@@ -1,0 +1,11 @@
+@import 'buttons';
+@import 'colors';
+@import 'fonts';
+@import 'media';
+
+.edit-delete-poll-controls {
+  a {
+    color: $blue;
+    font-size: 0.8em;
+  }
+}
