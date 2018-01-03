@@ -20,7 +20,7 @@ module.exports = function(
   $scope.currentPresentation = {};
   // holds array of percentage responses for each poll item displayed
   // updated via websocket subscription
-  $scope.responsePercentageArr = [];
+  $scope.responseArr = [];
 
   // shows and hides results of polls if results are to be shown on the next slide
   $scope.resultsVisible = false;
@@ -38,12 +38,12 @@ module.exports = function(
     .then(data => {
       $scope.currentPresentation = data.presentation;
       if ($scope.currentPresentation.polls.length > 0) {
-        $scope.responsePercentageArr = responseTallyService.tallyResponses($scope.currentPresentation.polls[$scope.currentPresentation.current_slide].items);
+        $scope.responseArr = responseTallyService.tallyResponses($scope.currentPresentation.polls[$scope.currentPresentation.current_slide].items);
+        console.log('$scope.responseArr:', $scope.responseArr);
       }
       //  TEMP ARR FOR TESTING D3 BAR CHART, DELETE AFTER REAL DATA OBJECT IS FINALIZED
       // $scope.responsePercentageArr = [25, 30, 90, 50, 70, 80, 100].reverse();
       console.log('current presentation, ', $scope.currentPresentation);
-      console.log('response arr ', $scope.responsePercentageArr);
       let cable = ActionCable.createConsumer(api.ws);
       cable.subscriptions.create({
         channel: 'ResponseChannel',

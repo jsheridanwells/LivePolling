@@ -5,19 +5,32 @@ module.exports = function() {
   // called by showPresentationCtrl
   // parses array of responses per poll item
   // totals number of responses, total is used to divide, then maps percentages to percentageArr
+  // const tallyResponses = (itemsArr) => {
+  //   let responseTotal = 0;
+  //   let percentageArr = [];
+  //   itemsArr.forEach(item => responseTotal += item.responses.length);
+  //   itemsArr.forEach(item => {
+  //     let currentPercentage = (item.responses.length / responseTotal * 100).toFixed(0);
+  //     if (!isNaN(currentPercentage)) {
+  //       percentageArr.push(`${currentPercentage}%`);
+  //     } else {
+  //       percentageArr.push('');
+  //     }
+  //   });
+  //   return percentageArr;
+  // };
+
   const tallyResponses = (itemsArr) => {
     let responseTotal = 0;
-    let percentageArr = [];
     itemsArr.forEach(item => responseTotal += item.responses.length);
-    itemsArr.forEach(item => {
-      let currentPercentage = (item.responses.length / responseTotal * 100).toFixed(0);
-      if (!isNaN(currentPercentage)) {
-        percentageArr.push(`${currentPercentage}%`);
+    return itemsArr.map(item => {
+      let percentage = parseInt((item.responses.length / responseTotal * 100).toFixed(0));
+      if (!isNaN(percentage)) {
+        return {item: item.content, percentage: percentage};
       } else {
-        percentageArr.push('');
+        return {item: item.content, percentage: 0};
       }
     });
-    return percentageArr;
   };
 
   // called by showPresentationsCtrl
