@@ -2,7 +2,8 @@
   <div class="row presentation-button-box d-flex">
     <div class="col-11 align-self-center">
       <h1 class="presentation-title">
-        {{currentPresentation.title}}: New Poll
+        {{currentPresentation.title}}
+        <!-- : New Poll -->
       </h1>
     </div>
     <div class="col-1 justify-content-center align-self-center">
@@ -97,9 +98,17 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-12 poll-buttons d-flex justify-content-end">
-          <!-- SUBMIT BUTTON -->
-          <a href="" class="new-presentation-button" ng-click="createPoll()">Create Poll</a>
+        <div ng-if=" !edit ">
+          <div class="col-12 poll-buttons d-flex justify-content-end">
+            <!-- CREATE POLL BUTTON -->
+            <a href="" class="new-presentation-button" ng-click="createPoll()">Create Poll</a>
+          </div>
+        </div>
+        <div ng-if=" edit ">
+          <div class="col-12 poll-buttons d-flex justify-content-end">
+            <!-- EDIT POLL BUTTON -->
+            <a href="" class="new-presentation-button" ng-click="editPoll()">Edit Poll</a>
+          </div>
         </div>
       </div>
     </div>

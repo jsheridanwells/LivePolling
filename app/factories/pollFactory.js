@@ -17,6 +17,31 @@ module.exports = function($q, $http, api) {
     });
   };
 
+  const getPoll = (pollId, token) => {
+    return $q((resolve, reject) => {
+      $http({
+        method: 'GET',
+        url: `${api.url}${api.polls}/${pollId}`,
+        headers: {'authorization': token}
+      })
+      .then(data => resolve(data))
+      .catch(error => reject(error));
+    });
+  };
+
+  const updatePoll = (pollObj, pollId, token) => {
+    return $q((resolve, reject) => {
+      $http({
+        method:'PATCH',
+        url: `${api.url}${api.polls}/${pollId}`,
+        headers: {'authorization': token},
+        data: angular.toJson(pollObj)
+      })
+      .then(data => resolve(data))
+      .catch(error => reject(error));
+    });
+  };
+
   const deletePoll = (pollId, token) => {
     return $q((resolve, reject) => {
       $http({
@@ -31,6 +56,8 @@ module.exports = function($q, $http, api) {
 
   return {
     postNewPoll,
+    getPoll,
+    updatePoll,
     deletePoll
   };
 };

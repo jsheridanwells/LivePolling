@@ -11,6 +11,8 @@ module.exports = function(
 
   // holds authtoken to pass into api calls
   let token = userFactory.getCurrentUserToken();
+  //used to toggle create or update button/function
+  $scope.edit = false;
   // holds presentation data rendered in initial view
   $scope.currentPresentation = {};
   //creates model for holding form data for creating new poll
@@ -46,12 +48,30 @@ module.exports = function(
   // calls /presentations/:id#show endpoint
   // populates currentPresentation object
   const getCurrentPresentation = () => {
-    presentationFactory.getPresentation($routeParams.presentationId, token)
-    .then((presentation) => {
-      $scope.currentPresentation = presentation.presentation;
-      $scope.poll.presentation_id = presentation.presentation.id;
-    })
-    .catch(error => console.log(error));
+    if ($routeParams.pollId) {
+      $scope.edit = true;
+      $scope.currentPresentation.title = 'Edit Poll';
+      $scope.currentPresentation.id = $routeParams.presentationId;
+      pollFactory.getPoll($routeParams.pollId, token)
+      .then(poll => {
+        $scope.poll = poll.data.poll;
+        if ($scope.poll.response_type == 1) {
+          $scope.multipleChoice = $scope.poll.items;
+        } else if ($scope.poll.response_type == 2) {
+          $scope.trueFalse = $scope.poll.items;
+        }
+        $scope.poll.response_type = $scope.poll.response_type.toString();
+        $scope.poll.feedback_type = $scope.poll.feedback_type.toString();
+      })
+      .catch(error => console.log(error));
+    } else {
+      presentationFactory.getPresentation($routeParams.presentationId, token)
+      .then((data) => {
+        $scope.currentPresentation = data.presentation;
+        $scope.poll.presentation_id = data.presentation.id;
+      })
+      .catch(error => console.log(error));
+    }
   };
 
   // adds new item object to poll.items array
@@ -65,12 +85,26 @@ module.exports = function(
   $scope.createPoll = () => {
     let pollObj = {};
     pollObj.poll = $scope.poll;
-    console.log('scope.poll', $scope.poll);
     pollObj.poll.items_attributes = selectResponseType($scope.poll.response_type);
     pollFactory.postNewPoll(pollObj, token)
     .then(data => $window.location.href = `#!presentations/${$routeParams.presentationId}`)
     .catch(error => console.log(error));
   };
+
+  //editPoll disabled until we can fix the accepts_nested_attributes updating issue
+
+  // $scope.editPoll = () => {
+  //   let pollObj = {};
+  //   pollObj.poll = $scope.poll;
+  //   pollObj.poll.items_attributes = selectResponseType($scope.poll.response_type);
+  //   console.log('poll obj', pollObj);
+  //   pollFactory.updatePoll(pollObj, $routeParams.pollId, token)
+  //   .then(data => {
+  //     console.log('data on return:', data);
+  //     $window.location.href = `#!presentations/${$routeParams.presentationId}`;
+  // })
+  //   .catch(error => console.log(error));
+  // };
 
   // loads current presentation data when view loads
   getCurrentPresentation();
