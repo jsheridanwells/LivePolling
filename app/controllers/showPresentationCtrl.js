@@ -106,7 +106,7 @@ module.exports = function(
     presentationFactory.nextSlide($scope.currentPresentation.id, currentUserToken)
     .then(data => {
       $scope.currentPresentation = data.presentation;
-      $scope.responsePercentageArr = responseTallyService.tallyResponses($scope.currentPresentation.polls[$scope.currentPresentation.current_slide].items);
+      $scope.responseArr = responseTallyService.tallyResponses($scope.currentPresentation.polls[$scope.currentPresentation.current_slide].items);
     })
     .catch(error => console.log(error));
   };
@@ -119,7 +119,7 @@ module.exports = function(
     presentationFactory.prevSlide($scope.currentPresentation.id, currentUserToken)
     .then(data => {
       $scope.currentPresentation = data.presentation;
-      $scope.responsePercentageArr = responseTallyService.tallyResponses($scope.currentPresentation.polls[$scope.currentPresentation.current_slide].items);
+      $scope.responseArr = responseTallyService.tallyResponses($scope.currentPresentation.polls[$scope.currentPresentation.current_slide].items);
     })
     .catch(error => console.log(error));
   };

@@ -9,13 +9,16 @@ module.exports = function() {
       width = barChartBox.width() - margin.left - margin.right,
       height = barChartBox.height() - margin.top - margin.bottom;
 
-    let svg = d3.select(el[0]).append('svg')
+
+    scope.$watch('data', () => {
+
+    d3.select('#bar-chart-box').selectAll('svg').remove();
+
+    let svg = d3.select('#bar-chart-box').append('svg')
       .attr('width', width + margin.right + margin.left)
       .attr('height', height + margin.top + margin.bottom)
       .append('g')
       .attr('transform', `translate(${margin.left}, ${margin.top})`);
-
-    scope.$watch('data', function() {
 
       let data = scope.data;
 
