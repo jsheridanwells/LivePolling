@@ -7,7 +7,6 @@ module.exports = function (
   // takes data from sign up errors
   // creates errorType and errorValues arrays, removes underscores in names
   const renderErrors = (errorData) => {
-    console.log('render errors firing');
     let errorObject = {types: [], values: []};
     errorObject.types = Object.keys(errorData).map(string => stringService.removeUnderscores(string));
     errorObject.values = Object.values(errorData);

@@ -2,6 +2,7 @@
 
 module.exports = function(
   $scope,
+  $rootScope,
   $routeParams,
   $window,
   $timeout,
@@ -9,7 +10,8 @@ module.exports = function(
   presentationFactory,
   pollFactory,
   userFactory,
-  responseTallyService
+  responseTallyService,
+  slideService
 ) {
   // instantiates ActionCable JS module
   let ActionCable = require('../../lib/node_modules/actioncable/lib/assets/compiled/action_cable.js');
@@ -37,6 +39,8 @@ module.exports = function(
     presentationFactory.getPresentation($routeParams.presentationId, currentUserToken)
     .then(data => {
       $scope.currentPresentation = data.presentation;
+      //holds id of currentPresentation for $destroy method
+      $rootScope.currentPresentationId = $scope.currentPresentation.id;
       if ($scope.currentPresentation.polls.length > 0) {
         $scope.responseArr = responseTallyService.tallyResponses($scope.currentPresentation.polls[$scope.currentPresentation.current_slide].items);
       }
@@ -55,13 +59,6 @@ module.exports = function(
     .catch(error => console.log(error));
   };
 
-  // used for changing slideNumber after loading, editing, and deleting slides
-  const setSlideNumber = (slideNumber) => {
-    let presentationObj = {presentation: {current_slide: slideNumber}};
-    presentationFactory.editPresentation(presentationObj, $routeParams.presentationId, currentUserToken)
-    .then(data => $scope.currentPresentation = data.presentation)
-    .catch(error => console.log(error));
-  };
 
   // sets editTitle to true to enable form for updating presentation title
   $scope.toggleEditTitle = () => {
@@ -129,6 +126,17 @@ module.exports = function(
     .catch(error => console.log(error));
   };
 
+  $scope.showPollForm = (type) => {
+    $rootScope.holdSlide = $scope.currentPresentation.current_slide;
+    if (type === 'new') {
+      $window.location.href = `#!/new-poll/${$scope.currentPresentation.id}`;
+    } else if (type === 'edit') {
+      $window.location.href = `#!/edit-poll/${$scope.currentPresentation.id}/${$scope.currentPresentation.polls[$rootScope.holdSlide].id}`;
+    }
+  };
+
+  // takes id of current poll
+  // removes current poll from database
   $scope.deletePoll = (pollId) => {
     pollFactory.deletePoll(pollId, currentUserToken)
     .then(data => $scope.currentPresentation = data.presentation)
@@ -138,6 +146,11 @@ module.exports = function(
   // loads current presentation data when view loads
   $scope.$on('$viewContentLoaded', () => {
     showPresentation();
+  });
+
+  // resets slide number to 0 when presentation is exited
+  $scope.$on('$destroy', () => {
+    slideService.setSlideNumber(0, $rootScope.currentPresentationId, currentUserToken);
   });
 
 };

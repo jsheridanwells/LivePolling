@@ -47,9 +47,7 @@
      </div>
   </div>
   <div class="edit-delete-poll-controls d-flex justify-content-end">
-    <!-- DISABLE EDITING UNTIL WE CAN FIX THE NESTED_ATTRIBUTES PROBLEM -->
-    <a ng-href="#!/edit-poll/{{currentPresentation.id}}/{{currentPresentation.polls[currentPresentation.current_slide].id}}">Edit</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-    <!-- <a class="edit-delete-buttons" href="">Edit</a>&nbsp;&nbsp;|&nbsp;&nbsp; -->
+    <a class="edit-delete-buttons" href="" ng-click="showPollForm('edit')">Edit</a>&nbsp;&nbsp;|&nbsp;&nbsp;
     <a class="edit-delete-buttons" href="" ng-click="deletePoll(currentPresentation.polls[currentPresentation.current_slide].id)">Delete</a>
   </div>
 </div>

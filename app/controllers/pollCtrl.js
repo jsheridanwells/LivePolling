@@ -2,11 +2,14 @@
 
 module.exports = function(
   $scope,
+  $rootScope,
   $routeParams,
   $window,
+  $timeout,
   pollFactory,
   presentationFactory,
-  userFactory
+  userFactory,
+  slideService
 ){
 
   // holds authtoken to pass into api calls
@@ -96,10 +99,13 @@ module.exports = function(
     pollObj.poll = $scope.poll;
     pollObj.poll.items_attributes = selectResponseType($scope.poll.response_type);
     pollFactory.postNewPoll(pollObj, token)
-    .then(data => $window.location.href = `#!presentations/${$routeParams.presentationId}`)
+    .then(() => {
+      slideService.setSlideNumber(($scope.currentPresentation.polls.length), $rootScope.currentPresentationId, token, `#!presentations/${$routeParams.presentationId}`);
+    })
     .catch(error => console.log(error));
   };
 
+  // updates poll
   $scope.editPoll = () => {
     let pollObj = {
       poll: {
@@ -111,12 +117,20 @@ module.exports = function(
     };
     pollFactory.updatePoll(pollObj, $routeParams.pollId, token)
     .then(data => {
-      $window.location.href = `#!presentations/${$routeParams.presentationId}`;
-  })
+      slideService.setSlideNumber($rootScope.holdSlide, $rootScope.currentPresentationId, token, `#!presentations/${$routeParams.presentationId}`);
+    })
     .catch(error => console.log(error));
   };
 
+  // if user leaves poll form without making changes
+  // returns user to last slide
+  $scope.cancelPoll = () => {
+    slideService.setSlideNumber($rootScope.holdSlide, $rootScope.currentPresentationId, token, `#!presentations/${$routeParams.presentationId}`);
+  };
+
   // loads current presentation data when view loads
-  getCurrentPresentation();
+  $scope.$on('$viewContentLoaded', () => {
+    getCurrentPresentation();
+  });
 
 };
