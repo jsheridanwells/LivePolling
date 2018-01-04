@@ -50,7 +50,8 @@ module.exports = function(
         presentation_id: $routeParams.presentationId
       }, {
         received: (responses) => {
-          $scope.responsePercentageArr = responseTallyService.tallySocketResponses(responses.data);
+          $scope.responseArr = responseTallyService.tallySocketResponses(responses.data);
+          console.log($scope.responseArr, responses.data);
           $timeout();
         }
       });
