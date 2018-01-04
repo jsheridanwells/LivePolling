@@ -36,9 +36,21 @@ module.exports = function() {
   // called by showPresentationsCtrl
   // takes array of total responses per poll item
   // reduces number to one total total is used to divide, then maps percentages to percentageArr
-  const tallySocketResponses = (dataArr) => {
-    let total = dataArr.reduce((a,b) => a + b);
-      return dataArr.map(count => (((count / total) * 100).toFixed()).toString() + '%');
+  // const tallySocketResponses = (dataArr) => {
+  //   let total = dataArr.reduce((a,b) => a + b);
+  //     return dataArr.map(count => (((count / total) * 100).toFixed()).toString() + '%');
+  // };
+
+  const tallySocketResponses = (itemsArr) => {
+    let responseTotal = 0;
+    itemsArr.forEach(item => responseTotal += item.responseCount);
+    return itemsArr.map(item => {
+      return {
+        itemContent: item.itemContent,
+        percentage: parseInt((item.responseCount / responseTotal * 100).toFixed(0)),
+        correct: item.correct
+      };
+    }).reverse();
   };
 
   return {

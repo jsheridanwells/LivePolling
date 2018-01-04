@@ -50,8 +50,9 @@ module.exports = function(
         presentation_id: $routeParams.presentationId
       }, {
         received: (responses) => {
+          console.log('responses', responses);
           $scope.responseArr = responseTallyService.tallySocketResponses(responses.data);
-          console.log($scope.responseArr, responses.data);
+          console.log('responseArr', $scope.responseArr, 'responses.data', responses.data);
           $timeout();
         }
       });
