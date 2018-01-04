@@ -5,7 +5,7 @@ module.exports = function() {
 
     let barChartBox = $('#bar-chart-box');
 
-    let margin = {top: 50, right: 50, bottom: 50, left: 50},
+    let margin = {top: 50, right: 50, bottom: 50, left: 300},
       width = barChartBox.width() - margin.left - margin.right,
       height = barChartBox.height() - margin.top - margin.bottom;
 
@@ -21,11 +21,11 @@ module.exports = function() {
 
       let x = d3.scale.linear()
               .range([0, width])
-              .domain([0, d3.max(data, d => d)]);
+              .domain([0, d3.max(data, d => d.percentage)]);
 
       let y = d3.scale.ordinal()
               .rangeRoundBands([height, 0], 0.1)
-              .domain(data.map(d => d));
+              .domain(data.map(d => d.itemContent));
 
       let yAxis = d3.svg.axis()
                   .scale(y)
@@ -43,17 +43,16 @@ module.exports = function() {
 
       bars.append('rect')
             .attr('class', 'bar')
-            .attr('y', d => y(d))
+            .attr('y', d => y(d.itemContent))
             .attr('height', y.rangeBand())
             .attr('x', 0)
-            .attr('width', d => x(d));
+            .attr('width', d => x(d.percentage));
 
       bars.append('text')
             .attr('class', 'label')
-            .attr('y', d => (y(d) + y.rangeBand() /2) + 4)
-            .attr('x', d => x(d) + 3)
-            .text(d => d + '%');
-
+            .attr('y', d => (y(d.itemContent) + y.rangeBand() /2) + 4)
+            .attr('x', d => x(d.percentage) + 3)
+            .text(d => d.percentage + '%');
 
     });
 

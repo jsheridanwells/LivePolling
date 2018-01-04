@@ -8,4 +8,8 @@
 
 svg {
   border: 1px solid $red;
+
+  text {
+    white-space: pre-wrap;
+  }
 }

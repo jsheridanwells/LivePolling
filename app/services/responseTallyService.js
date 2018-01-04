@@ -26,11 +26,11 @@ module.exports = function() {
     return itemsArr.map(item => {
       let percentage = parseInt((item.responses.length / responseTotal * 100).toFixed(0));
       if (!isNaN(percentage)) {
-        return {item: item.content, percentage: percentage};
+        return {itemContent: item.content, percentage: percentage};
       } else {
-        return {item: item.content, percentage: 0};
+        return {itemContent: item.content, percentage: 0};
       }
-    });
+    }).reverse();
   };
 
   // called by showPresentationsCtrl
