@@ -3,13 +3,13 @@
 #bar-chart-box {
   height: 62vh;
   width: 100%;
-  border: 1px solid $green;
 }
 
 svg {
-  border: 1px solid $red;
-
-  text {
-    white-space: pre-wrap;
+  rect.bar {
+    fill: $darkBlue;
+  }
+  rect.correct {
+    fill: $green;
   }
 }

@@ -45,7 +45,7 @@ module.exports = function() {
                   .append('g');
 
       bars.append('rect')
-            .attr('class', 'bar')
+            .attr('class', d => d.correct ? 'correct' : 'bar')
             .attr('y', d => y(d.itemContent))
             .attr('height', y.rangeBand())
             .attr('x', 0)
