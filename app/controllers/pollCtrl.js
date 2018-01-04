@@ -130,9 +130,4 @@ module.exports = function(
     getCurrentPresentation();
   });
 
-  // resets slide number to currentPoll when presentation is exited
-  // $scope.$on('$destroy', () => {
-  //   slideService.setSlideNumber($rootScope.holdSlide, $rootScope.currentPresentationId, token);
-  // });
-
 };
