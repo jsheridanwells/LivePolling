@@ -2,30 +2,37 @@
 
 module.exports = function() {
 
-  // called by showPresentationCtrl
-  // parses array of responses per poll item
-  // totals number of responses, total is used to divide, then maps percentages to percentageArr
+  // called by showPresentationCtrl when presentation is loaded
+  // creates array of objects with item content, percentage of responses, and correct
+  // passed into function that renders D3 bar graph
+
   const tallyResponses = (itemsArr) => {
     let responseTotal = 0;
-    let percentageArr = [];
     itemsArr.forEach(item => responseTotal += item.responses.length);
-    itemsArr.forEach(item => {
-      let currentPercentage = (item.responses.length / responseTotal * 100).toFixed(0);
-      if (!isNaN(currentPercentage)) {
-        percentageArr.push(`${currentPercentage}%`);
+    return itemsArr.map(item => {
+      let percentage = parseInt((item.responses.length / responseTotal * 100).toFixed(0));
+      if (!isNaN(percentage)) {
+        return {itemContent: item.content, percentage: percentage, correct: item.correct};
       } else {
-        percentageArr.push('');
+        return {itemContent: item.content, percentage: 0, correct: item.correct};
       }
-    });
-    return percentageArr;
+    }).reverse();
   };
 
-  // called by showPresentationsCtrl
-  // takes array of total responses per poll item
-  // reduces number to one total total is used to divide, then maps percentages to percentageArr
-  const tallySocketResponses = (dataArr) => {
-    let total = dataArr.reduce((a,b) => a + b);
-      return dataArr.map(count => (((count / total) * 100).toFixed()).toString() + '%');
+  // called by showPresentationCtrl websockets when data comes through connection
+  // creates array of objects with item content, percentage of responses, and correct
+  // passed into function that renders D3 bar graph
+
+  const tallySocketResponses = (itemsArr) => {
+    let responseTotal = 0;
+    itemsArr.forEach(item => responseTotal += item.responseCount);
+    return itemsArr.map(item => {
+      return {
+        itemContent: item.itemContent,
+        percentage: parseInt((item.responseCount / responseTotal * 100).toFixed(0)),
+        correct: item.correct
+      };
+    }).reverse();
   };
 
   return {

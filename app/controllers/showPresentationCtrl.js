@@ -20,7 +20,7 @@ module.exports = function(
   $scope.currentPresentation = {};
   // holds array of percentage responses for each poll item displayed
   // updated via websocket subscription
-  $scope.responsePercentageArr = [];
+  $scope.responseArr = [];
 
   // shows and hides results of polls if results are to be shown on the next slide
   $scope.resultsVisible = false;
@@ -38,16 +38,15 @@ module.exports = function(
     .then(data => {
       $scope.currentPresentation = data.presentation;
       if ($scope.currentPresentation.polls.length > 0) {
-        $scope.responsePercentageArr = responseTallyService.tallyResponses($scope.currentPresentation.polls[$scope.currentPresentation.current_slide].items);
+        $scope.responseArr = responseTallyService.tallyResponses($scope.currentPresentation.polls[$scope.currentPresentation.current_slide].items);
       }
-      console.log('current presentation, ', $scope.currentPresentation);
       let cable = ActionCable.createConsumer(api.ws);
       cable.subscriptions.create({
         channel: 'ResponseChannel',
         presentation_id: $routeParams.presentationId
       }, {
         received: (responses) => {
-          $scope.responsePercentageArr = responseTallyService.tallySocketResponses(responses.data);
+          $scope.responseArr = responseTallyService.tallySocketResponses(responses.data);
           $timeout();
         }
       });
@@ -103,7 +102,7 @@ module.exports = function(
     presentationFactory.nextSlide($scope.currentPresentation.id, currentUserToken)
     .then(data => {
       $scope.currentPresentation = data.presentation;
-      $scope.responsePercentageArr = responseTallyService.tallyResponses($scope.currentPresentation.polls[$scope.currentPresentation.current_slide].items);
+      $scope.responseArr = responseTallyService.tallyResponses($scope.currentPresentation.polls[$scope.currentPresentation.current_slide].items);
     })
     .catch(error => console.log(error));
   };
@@ -116,7 +115,7 @@ module.exports = function(
     presentationFactory.prevSlide($scope.currentPresentation.id, currentUserToken)
     .then(data => {
       $scope.currentPresentation = data.presentation;
-      $scope.responsePercentageArr = responseTallyService.tallyResponses($scope.currentPresentation.polls[$scope.currentPresentation.current_slide].items);
+      $scope.responseArr = responseTallyService.tallyResponses($scope.currentPresentation.polls[$scope.currentPresentation.current_slide].items);
     })
     .catch(error => console.log(error));
   };

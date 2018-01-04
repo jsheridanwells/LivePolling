@@ -9,14 +9,18 @@
       </h4>
     </div>
      <!-- ANSWER ITEMS | PERCENTAGE OF RESPONSES -->
-     <ul class="answer-choices" ng-repeat="item in currentPresentation.polls[currentPresentation.current_slide].items">
+     <!-- <ul class="answer-choices" ng-repeat="item in currentPresentation.polls[currentPresentation.current_slide].items">
        <li class="answer-item">
         {{item.content}}
         <span ng-if=" (currentPresentation.polls[currentPresentation.current_slide].feedback_type == 1) ">
           <span ng-if="(responsePercentageArr[$index] !== NaN)">{{responsePercentageArr[$index]}}</span>
         </span>
        </li>
-     </ul>
+     </ul> -->
+
+      <!-- D3 DIRECTIVE -->
+      <div id="bar-chart-box" bar-chart data="responseArr"></div>
+
   </div>
  <!-- VIEW FOR RESULTS ON NEXT SLIDE -->
   <div ng-if=" (currentPresentation.polls[currentPresentation.current_slide].feedback_type == 2) ">
