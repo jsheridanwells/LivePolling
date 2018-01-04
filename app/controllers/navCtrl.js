@@ -12,6 +12,7 @@ module.exports = function(
   // returns true or false depending on existence of user token
   $scope.loggedIn = () => userFactory.getCurrentUserToken();
 
+  // resets last presentation to 0
   // calls logOut function from factory
   // destroy current session
   // redirects to home view

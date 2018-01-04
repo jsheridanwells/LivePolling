@@ -4,7 +4,8 @@ module.exports = function(
     presentationFactory
   ) {
 
-  // used for changing slideNumber after loading, editing, and deleting slides
+  // takes desired slide number, id of presentatin to modify, user token, and optional redirect url
+  // resets slide number of current presentation
   const setSlideNumber = (slideNumber, presentationId, token, url) => {
     console.log('slide number', slideNumber);
     let presentationObj = {presentation: {current_slide: slideNumber}};
@@ -17,6 +18,6 @@ module.exports = function(
     .catch(error => console.log(error));
   };
 
-  return {setSlideNumber};
+  return { setSlideNumber };
 
 };

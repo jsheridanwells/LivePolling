@@ -105,6 +105,7 @@ module.exports = function(
     .catch(error => console.log(error));
   };
 
+  // updates poll
   $scope.editPoll = () => {
     let pollObj = {
       poll: {
@@ -121,6 +122,8 @@ module.exports = function(
     .catch(error => console.log(error));
   };
 
+  // if user leaves poll form without making changes
+  // returns user to last slide
   $scope.cancelPoll = () => {
     slideService.setSlideNumber($rootScope.holdSlide, $rootScope.currentPresentationId, token, `#!presentations/${$routeParams.presentationId}`);
   };

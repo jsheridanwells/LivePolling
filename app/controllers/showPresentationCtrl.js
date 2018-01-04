@@ -135,6 +135,8 @@ module.exports = function(
     }
   };
 
+  // takes id of current poll
+  // removes current poll from database
   $scope.deletePoll = (pollId) => {
     pollFactory.deletePoll(pollId, currentUserToken)
     .then(data => $scope.currentPresentation = data.presentation)
