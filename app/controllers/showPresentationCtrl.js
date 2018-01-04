@@ -126,6 +126,15 @@ module.exports = function(
     .catch(error => console.log(error));
   };
 
+  $scope.showPollForm = (type) => {
+    $rootScope.holdSlide = $scope.currentPresentation.current_slide;
+    if (type === 'new') {
+      $window.location.href = `#!/new-poll/${$scope.currentPresentation.id}`;
+    } else if (type === 'edit') {
+      $window.location.href = `#!/edit-poll/${$scope.currentPresentation.id}/${$scope.currentPresentation.polls[$rootScope.holdSlide].id}`;
+    }
+  };
+
   $scope.deletePoll = (pollId) => {
     pollFactory.deletePoll(pollId, currentUserToken)
     .then(data => $scope.currentPresentation = data.presentation)
