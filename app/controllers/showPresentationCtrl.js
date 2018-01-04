@@ -20,6 +20,7 @@ module.exports = function(
 
   // creates model for current presentation data
   $scope.currentPresentation = {};
+
   // holds array of percentage responses for each poll item displayed
   // updated via websocket subscription
   $scope.responseArr = [];
@@ -29,6 +30,8 @@ module.exports = function(
 
   // makes title field editable in presentation nav bar
   $scope.editTitle = false;
+
+  $scope.dataView = false;
 
   // calls presentations/:id' presentations#show' endpoint
   // populates currentPresentation object
@@ -63,6 +66,11 @@ module.exports = function(
   // sets editTitle to true to enable form for updating presentation title
   $scope.toggleEditTitle = () => {
     $scope.editTitle = !$scope.editTitle;
+  };
+
+  // sets dataView to true to display live charts
+  $scope.toggleDataView = () => {
+    $scope.dataView = !$scope.dataView;
   };
 
   // changes attributes of current presentation in database
