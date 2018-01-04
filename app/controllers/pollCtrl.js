@@ -109,10 +109,8 @@ module.exports = function(
         items_attributes: selectResponseType($scope.poll.response_type)
       }
     };
-    console.log('poll obj', pollObj);
     pollFactory.updatePoll(pollObj, $routeParams.pollId, token)
     .then(data => {
-      console.log('data on return:', data);
       $window.location.href = `#!presentations/${$routeParams.presentationId}`;
   })
     .catch(error => console.log(error));
