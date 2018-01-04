@@ -78,7 +78,16 @@ module.exports = function(
   $scope.addItem = () => $scope.multipleChoice.push({content: ''});
 
   //removes item object from poll.items array
-  $scope.removeItem = (index) => $scope.multipleChoice.splice(index, 1);
+  $scope.removeItem = (index) => {
+    if ($scope.multipleChoice[index].id) {
+      let itemId = $scope.multipleChoice[index].id;
+      pollFactory.deleteItem(itemId, token)
+      .then(() => $scope.multipleChoice.splice(index, 1))
+      .catch(error => console.log(error));
+    } else {
+      $scope.multipleChoice.splice(index, 1);
+    }
+  };
 
   // takes poll data object and user token
   // calls post /polls#create endpoint
