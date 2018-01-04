@@ -91,12 +91,6 @@ module.exports = function(
     .catch(error => console.log(error));
   };
 
-  //editPoll disabled until we can fix the accepts_nested_attributes updating issue
-
-//example poll obj
-// {"poll":{"id":22,"content":"Question A","response_type":"1","feedback_type":"1","items_attributes":[{"id":97,"content":"Item ^","correct":false},{"id":98,"content":"Item &","correct":false}]}}
-
-
   $scope.editPoll = () => {
     let pollObj = {
       poll: {
