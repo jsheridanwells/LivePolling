@@ -127,10 +127,10 @@ module.exports = function(
   };
 
   $scope.showPollForm = (type) => {
-    $rootScope.holdSlide = $scope.currentPresentation.current_slide;
     if (type === 'new') {
       $window.location.href = `#!/new-poll/${$scope.currentPresentation.id}`;
     } else if (type === 'edit') {
+      $rootScope.holdSlide = $scope.currentPresentation.current_slide;
       $window.location.href = `#!/edit-poll/${$scope.currentPresentation.id}/${$scope.currentPresentation.polls[$rootScope.holdSlide].id}`;
     }
   };

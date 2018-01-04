@@ -118,6 +118,7 @@ module.exports = function(
     };
     pollFactory.updatePoll(pollObj, $routeParams.pollId, token)
     .then(data => {
+      slideService.setSlideNumber($rootScope.holdSlide, $rootScope.currentPresentationId, token);
       $window.location.href = `#!presentations/${$routeParams.presentationId}`;
     })
     .catch(error => console.log(error));
