@@ -93,10 +93,19 @@ module.exports = function(
 
   //editPoll disabled until we can fix the accepts_nested_attributes updating issue
 
+//example poll obj
+// {"poll":{"id":22,"content":"Question A","response_type":"1","feedback_type":"1","items_attributes":[{"id":97,"content":"Item ^","correct":false},{"id":98,"content":"Item &","correct":false}]}}
+
+
   $scope.editPoll = () => {
-    let pollObj = {};
-    pollObj.poll = $scope.poll;
-    pollObj.poll.items_attributes = selectResponseType($scope.poll.response_type);
+    let pollObj = {
+      poll: {
+        content: $scope.poll.content,
+        response_type: $scope.poll.response_type,
+        feedback_type: $scope.poll.feedback_type,
+        items_attributes: selectResponseType($scope.poll.response_type)
+      }
+    };
     console.log('poll obj', pollObj);
     pollFactory.updatePoll(pollObj, $routeParams.pollId, token)
     .then(data => {
