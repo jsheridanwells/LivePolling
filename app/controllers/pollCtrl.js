@@ -100,9 +100,7 @@ module.exports = function(
     pollObj.poll.items_attributes = selectResponseType($scope.poll.response_type);
     pollFactory.postNewPoll(pollObj, token)
     .then(() => {
-      slideService.setSlideNumber(($scope.currentPresentation.polls.length), $rootScope.currentPresentationId, token);
-      $window.location.href = `#!presentations/${$routeParams.presentationId}`;
-      $timeout();
+      slideService.setSlideNumber(($scope.currentPresentation.polls.length), $rootScope.currentPresentationId, token, `#!presentations/${$routeParams.presentationId}`);
     })
     .catch(error => console.log(error));
   };
@@ -118,10 +116,13 @@ module.exports = function(
     };
     pollFactory.updatePoll(pollObj, $routeParams.pollId, token)
     .then(data => {
-      slideService.setSlideNumber($rootScope.holdSlide, $rootScope.currentPresentationId, token);
-      $window.location.href = `#!presentations/${$routeParams.presentationId}`;
+      slideService.setSlideNumber($rootScope.holdSlide, $rootScope.currentPresentationId, token, `#!presentations/${$routeParams.presentationId}`);
     })
     .catch(error => console.log(error));
+  };
+
+  $scope.cancelPoll = () => {
+    slideService.setSlideNumber($rootScope.holdSlide, $rootScope.currentPresentationId, token, `#!presentations/${$routeParams.presentationId}`);
   };
 
   // loads current presentation data when view loads
