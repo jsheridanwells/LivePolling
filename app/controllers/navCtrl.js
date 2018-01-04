@@ -3,6 +3,8 @@
 module.exports = function(
   $scope,
   $window,
+  $rootScope,
+  slideService,
   userFactory
 ){
 
@@ -14,6 +16,7 @@ module.exports = function(
   // destroy current session
   // redirects to home view
   $scope.logOut = () => {
+    slideService.setSlideNumber(0, $rootScope.currentPresentationId, userFactory.getCurrentUserToken());
     userFactory.logOut();
     $window.location.href = '/';
   };
