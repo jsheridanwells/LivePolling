@@ -2,6 +2,7 @@
 
 module.exports = function(
   $scope,
+  $rootScope,
   $routeParams,
   $window,
   $timeout,
@@ -18,6 +19,8 @@ module.exports = function(
 
   // creates model for current presentation data
   $scope.currentPresentation = {};
+  //holds id of currentPresentation for $destroy method
+  $rootScope.currentPresentationId = $scope.currentPresentation.id;
   // holds array of percentage responses for each poll item displayed
   // updated via websocket subscription
   $scope.responseArr = [];
@@ -138,6 +141,10 @@ module.exports = function(
   // loads current presentation data when view loads
   $scope.$on('$viewContentLoaded', () => {
     showPresentation();
+  });
+
+  $scope.$on('$destroy', () => {
+
   });
 
 };
