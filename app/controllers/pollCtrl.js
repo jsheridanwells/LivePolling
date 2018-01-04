@@ -78,7 +78,16 @@ module.exports = function(
   $scope.addItem = () => $scope.multipleChoice.push({content: ''});
 
   //removes item object from poll.items array
-  $scope.removeItem = (index) => $scope.multipleChoice.splice(index, 1);
+  $scope.removeItem = (index) => {
+    if ($scope.multipleChoice[index].id) {
+      let itemId = $scope.multipleChoice[index].id;
+      pollFactory.deleteItem(itemId, token)
+      .then(() => $scope.multipleChoice.splice(index, 1))
+      .catch(error => console.log(error));
+    } else {
+      $scope.multipleChoice.splice(index, 1);
+    }
+  };
 
   // takes poll data object and user token
   // calls post /polls#create endpoint
@@ -91,20 +100,21 @@ module.exports = function(
     .catch(error => console.log(error));
   };
 
-  //editPoll disabled until we can fix the accepts_nested_attributes updating issue
-
-  // $scope.editPoll = () => {
-  //   let pollObj = {};
-  //   pollObj.poll = $scope.poll;
-  //   pollObj.poll.items_attributes = selectResponseType($scope.poll.response_type);
-  //   console.log('poll obj', pollObj);
-  //   pollFactory.updatePoll(pollObj, $routeParams.pollId, token)
-  //   .then(data => {
-  //     console.log('data on return:', data);
-  //     $window.location.href = `#!presentations/${$routeParams.presentationId}`;
-  // })
-  //   .catch(error => console.log(error));
-  // };
+  $scope.editPoll = () => {
+    let pollObj = {
+      poll: {
+        content: $scope.poll.content,
+        response_type: $scope.poll.response_type,
+        feedback_type: $scope.poll.feedback_type,
+        items_attributes: selectResponseType($scope.poll.response_type)
+      }
+    };
+    pollFactory.updatePoll(pollObj, $routeParams.pollId, token)
+    .then(data => {
+      $window.location.href = `#!presentations/${$routeParams.presentationId}`;
+  })
+    .catch(error => console.log(error));
+  };
 
   // loads current presentation data when view loads
   getCurrentPresentation();

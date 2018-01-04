@@ -8,7 +8,7 @@
     </div>
     <div class="col-1 justify-content-center align-self-center">
       <a ng-href="#!/presentations/{{currentPresentation.id}}">
-      <i class="fa fa-times fa-2x" aria-hidden="true"></i>
+        <i class="fa fa-times fa-2x" aria-hidden="true"></i>
       </a>
     </div>
   </div>
@@ -65,16 +65,18 @@
           </div>
         </div>
         <div class="col-md-4 select-box">
-          <!-- SELECT RESPONSE TYPE -->
-          <div class="poll-selector-box">
-            <p class="select-label">
-              Response Type:
-            </p>
-            <select class="custom-select" ng-model="poll.response_type">
-              <option value="1">Multiple Choice</option>
-              <option value="2">True / False</option>
-              <option value="3">Written Response</option>
-            </select>
+          <!-- SELECT RESPONSE TYPE IF NEW POLL-->
+          <div ng-if=" !edit ">
+            <div class="poll-selector-box">
+              <p class="select-label">
+                Response Type:
+              </p>
+              <select class="custom-select" ng-model="poll.response_type">
+                <option value="1">Multiple Choice</option>
+                <option value="2">True / False</option>
+                <option value="3">Written Response</option>
+              </select>
+            </div>
           </div>
           <!-- SELECT FEEDBACK TYPE -->
           <div class="poll-selector-box">
@@ -98,14 +100,12 @@
         </div>
       </div>
       <div class="row">
-        <div ng-if=" !edit ">
-          <div class="col-12 poll-buttons d-flex justify-content-end">
-            <!-- CREATE POLL BUTTON -->
-            <a href="" class="new-presentation-button" ng-click="createPoll()">Create Poll</a>
+        <div class="col-12 poll-buttons d-flex justify-content-end">
+          <div ng-if=" !edit ">
+              <!-- CREATE POLL BUTTON -->
+              <a href="" class="new-presentation-button" ng-click="createPoll()">Create Poll</a>
           </div>
-        </div>
-        <div ng-if=" edit ">
-          <div class="col-12 poll-buttons d-flex justify-content-end">
+          <div ng-if=" edit ">
             <!-- EDIT POLL BUTTON -->
             <a href="" class="new-presentation-button" ng-click="editPoll()">Edit Poll</a>
           </div>

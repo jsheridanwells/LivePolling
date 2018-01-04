@@ -9,17 +9,17 @@
       </h4>
     </div>
      <!-- ANSWER ITEMS | PERCENTAGE OF RESPONSES -->
-     <!-- <ul class="answer-choices" ng-repeat="item in currentPresentation.polls[currentPresentation.current_slide].items">
+     <ul class="answer-choices" ng-repeat="item in currentPresentation.polls[currentPresentation.current_slide].items">
        <li class="answer-item">
         {{item.content}}
         <span ng-if=" (currentPresentation.polls[currentPresentation.current_slide].feedback_type == 1) ">
           <span ng-if="(responsePercentageArr[$index] !== NaN)">{{responsePercentageArr[$index]}}</span>
         </span>
        </li>
-     </ul> -->
+     </ul>
 
       <!-- D3 DIRECTIVE -->
-      <div id="bar-chart-box" bar-chart data="responseArr"></div>
+      <!-- <div id="bar-chart-box" bar-chart data="responseArr"></div> -->
 
   </div>
  <!-- VIEW FOR RESULTS ON NEXT SLIDE -->
@@ -48,8 +48,8 @@
   </div>
   <div class="edit-delete-poll-controls d-flex justify-content-end">
     <!-- DISABLE EDITING UNTIL WE CAN FIX THE NESTED_ATTRIBUTES PROBLEM -->
-    <!-- <a ng-href="#!/edit-poll/{{currentPresentation.id}}/{{currentPresentation.polls[currentPresentation.current_slide].id}}">Edit</a> | -->
-    <a class="edit-delete-buttons" href="">Edit</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <a ng-href="#!/edit-poll/{{currentPresentation.id}}/{{currentPresentation.polls[currentPresentation.current_slide].id}}">Edit</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <!-- <a class="edit-delete-buttons" href="">Edit</a>&nbsp;&nbsp;|&nbsp;&nbsp; -->
     <a class="edit-delete-buttons" href="" ng-click="deletePoll(currentPresentation.polls[currentPresentation.current_slide].id)">Delete</a>
   </div>
 </div>

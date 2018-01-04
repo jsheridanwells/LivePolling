@@ -47,9 +47,21 @@ module.exports = function($q, $http, api) {
       $http({
         method:'DELETE',
         url: `${api.url}${api.polls}/${pollId}`,
-        headers: {'authorization': token},
+        headers: {'authorization': token}
       })
       .then(presentation => resolve(presentation.data))
+      .catch(error => reject(error));
+    });
+  };
+
+  const deleteItem = (itemId, token) => {
+    return $q((resolve, reject) => {
+      $http({
+        method: 'DELETE',
+        url: `${api.url}${api.items}/${itemId}`,
+        headers: {'authorization': token}
+      })
+      .then(() => resolve())
       .catch(error => reject(error));
     });
   };
@@ -58,6 +70,7 @@ module.exports = function($q, $http, api) {
     postNewPoll,
     getPoll,
     updatePoll,
-    deletePoll
+    deletePoll,
+    deleteItem
   };
 };
