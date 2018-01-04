@@ -30,6 +30,7 @@ module.exports = function($q, $http, api) {
   };
 
   const updatePoll = (pollObj, pollId, token) => {
+    console.log('poll object', angular.toJson(pollObj));
     return $q((resolve, reject) => {
       $http({
         method:'PATCH',

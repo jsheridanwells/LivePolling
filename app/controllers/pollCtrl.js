@@ -93,18 +93,18 @@ module.exports = function(
 
   //editPoll disabled until we can fix the accepts_nested_attributes updating issue
 
-  // $scope.editPoll = () => {
-  //   let pollObj = {};
-  //   pollObj.poll = $scope.poll;
-  //   pollObj.poll.items_attributes = selectResponseType($scope.poll.response_type);
-  //   console.log('poll obj', pollObj);
-  //   pollFactory.updatePoll(pollObj, $routeParams.pollId, token)
-  //   .then(data => {
-  //     console.log('data on return:', data);
-  //     $window.location.href = `#!presentations/${$routeParams.presentationId}`;
-  // })
-  //   .catch(error => console.log(error));
-  // };
+  $scope.editPoll = () => {
+    let pollObj = {};
+    pollObj.poll = $scope.poll;
+    pollObj.poll.items_attributes = selectResponseType($scope.poll.response_type);
+    console.log('poll obj', pollObj);
+    pollFactory.updatePoll(pollObj, $routeParams.pollId, token)
+    .then(data => {
+      console.log('data on return:', data);
+      $window.location.href = `#!presentations/${$routeParams.presentationId}`;
+  })
+    .catch(error => console.log(error));
+  };
 
   // loads current presentation data when view loads
   getCurrentPresentation();
