@@ -10,7 +10,8 @@ module.exports = function(
   presentationFactory,
   pollFactory,
   userFactory,
-  responseTallyService
+  responseTallyService,
+  slideService
 ) {
   // instantiates ActionCable JS module
   let ActionCable = require('../../lib/node_modules/actioncable/lib/assets/compiled/action_cable.js');
@@ -19,8 +20,6 @@ module.exports = function(
 
   // creates model for current presentation data
   $scope.currentPresentation = {};
-  //holds id of currentPresentation for $destroy method
-  $rootScope.currentPresentationId = $scope.currentPresentation.id;
   // holds array of percentage responses for each poll item displayed
   // updated via websocket subscription
   $scope.responseArr = [];
@@ -40,6 +39,8 @@ module.exports = function(
     presentationFactory.getPresentation($routeParams.presentationId, currentUserToken)
     .then(data => {
       $scope.currentPresentation = data.presentation;
+      //holds id of currentPresentation for $destroy method
+      $rootScope.currentPresentationId = $scope.currentPresentation.id;
       if ($scope.currentPresentation.polls.length > 0) {
         $scope.responseArr = responseTallyService.tallyResponses($scope.currentPresentation.polls[$scope.currentPresentation.current_slide].items);
       }
@@ -58,13 +59,6 @@ module.exports = function(
     .catch(error => console.log(error));
   };
 
-  // used for changing slideNumber after loading, editing, and deleting slides
-  const setSlideNumber = (slideNumber) => {
-    let presentationObj = {presentation: {current_slide: slideNumber}};
-    presentationFactory.editPresentation(presentationObj, $routeParams.presentationId, currentUserToken)
-    .then(data => $scope.currentPresentation = data.presentation)
-    .catch(error => console.log(error));
-  };
 
   // sets editTitle to true to enable form for updating presentation title
   $scope.toggleEditTitle = () => {
@@ -143,8 +137,9 @@ module.exports = function(
     showPresentation();
   });
 
+  // resets slide number to 0 when presentation is exited
   $scope.$on('$destroy', () => {
-
+    slideService.setSlideNumber(0, $rootScope.currentPresentationId, currentUserToken);
   });
 
 };
