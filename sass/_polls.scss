@@ -14,11 +14,15 @@
   ol.answer-choices {
     li.answer-item {
       display: block;
-      padding: 0.4em;
-      margin: 0.3em;
       font-size: 2em;
       @include cardShadow();
       color: $medGray;
+      padding: 0.2em;
+      margin-left: -1em;
+      @media screen and (min-width: $break-tablet) {
+        padding: 0.4em;
+        margin: 0.3em;
+      }
     }
   }
   .edit-delete-poll-controls {
