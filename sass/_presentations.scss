@@ -151,7 +151,7 @@ ul.presentation-buttons {
 //PRESENTATION / SLIDE FRAME
 .single-presentation-frame {
   margin: 90px auto 60px;
-  height: 80vh;
+  min-height: 80vh;
   padding: 2em;
   background-color: $white;
   @include cardShadow();

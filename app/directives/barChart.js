@@ -5,7 +5,7 @@ module.exports = function() {
 
     let barChartBox = $('#bar-chart-box');
 
-    let margin = {top: 50, right: 50, bottom: 50, left: 300},
+    let margin = {top: 0, right: 50, bottom: 50, left: 250},
       width = barChartBox.width() - margin.left - margin.right,
       height = barChartBox.height() - margin.top - margin.bottom;
 
