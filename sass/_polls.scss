@@ -66,3 +66,11 @@ li.participant-answer-item:hover {
   background-color: $blue;
   color: $white !important;
 }
+
+.response-confirmation {
+  text-align: center;
+  margin-top: 0.8em;
+  p {
+    color: $green;
+  }
+}

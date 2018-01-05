@@ -21,8 +21,8 @@
       <div ng-if=" currentPresentation.current_poll_response_type != 3 ">
          <!-- ACTIVE ANSWER ITEMS -->
          <div ng-if="activated">
-           <ol class="answer-choices" ng-repeat="item in currentPresentation.items">
-            <a href="" class="participant-answer-click" ng-click="respond(item.id)">
+           <ol class="answer-choices">
+            <a href="" class="participant-answer-click" ng-click="respond(item.id)" ng-repeat="item in currentPresentation.items">
              <li class="answer-item participant-answer-item">
               <!-- ANSWER ITEM GOES HERE -->
               {{item.content}}
@@ -32,15 +32,18 @@
          </div>
          <!-- DISABLED ANSWER ITEMS -->
          <div ng-if="!activated">
-           <ol class="answer-choices" ng-repeat="item in currentPresentation.items">
-             <li class="answer-item">
+           <ol class="answer-choices">
+             <li class="answer-item" ng-repeat="item in currentPresentation.items">
               <!-- ANSWER ITEM GOES HERE -->
               {{item.content}}
              </li>
            </ul>
+           <div class="response-confirmation">
+             <p>Your response has been recorded.</p>
+           </div>
          </div>
       </div>
-      <div ng-if=" currentPresentation.current_poll_response_type == 3 ">
+      <!-- <div ng-if=" currentPresentation.current_poll_response_type == 3 ">
         <div ng-if="activated">
           <div class="response-text-area">
             <textarea id="" cols="30" rows="10" ng-model="response.written"></textarea>
@@ -53,7 +56,7 @@
           <p>Your response has been sent.</p>
           <p>{{response.written}}</p>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
