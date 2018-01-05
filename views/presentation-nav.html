@@ -49,9 +49,10 @@
         </li>
         <!-- SEE RESULTS -->
         <li class="presentation-button">
-          <a href="">
+          <a href="" ng-click="toggleDataView()">
             <i class="fa fa-line-chart fa-3x" aria-hidden="true"></i><br>
-            See Results
+            <span ng-if=" !dataView ">Show Responses</span>
+            <span ng-if=" dataView ">Hide Responses</span>
           </a>
         </li>
       </ul>
