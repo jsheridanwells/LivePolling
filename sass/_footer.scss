@@ -18,3 +18,24 @@
   }
 
 }
+
+.participant-footer {
+  margin-top: 0.2em;
+  height: 60px;
+  line-height: 60px;
+  color: $medGray;
+  background-color: $medYellow;
+  text-align: center;
+
+  p {
+    font-size: 0.8em;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+
+  a:hover {
+    color: lightblue;
+  }
+}
