@@ -28,3 +28,16 @@
     }
   }
 }
+
+.participant-frame {
+  max-width: 700px;
+  @media screen and (min-width: $break-tablet) {
+    margin-left: -50px;
+  }
+}
+
+.slide-title {
+  background-color: #ccc;
+  min-height: 80px;
+  padding: 1em;
+}
