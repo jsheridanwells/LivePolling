@@ -15,6 +15,7 @@
       <div class="poll-question">
         <!-- QUESTION GOES HERE -->
         <p>
+          <span ng-if=" message ">{{ message }}</span>
           {{currentPresentation.current_poll}}
         </p>
       </div>
