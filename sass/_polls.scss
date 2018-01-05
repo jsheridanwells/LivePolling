@@ -9,6 +9,9 @@
       color: $blue;
       font-size: 2.3em;
       margin-bottom: 1em;
+      @media screen and (max-width: $break-tablet) {
+        font-size: 1.7em;
+      }
     }
   }
   ol.answer-choices {
