@@ -162,6 +162,17 @@ ul.presentation-buttons {
     h4 {
       color: $blue;
       font-size: 2.3em;
+      margin-bottom: 1em;
+    }
+  }
+  ol.answer-choices {
+    li.answer-item {
+      display: block;
+      padding: 0.4em;
+      margin: 0.3em;
+      font-size: 2em;
+      @include cardShadow();
+      color: $medGray;
     }
   }
 }
