@@ -19,39 +19,30 @@ module.exports = function(
   $scope.activated = true;
   $scope.response = {};
   $scope.response.written = null;
+
   // calls show-presentation/:id' presentations#show_to_participant' endpoint
   // populates currentPresentation object
   // creates subscription to presentation_channel_#(presentationID)
   const showPresentation = () => {
     presentationFactory.showToParticipant($routeParams.presentationId)
     .then((data) => {
-      console.log('data', data);
       $scope.title = data.title;
-      if (data.broadcasting) {
-        $scope.currentPresentation = data;
-        $scope.activated = $scope.currentPresentation.responding_active;
-        $timeout();
-        let cable = ActionCable.createConsumer(api.ws);
-        cable.subscriptions.create({
-          channel: 'PresentationChannel',
-          presentation_id: $routeParams.presentationId
-        }, {
-          connected: () => {
-            console.log('it is connected!');
-          },
-          received: (data) => {
-            console.log('showPresentation channel data', data);
-            $scope.currentPresentation = data;
-            $scope.activated = $scope.currentPresentation.responding_active;
-            if (data.message) {
-              $scope.message = data.message;
-            }
-            $timeout();
-          }
-        });
-      } else {
-        $scope.message = data.message;
-      }
+      $scope.message = data.message;
+      $scope.currentPresentation = data;
+      $scope.activated = $scope.currentPresentation.responding_active;
+      $timeout();
+      let cable = ActionCable.createConsumer(api.ws);
+      cable.subscriptions.create({
+        channel: 'PresentationChannel',
+        presentation_id: $routeParams.presentationId
+      }, {
+        received: (data) => {
+          $scope.currentPresentation = data;
+          $scope.activated = $scope.currentPresentation.responding_active;
+          $scope.message = data.message;
+          $timeout();
+        }
+      });
     })
     .catch(error => console.log(error));
   };
