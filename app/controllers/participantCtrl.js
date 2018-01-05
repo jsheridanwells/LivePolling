@@ -26,8 +26,11 @@ module.exports = function(
     presentationFactory.showToParticipant($routeParams.presentationId)
     .then((data) => {
       console.log('data', data);
-      $scope.title = data.presentation.title;
+      $scope.title = data.title;
       if (data.broadcasting) {
+        $scope.currentPresentation = data;
+        $scope.activated = $scope.currentPresentation.responding_active;
+        $timeout();
         let cable = ActionCable.createConsumer(api.ws);
         cable.subscriptions.create({
           channel: 'PresentationChannel',
@@ -44,7 +47,7 @@ module.exports = function(
           }
         });
       } else {
-        $scope.message = data.presentation.message;
+        $scope.message = data.message;
       }
     })
     .catch(error => console.log(error));
