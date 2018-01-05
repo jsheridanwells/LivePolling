@@ -4,27 +4,22 @@
   <div ng-if=" (currentPresentation.polls[currentPresentation.current_slide].feedback_type != 2) ">
     <!-- POLL QUESTION -->
     <div class="poll-question">
-      <h4>
+      <p>
         {{currentPresentation.polls[currentPresentation.current_slide].content}}
-      </h4>
+      </p>
     </div>
-     <!-- ANSWER ITEMS | PERCENTAGE OF RESPONSES -->
+     <!-- ANSWER ITEMS  -->
      <div ng-if=" !dataView ">
-       <ul class="answer-choices" ng-repeat="item in currentPresentation.polls[currentPresentation.current_slide].items">
-         <li class="answer-item">
+       <ol class="answer-choices" type="A">
+         <li class="answer-item" ng-repeat="item in currentPresentation.polls[currentPresentation.current_slide].items">
           {{item.content}}
-          <span ng-if=" (currentPresentation.polls[currentPresentation.current_slide].feedback_type == 1) ">
-            <span ng-if="(responsePercentageArr[$index] !== NaN)">{{responsePercentageArr[$index]}}</span>
-          </span>
          </li>
-       </ul>
+       </ol>
      </div>
-
-      <!-- D3 DIRECTIVE -->
-      <div ng-if=" dataView ">
-        <div id="bar-chart-box" bar-chart data="responseArr"></div>
-      </div>
-
+    <!-- D3 DIRECTIVE -->
+    <div ng-if=" dataView ">
+      <div id="bar-chart-box" bar-chart data="responseArr"></div>
+    </div>
   </div>
  <!-- VIEW FOR RESULTS ON NEXT SLIDE -->
   <div ng-if=" (currentPresentation.polls[currentPresentation.current_slide].feedback_type == 2) ">
@@ -37,7 +32,6 @@
      <!-- ANSWER ITEMS | PERCENTAGE OF RESPONSES -->
      <ul class="answer-choices" ng-repeat="item in currentPresentation.polls[currentPresentation.current_slide].items">
       <div>
-
       </div>
        <li class="answer-item" ng-class=" (resultsVisible && item.correct) ? 'correct' : '' ">
         {{item.content}}

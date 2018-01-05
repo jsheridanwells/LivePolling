@@ -3,9 +3,75 @@
 @import 'fonts';
 @import 'media';
 
-.edit-delete-poll-controls {
-  a {
-    color: $blue;
-    font-size: 0.8em;
+.slide-frame {
+  .poll-question {
+    text-align: center;
+    p {
+      color: $blue;
+      font-size: 2.3em;
+      margin-bottom: 1em;
+      @media screen and (max-width: $break-tablet) {
+        font-size: 1.7em;
+      }
+    }
+  }
+  ol.answer-choices {
+    li.answer-item {
+      display: block;
+      font-size: 2em;
+      @include cardShadow();
+      color: $medGray;
+      padding: 0.2em;
+      margin-left: -1em;
+      @media screen and (min-width: $break-tablet) {
+        padding: 0.4em;
+        margin: 0.3em;
+      }
+    }
+  }
+  .edit-delete-poll-controls {
+    a {
+      color: $blue;
+      font-size: 0.8em;
+    }
+  }
+}
+
+.participant-frame {
+  max-width: 700px;
+  @media screen and (min-width: $break-tablet) {
+    margin-left: -50px;
+  }
+}
+
+.slide-title {
+  display: fixed;
+  background-color: #ccc;
+  min-height: 80px;
+  padding: 1em;
+}
+
+.participant-poll-frame {
+  margin-top: 1em;
+  min-height: 80vh;
+  padding: 2em;
+  background-color: $white;
+  @include cardShadow();
+}
+
+a.participant-answer-click {
+  text-decoration: none;
+}
+
+li.participant-answer-item:hover {
+  background-color: $blue;
+  color: $white !important;
+}
+
+.response-confirmation {
+  text-align: center;
+  margin-top: 0.8em;
+  p {
+    color: $green;
   }
 }
