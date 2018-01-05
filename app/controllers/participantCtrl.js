@@ -25,19 +25,27 @@ module.exports = function(
   const showPresentation = () => {
     presentationFactory.showToParticipant($routeParams.presentationId)
     .then((data) => {
+      console.log('data', data);
       $scope.title = data.presentation.title;
-      let cable = ActionCable.createConsumer(api.ws);
-      cable.subscriptions.create({
-        channel: 'PresentationChannel',
-        presentation_id: $routeParams.presentationId
-      }, {
-        received: (data) => {
-          console.log('showPresentation channel data', data);
-          $scope.currentPresentation = data;
-          $scope.activated = $scope.currentPresentation.responding_active;
-          $timeout();
-        }
-      });
+      if (data.broadcasting) {
+        let cable = ActionCable.createConsumer(api.ws);
+        cable.subscriptions.create({
+          channel: 'PresentationChannel',
+          presentation_id: $routeParams.presentationId
+        }, {
+          connected: () => {
+            console.log('it is connected!');
+          },
+          received: (data) => {
+            console.log('showPresentation channel data', data);
+            $scope.currentPresentation = data;
+            $scope.activated = $scope.currentPresentation.responding_active;
+            $timeout();
+          }
+        });
+      } else {
+        $scope.message = data.presentation.message;
+      }
     })
     .catch(error => console.log(error));
   };
