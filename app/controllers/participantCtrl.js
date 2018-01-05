@@ -43,6 +43,9 @@ module.exports = function(
             console.log('showPresentation channel data', data);
             $scope.currentPresentation = data;
             $scope.activated = $scope.currentPresentation.responding_active;
+            if (data.message) {
+              $scope.message = data.message;
+            }
             $timeout();
           }
         });
