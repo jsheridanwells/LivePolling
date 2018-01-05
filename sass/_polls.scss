@@ -37,7 +37,16 @@
 }
 
 .slide-title {
+  display: fixed;
   background-color: #ccc;
   min-height: 80px;
   padding: 1em;
+}
+
+.participant-poll-frame {
+  margin-top: 1em;
+  min-height: 80vh;
+  padding: 2em;
+  background-color: $white;
+  @include cardShadow();
 }

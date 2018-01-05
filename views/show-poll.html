@@ -8,14 +8,11 @@
         {{currentPresentation.polls[currentPresentation.current_slide].content}}
       </h4>
     </div>
-     <!-- ANSWER ITEMS | PERCENTAGE OF RESPONSES -->
+     <!-- ANSWER ITEMS  -->
      <div ng-if=" !dataView ">
        <ol class="answer-choices" type="A">
          <li class="answer-item" ng-repeat="item in currentPresentation.polls[currentPresentation.current_slide].items">
           {{item.content}}
-          <span ng-if=" (currentPresentation.polls[currentPresentation.current_slide].feedback_type == 1) ">
-            <span ng-if="(responsePercentageArr[$index] !== NaN)">{{responsePercentageArr[$index]}}</span>
-          </span>
          </li>
        </ol>
      </div>
