@@ -10,14 +10,14 @@
     </div>
      <!-- ANSWER ITEMS | PERCENTAGE OF RESPONSES -->
      <div ng-if=" !dataView ">
-       <ul class="answer-choices" ng-repeat="item in currentPresentation.polls[currentPresentation.current_slide].items">
-         <li class="answer-item">
+       <ol class="answer-choices" type="A">
+         <li class="answer-item" ng-repeat="item in currentPresentation.polls[currentPresentation.current_slide].items">
           {{item.content}}
           <span ng-if=" (currentPresentation.polls[currentPresentation.current_slide].feedback_type == 1) ">
             <span ng-if="(responsePercentageArr[$index] !== NaN)">{{responsePercentageArr[$index]}}</span>
           </span>
          </li>
-       </ul>
+       </ol>
      </div>
 
       <!-- D3 DIRECTIVE -->
