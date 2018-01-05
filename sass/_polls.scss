@@ -57,3 +57,12 @@
   background-color: $white;
   @include cardShadow();
 }
+
+a.participant-answer-click {
+  text-decoration: none;
+}
+
+li.participant-answer-item:hover {
+  background-color: $blue;
+  color: $white !important;
+}

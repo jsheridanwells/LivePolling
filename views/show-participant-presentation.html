@@ -22,8 +22,8 @@
          <!-- ACTIVE ANSWER ITEMS -->
          <div ng-if="activated">
            <ol class="answer-choices" ng-repeat="item in currentPresentation.items">
-            <a href="" ng-click="respond(item.id)">
-             <li class="answer-item">
+            <a href="" class="participant-answer-click" ng-click="respond(item.id)">
+             <li class="answer-item participant-answer-item">
               <!-- ANSWER ITEM GOES HERE -->
               {{item.content}}
              </li>
