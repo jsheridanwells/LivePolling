@@ -2,10 +2,15 @@
 
 module.exports = function(api) {
   const makeQr = (presentationId) => {
-    let qr = new QRious({
+    console.log('firing');
+    let url = `${api.clientUrl}${api.show}/${presentationId}`;
+    let qr = new QRious({  // jshint ignore:line
           element: document.getElementById('qr'),
-          value: `${api.clientUrl}${api.show}/${presentationId}`
+          value: url
         });
+    qr.size = 380;
+    let link = document.getElementById('link');
+    link.innerText = url;
   };
   return { makeQr };
 };

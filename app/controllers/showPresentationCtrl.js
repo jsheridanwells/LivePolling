@@ -11,7 +11,8 @@ module.exports = function(
   pollFactory,
   userFactory,
   responseTallyService,
-  slideService
+  slideService,
+  qrService
 ) {
   // instantiates ActionCable JS module
   let ActionCable = require('../../lib/node_modules/actioncable/lib/assets/compiled/action_cable.js');
@@ -42,6 +43,9 @@ module.exports = function(
     presentationFactory.getPresentation($routeParams.presentationId, currentUserToken)
     .then(data => {
       $scope.currentPresentation = data.presentation;
+      //sets qr code and url for share link
+      qrService.makeQr($routeParams.presentationId);
+      $scope.link = `${api.clientUrl}${api.show}/${$routeParams.presentationId}`;
       //holds id of currentPresentation for $destroy method
       $rootScope.currentPresentationId = $scope.currentPresentation.id;
       if ($scope.currentPresentation.polls.length > 0) {
