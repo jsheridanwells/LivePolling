@@ -56,11 +56,21 @@
         </li>
         <!-- SEE RESULTS -->
         <li class="presentation-button">
-          <a href="" ng-click="toggleDataView()">
-            <i class="fa fa-line-chart fa-3x" aria-hidden="true"></i><br>
-            <span ng-if=" !dataView ">Show Responses</span>
-            <span ng-if=" dataView ">Hide Responses</span>
-          </a>
+          <!-- IF THERE ARE NO POLLS, DISABLE RESPONSES -->
+          <div ng-if=" currentPresentation.polls.length == 0 ">
+            <span class="disabled-button">
+              <i class="fa fa-line-chart fa-3x" aria-hidden="true"></i><br>
+              Show Responses
+            </span>
+          </div>
+          <!-- IF THERE ARE POLLS, ENABLE RESPONSES -->
+          <div ng-if=" currentPresentation.polls.length > 0 ">
+            <a href="" ng-click="toggleDataView()">
+              <i class="fa fa-line-chart fa-3x" aria-hidden="true"></i><br>
+              <span ng-if=" !dataView ">Show Responses</span>
+              <span ng-if=" dataView ">Hide Responses</span>
+            </a>
+          </div>
         </li>
       </ul>
     </div>

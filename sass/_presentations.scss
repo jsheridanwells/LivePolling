@@ -87,7 +87,7 @@ a.new-presentation-button:hover {
 .create-presentations-message-box {
   background-color: $white;
   width: 90%;
-  height: 90%;
+  height: 80vh;
   margin: 10% auto;
   padding: 10%;
 
@@ -100,10 +100,11 @@ a.new-presentation-button:hover {
       font-size: 0.1em;
     }
 
-    a {
-      color: $blue;
-      font-size: 1.0em;
-    }
+  }
+  a {
+    color: $blue !important;
+    font-size: 1.0em;
+    margin-left: 3em;
   }
 }
 
