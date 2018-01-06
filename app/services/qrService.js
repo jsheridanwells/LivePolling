@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function(api, googleCreds) {
+module.exports = function(api, googleCreds, $timeout) {
 
   const makeQr = (presentationId) => {
     let url = `${api.clientUrl}${api.show}/${presentationId}`;
@@ -15,16 +15,17 @@ module.exports = function(api, googleCreds) {
     let url = `${api.clientUrl}${api.show}/${presentationId}`;
 
     gapi.client.setApiKey(googleCreds.api);
-    gapi.client.load('urlshortener', 'v1',function(){});
+    gapi.client.load('urlshortener', 'v1', function() {
+      let request = gapi.client.urlshortener.url.insert({
+        'resource': {'longUrl': url}
+      });
 
-    let request = gapi.client.urlshortener.url.insert({
-      'resource': {'longUrl': url}
+      request.execute((response) => {
+        let link = document.getElementById('link');
+        link.innerText = response.id;
+      });
     });
 
-    request.execute((response) => {
-      let link = document.getElementById('link');
-      link.innerText = response.id;
-    });
 
   };
 
