@@ -8,7 +8,7 @@ module.exports = function(api) {
           element: document.getElementById('qr'),
           value: url
         });
-    qr.size = 380;
+    qr.size = 290;
     let link = document.getElementById('link');
     link.innerText = url;
   };
