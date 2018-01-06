@@ -5,3 +5,4 @@ app.service('responseTallyService', require('./responseTallyService'));
 app.service('stringService', require('./stringService'));
 app.service('errorService', require('./errorService'));
 app.service('slideService', require('./slideService'));
+app.service('qrService', require('./qrService'));

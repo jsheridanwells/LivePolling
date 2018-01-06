@@ -1,4 +1,5 @@
 @import 'media';
+@import 'buttons';
 @import 'colors';
 @import 'fonts';
 @import 'errors';
@@ -50,4 +51,25 @@ a.traditional {
 
 a.traditional:hover {
   color: red;
+}
+
+// CANVAS AND QR MODAL
+.qr-modal {
+  text-align: center;
+  h3.link-title {
+    color: $blue;
+    font-family: $quattroCento;
+  }
+  p#link {
+    font-size: 2.7em;
+    font-weight: bold;
+    color: $blue;
+  }
+  canvas {
+    width: 291px;
+    margin: 0 auto;
+  }
+  button {
+    @inlude button($darkGray, $white);
+  }
 }
