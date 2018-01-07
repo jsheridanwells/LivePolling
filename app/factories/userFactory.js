@@ -52,6 +52,34 @@ module.exports = function($q, $http, api) {
     });
   };
 
+  const updateUser = (user, userId, token) => {
+    let userObj = {
+      users: {
+        first_name: user.firstName,
+        last_name: user.lastName,
+        email: user.email
+      }
+    };
+    console.log('user object', userObj);
+    return $q((resolve, reject) => {
+      $http({
+        method: 'PATCH',
+        url: `${api.url}${api.userModel}/${userId}`,
+        headers: {'authorization': token},
+        data: angular.toJson(userObj)
+      })
+      .then(userData => {
+        currentUser = {
+          firstName: userData.data.first_name,
+          lastName: userData.data.last_name,
+          email: userData.data.email
+        };
+        resolve(currentUser);
+      })
+      .catch(error => reject(error));
+    });
+  };
+
   // destroys current user token
   const logOut = () => {
     currentUserToken = null;
@@ -89,6 +117,7 @@ module.exports = function($q, $http, api) {
     signUp,
     logIn,
     logOut,
+    updateUser,
     getCurrentUser,
     getCurrentUserToken,
     getCurrentUserId,
