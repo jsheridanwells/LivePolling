@@ -33,14 +33,14 @@
           <div ng-if=" currentPresentation.polls.length > 0 ">
             <!-- BROADCAST -->
             <div ng-if="!currentPresentation.broadcasting">
-              <a href="" ng-click="broadcast()">
+              <a href="" ng-click="broadcast(currentPresentation.id)">
                 <i class="fa fa-eye fa-3x" aria-hidden="true"></i><br>
                 Broadcast
               </a>
             </div>
             <!-- END THE BROADCAST -->
             <div ng-if="currentPresentation.broadcasting">
-              <a href="" ng-click="broadcast()">
+              <a href="" ng-click="broadcast(currentPresentation.id)">
                 <i class="fa fa-eye-slash fa-3x" aria-hidden="true"></i><br>
                 End Broadcast
               </a>
