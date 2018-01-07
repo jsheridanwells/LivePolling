@@ -41,6 +41,11 @@ app.config(($routeProvider, api) => {
     templateUrl: 'views/login.html',
     controller: 'userCtrl'
   })
+  .when('/user', {
+    templateUrl: 'views/user.html',
+    controller: 'editUserCtrl',
+    resolve: {getAuthorization}
+  })
   .when('/presentations', {
     templateUrl: 'views/presentations.html',
     controller: 'presentationsCtrl',

@@ -9,3 +9,4 @@ app.controller('participantCtrl', require('./participantCtrl'));
 app.controller('presentationsCtrl', require('./presentationsCtrl'));
 app.controller('showPresentationCtrl', require('./showPresentationCtrl'));
 app.controller('userCtrl', require('./userCtrl'));
+app.controller('editUserCtrl', require('./editUserCtrl'));

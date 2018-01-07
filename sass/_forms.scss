@@ -33,6 +33,28 @@ a.splash-button:hover {
   background-color: $darkGrayHover;
 }
 
+// USER EDIT FORM
+.user-form {
+  height: 80vh;
+  @include cardShadow();
+  background-color: $white;
+  margin: 2em;
+  padding: 2em;
+
+  p.user-name {
+    display: block;
+    text-align: center;
+    font-size: 1.5em;
+    margin: 20% 0;
+  }
+
+  a.user-edit-button {
+    @include button($darkGray, $white);
+    width: 200px;
+    padding-bottom: 1em;
+  }
+}
+
 // NEW PRESENTATION
 h3.form-title {
   font-family: $quattroCento;
@@ -74,7 +96,6 @@ p.select-label {
     color: $green;
   }
 }
-
 
 .poll-buttons {
   margin-top: 2em;

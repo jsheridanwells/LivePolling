@@ -38,9 +38,11 @@ module.exports = function($q, $http, api) {
       });
       $http.post(`${api.url}${api.userLogIn}`, loginObj)
       .then((userData) => {
+        console.log('user data', userData);
         currentUser = {
           firstName: userData.data.first_name,
-          lastName: userData.data.last_name
+          lastName: userData.data.last_name,
+          email: userData.data.email
         };
         currentUserToken = userData.data.authorization_token;
         currentUserId = userData.data.user_id;
