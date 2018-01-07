@@ -15,7 +15,7 @@ module.exports = function(
     console.log($scope.user);
   };
 
-  $scope.toggleEdit = () => $scope.edit = true;
+  $scope.toggleEdit = () => $scope.edit = !$scope.edit;
 
   $scope.update = () => {
     userFactory.updateUser($scope.user, userId, token)
