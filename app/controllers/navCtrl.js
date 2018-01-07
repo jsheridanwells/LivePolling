@@ -5,8 +5,11 @@ module.exports = function(
   $window,
   $rootScope,
   slideService,
+  presentationFactory,
   userFactory
 ){
+
+  let token = userFactory.getCurrentUserToken();
 
   // calls from navbar partial for showing or hiding navbar
   // returns true or false depending on existence of user token
@@ -17,16 +20,12 @@ module.exports = function(
   // destroy current session
   // redirects to home view
   $scope.logOut = () => {
+    if ($rootScope.broadcasting) {
+      presentationFactory.toggleBroadcasting($rootScope.currentPresentationId, token);
+    }
     slideService.setSlideNumber(0, $rootScope.currentPresentationId, userFactory.getCurrentUserToken());
     userFactory.logOut();
     $window.location.href = '/';
   };
-
-  // const getUserInfo = () => {
-  //   $scope.user = userFactory.getCurrentUser();
-  //   console.log($scope.user);
-  // };
-
-  // $scope.$on('$viewContentLoaded', getUserInfo());
 
 };

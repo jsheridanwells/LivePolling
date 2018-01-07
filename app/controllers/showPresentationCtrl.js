@@ -45,7 +45,7 @@ module.exports = function(
       $scope.currentPresentation = data.presentation;
       //holds id of currentPresentation for $destroy method
       $rootScope.currentPresentationId = $scope.currentPresentation.id;
-      console.log('show pres id', $rootScope.currentPresentationId);
+      $rootScope.broadcasting = $scope.currentPresentation.broadcasting;
       if ($scope.currentPresentation.polls.length > 0) {
         $scope.responseArr = responseTallyService.tallyResponses($scope.currentPresentation.polls[$scope.currentPresentation.current_slide].items);
       }
@@ -93,11 +93,8 @@ module.exports = function(
   // toggles boolean in presentations_broadcasting db column
   // data in presentations with broadcasting:true are made available w/o auth
   $scope.broadcast = (id) => {
-    console.log('broadcast id', $rootScope.currentPresentationId);
-    console.log('route params', $routeParams.presentationId);
     presentationFactory.toggleBroadcasting(id, currentUserToken)
     .then(data => {
-      console.log('data in broadcast', data);
       if ($routeParams.presentationId) {
         $scope.currentPresentation = data.presentation;
         showPresentation();
