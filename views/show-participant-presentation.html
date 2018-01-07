@@ -20,25 +20,17 @@
         </p>
       </div>
       <div ng-if=" currentPresentation.current_poll_response_type != 3 ">
-         <!-- ACTIVE ANSWER ITEMS -->
-         <div ng-if="activated">
-           <ol class="answer-choices">
-            <a href="" class="participant-answer-click" ng-click="respond(item.id)" ng-repeat="item in currentPresentation.items">
-             <li class="answer-item participant-answer-item">
-              <!-- ANSWER ITEM GOES HERE -->
-              {{item.content}}
-             </li>
-            </a>
-           </ul>
-         </div>
-         <!-- DISABLED ANSWER ITEMS -->
-         <div ng-if="!activated">
-           <ol class="answer-choices">
-             <li class="answer-item" ng-repeat="item in currentPresentation.items">
-              <!-- ANSWER ITEM GOES HERE -->
-              {{item.content}}
-             </li>
-           </ul>
+         <!-- ANSWER ITEMS -->
+         <ol class="answer-choices">
+          <a href="" ng-class="{'participant-answer-click': activated, 'participant-answer-off': !activated}" ng-click="respond(item)" ng-repeat="item in currentPresentation.items">
+           <li ng-class=" {'participant-answer-item': !item.sent, 'activated': item.sent} ">
+            {{item.content}}
+           </li>
+          </a>
+         </ol>
+
+         <!-- RESPONSE CONFIRMATION -->
+         <div ng-if=" !activated ">
            <div class="response-confirmation">
              <p>Your response has been recorded.</p>
            </div>

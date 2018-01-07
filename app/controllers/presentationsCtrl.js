@@ -17,18 +17,24 @@ module.exports = function(
   // holds array of all presentations created by current user
   $scope.presentations = [];
 
+  // shows loading animation if true
+  $scope.loading = true;
+
   // calls get /presentations presentations#show endpoint
   // takes authorization token to pass to api call
   const getAllPresentations = () => {
-    presentationFactory.getAllPresentations(currentUserToken)
-    .then(presentations => {
-      $scope.presentations = presentations.presentations;
-    })
-    .catch(error => {
-      if (error.status === 401) {
-        $window.location.href = '#!/login';
-      }
-    });
+    window.setTimeout(() => {
+      presentationFactory.getAllPresentations(currentUserToken)
+      .then(presentations => {
+        $scope.presentations = presentations.presentations;
+        $scope.loading = false;
+      })
+      .catch(error => {
+        if (error.status === 401) {
+          $window.location.href = '#!/login';
+        }
+      });
+    },1000);
   };
 
   // takes id of presentation to destroy and user auth token

@@ -45,6 +45,7 @@ module.exports = function(
       $scope.currentPresentation = data.presentation;
       //holds id of currentPresentation for $destroy method
       $rootScope.currentPresentationId = $scope.currentPresentation.id;
+      $rootScope.broadcasting = $scope.currentPresentation.broadcasting;
       if ($scope.currentPresentation.polls.length > 0) {
         $scope.responseArr = responseTallyService.tallyResponses($scope.currentPresentation.polls[$scope.currentPresentation.current_slide].items);
       }
@@ -91,11 +92,13 @@ module.exports = function(
   // calls patch 'broadcast/:id' 'presentations#broadcast' endpoint
   // toggles boolean in presentations_broadcasting db column
   // data in presentations with broadcasting:true are made available w/o auth
-  $scope.broadcast = () => {
-    presentationFactory.toggleBroadcasting($scope.currentPresentation.id, currentUserToken)
+  $scope.broadcast = (id) => {
+    presentationFactory.toggleBroadcasting(id, currentUserToken)
     .then(data => {
-      $scope.currentPresentation = data.presentation;
-      showPresentation();
+      if ($routeParams.presentationId) {
+        $scope.currentPresentation = data.presentation;
+        showPresentation();
+      }
     })
     .catch(error => console.log(error));
   };
@@ -162,7 +165,11 @@ module.exports = function(
 
   // resets slide number to 0 when presentation is exited
   $scope.$on('$destroy', () => {
-    slideService.setSlideNumber(0, $rootScope.currentPresentationId, currentUserToken);
+    if ($scope.currentPresentation.broadcasting) {
+      window.alert('This presentation is being broadcast to users. Do you want to end the presentation?');
+      slideService.setSlideNumber(0, $rootScope.currentPresentationId, currentUserToken);
+      $scope.broadcast($rootScope.currentPresentationId);
+    }
   });
 
 };
