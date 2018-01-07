@@ -1,9 +1,9 @@
 'use strict';
 
-module.exports = function($q, $http, api) {
+module.exports = function($q, $http, api, $rootScope) {
 
   // stores user, id and user auth token
-  let currentUser = null;
+  $rootScope.currentUser = null;
   let currentUserToken = null;
   let currentUserId = null;
 
@@ -38,8 +38,7 @@ module.exports = function($q, $http, api) {
       });
       $http.post(`${api.url}${api.userLogIn}`, loginObj)
       .then((userData) => {
-        console.log('user data', userData);
-        currentUser = {
+        $rootScope.currentUser = {
           firstName: userData.data.first_name,
           lastName: userData.data.last_name,
           email: userData.data.email
@@ -60,7 +59,6 @@ module.exports = function($q, $http, api) {
         email: user.email
       }
     };
-    console.log('user object', userObj);
     return $q((resolve, reject) => {
       $http({
         method: 'PATCH',
@@ -69,12 +67,12 @@ module.exports = function($q, $http, api) {
         data: angular.toJson(userObj)
       })
       .then(userData => {
-        currentUser = {
+        $rootScope.currentUser = {
           firstName: userData.data.first_name,
           lastName: userData.data.last_name,
           email: userData.data.email
         };
-        resolve(currentUser);
+        resolve($rootScope.currentUser);
       })
       .catch(error => reject(error));
     });
@@ -87,7 +85,7 @@ module.exports = function($q, $http, api) {
 
   // returns current user o other controllers
   const getCurrentUser = () => {
-    return currentUser;
+    return $rootScope.currentUser;
   };
 
   // returns current user token to other controllers

@@ -2,7 +2,8 @@
 
 module.exports = function(
     $scope,
-    userFactory
+    userFactory,
+    $route
   ) {
 
   let token = userFactory.getCurrentUserToken();
@@ -21,6 +22,7 @@ module.exports = function(
     .then(user => {
       $scope.user = user;
       $scope.edit = false;
+      $route.reload();
     })
     .catch(error => console.log(error));
   };
