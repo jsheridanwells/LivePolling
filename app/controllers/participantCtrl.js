@@ -49,17 +49,18 @@ module.exports = function(
 
   // calls 'respond/:presentation_id/:poll_id' 'responses#add' endpoint
   // submits id of item chosen to db, disables ng-click with $scope.activated
-  $scope.respond = (itemId) => {
-    console.log('getting send to respond: ', $scope.response.written);
-    $scope.activated = false;
-    presentationFactory.sendResponse(
-      itemId,
-      $routeParams.presentationId,
-      $scope.currentPresentation.current_poll_id,
-      $scope.response.written
-    )
-    .then(data => console.log(data))
-    .catch(error => console.log(error));
+  $scope.respond = (item) => {
+    if ($scope.activated) {
+      item.sent = true;
+      presentationFactory.sendResponse(
+        item.id,
+        $routeParams.presentationId,
+        $scope.currentPresentation.current_poll_id,
+        $scope.response.written
+      )
+      .then(() => $scope.activated = false)
+      .catch(error => console.log(error));
+    }
   };
 
   // loads current presentation data when view loads

@@ -32,9 +32,27 @@
       @extend li.answer-item;
     }
     li.activated {
-      border: 1px solid blue;
+      @extend li.answer-item;
+      border: 1px solid $blue;
+      font-weight: bold;
+      color: $blue;
+    }
+    a {
+      text-decoration: none;
+    }
+    a.participant-answer-click {
+      cursor: pointer;
+    }
+    a.participant-answer-off {
+      cursor: default;
+    }
+
+    a.participant-answer-click:hover {
+      background-color: $blue;
+      color: $white !important;
     }
   }
+
   .edit-delete-poll-controls {
     a {
       color: $blue;
@@ -63,15 +81,6 @@
   padding: 2em;
   background-color: $white;
   @include cardShadow();
-}
-
-a.participant-answer-click {
-  text-decoration: none;
-}
-
-li.participant-answer-item:hover {
-  background-color: $blue;
-  color: $white !important;
 }
 
 .response-confirmation {
