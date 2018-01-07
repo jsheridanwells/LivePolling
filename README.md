@@ -1,4 +1,4 @@
- # Live Polling:
+ # LivePolling:
 __Present and Poll an Audience Instantly__
 
 ### [View the deployed version](http://jeremywells.io/live-polling).
@@ -9,7 +9,7 @@ Code for the API [can be found here](https://github.com/jsheridanwells/LivePolli
 
  # OVERVIEW
 
-The app Live Quiz provides a way for a teacher or a presenter to show content to an audience, solicit responses, and record data from those responses in real time.
+The app LivePolling provides a way for a teacher or a presenter to show content to an audience, solicit responses, and record data from those responses in real time.
 
  # FEATURES
 
@@ -19,7 +19,7 @@ The app Live Quiz provides a way for a teacher or a presenter to show content to
  * Using devices, the audience can respond to quiz questions and those responses will be recorded to a database.
  * TECHNICAL SPECIFICATIONS
 
- ## Live Polling will make use of the following technologies:
+ ## LivePolling will make use of the following technologies:
 
  * Ruby on Rails for scaffolding the application models, controllers and views, creating an ORM, and querying a database.
  * Rails Action Cable for websockets integration.
