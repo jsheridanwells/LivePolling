@@ -125,6 +125,7 @@ module.exports = function(
   // if user leaves poll form without making changes
   // returns user to last slide
   $scope.cancelPoll = () => {
+    console.log('hold slide', $rootScope.holdSlide);
     slideService.setSlideNumber($rootScope.holdSlide, $rootScope.currentPresentationId, token, `#!presentations/${$routeParams.presentationId}`);
   };
 
