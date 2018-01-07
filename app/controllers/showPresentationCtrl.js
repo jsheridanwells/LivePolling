@@ -43,9 +43,6 @@ module.exports = function(
     presentationFactory.getPresentation($routeParams.presentationId, currentUserToken)
     .then(data => {
       $scope.currentPresentation = data.presentation;
-      //sets qr code and url for share link
-      qrService.makeQr($routeParams.presentationId);
-      $scope.link = `${api.clientUrl}${api.show}/${$routeParams.presentationId}`;
       //holds id of currentPresentation for $destroy method
       $rootScope.currentPresentationId = $scope.currentPresentation.id;
       if ($scope.currentPresentation.polls.length > 0) {
@@ -158,6 +155,9 @@ module.exports = function(
   // loads current presentation data when view loads
   $scope.$on('$viewContentLoaded', () => {
     showPresentation();
+    //sets qr code and short url for share link
+    qrService.makeQr($routeParams.presentationId);
+    qrService.makeLink($routeParams.presentationId);
   });
 
   // resets slide number to 0 when presentation is exited
