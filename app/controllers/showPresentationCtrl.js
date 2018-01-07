@@ -168,8 +168,11 @@ module.exports = function(
 
   // resets slide number to 0 when presentation is exited
   $scope.$on('$destroy', () => {
-    slideService.setSlideNumber(0, $rootScope.currentPresentationId, currentUserToken);
-    $scope.broadcast($rootScope.currentPresentationId);
+    if ($scope.currentPresentation.broadcasting) {
+      window.alert('This presentation is being broadcast to users. Do you want to end the presentation?');
+      slideService.setSlideNumber(0, $rootScope.currentPresentationId, currentUserToken);
+      $scope.broadcast($rootScope.currentPresentationId);
+    }
   });
 
 };
