@@ -25,9 +25,12 @@ let getAuthorization = (userFactory, $window) => new Promise((resolve, reject) =
   });
 });
 
-app.config(($routeProvider) => {
+app.config(($routeProvider, api) => {
   $routeProvider
   .when('/', {
+    templateUrl: 'views/home.html'
+  })
+  .when('/home', {
     templateUrl: 'views/home.html'
   })
   .when('/signup', {
@@ -37,6 +40,11 @@ app.config(($routeProvider) => {
   .when('/login', {
     templateUrl: 'views/login.html',
     controller: 'userCtrl'
+  })
+  .when('/user', {
+    templateUrl: 'views/user.html',
+    controller: 'editUserCtrl',
+    resolve: {getAuthorization}
   })
   .when('/presentations', {
     templateUrl: 'views/presentations.html',
@@ -67,5 +75,6 @@ app.config(($routeProvider) => {
     templateUrl: 'views/show-participant-presentation.html',
     controller: 'participantCtrl'
   })
+  // .otherwise(api.clientUrl);
   .otherwise('/');
 });

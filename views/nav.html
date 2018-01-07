@@ -1,7 +1,8 @@
-<div class="side-nav">
+<div class="side-nav" ng-controller="navCtrl">
   <div class="nav-logo-box">
     <a class="nav-logo ml-3" href="#!/presentations">LP</a>
   </div>
+  <p class="user-nav">Hello, {{currentUser.firstName}}</p>
   <ul class="nav-list flex-column ml-2 mt-5">
     <li class="nav-item">
       <i class="fa fa-desktop nav-icon" aria-hidden="true"></i>&nbsp;&nbsp;

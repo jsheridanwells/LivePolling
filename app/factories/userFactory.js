@@ -1,9 +1,9 @@
 'use strict';
 
-module.exports = function($q, $http, api) {
+module.exports = function($q, $http, api, $rootScope) {
 
   // stores user, id and user auth token
-  let currentUser = null;
+  $rootScope.currentUser = null;
   let currentUserToken = null;
   let currentUserId = null;
 
@@ -38,15 +38,43 @@ module.exports = function($q, $http, api) {
       });
       $http.post(`${api.url}${api.userLogIn}`, loginObj)
       .then((userData) => {
-        currentUser = {
+        $rootScope.currentUser = {
           firstName: userData.data.first_name,
-          lastName: userData.data.last_name
+          lastName: userData.data.last_name,
+          email: userData.data.email
         };
         currentUserToken = userData.data.authorization_token;
         currentUserId = userData.data.user_id;
         resolve(userData.data);
       })
       .catch((error) => reject(error));
+    });
+  };
+
+  const updateUser = (user, userId, token) => {
+    let userObj = {
+      users: {
+        first_name: user.firstName,
+        last_name: user.lastName,
+        email: user.email
+      }
+    };
+    return $q((resolve, reject) => {
+      $http({
+        method: 'PATCH',
+        url: `${api.url}${api.userModel}/${userId}`,
+        headers: {'authorization': token},
+        data: angular.toJson(userObj)
+      })
+      .then(userData => {
+        $rootScope.currentUser = {
+          firstName: userData.data.first_name,
+          lastName: userData.data.last_name,
+          email: userData.data.email
+        };
+        resolve($rootScope.currentUser);
+      })
+      .catch(error => reject(error));
     });
   };
 
@@ -57,7 +85,7 @@ module.exports = function($q, $http, api) {
 
   // returns current user o other controllers
   const getCurrentUser = () => {
-    return currentUser;
+    return $rootScope.currentUser;
   };
 
   // returns current user token to other controllers
@@ -87,6 +115,7 @@ module.exports = function($q, $http, api) {
     signUp,
     logIn,
     logOut,
+    updateUser,
     getCurrentUser,
     getCurrentUserToken,
     getCurrentUserId,

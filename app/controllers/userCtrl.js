@@ -24,13 +24,25 @@ module.exports = function(
   // posts user data to db endpoint post 'signup' 'users#create'
   // calls login() function on return to generate auth token for user
   $scope.signUp = () => {
-    userFactory.signUp($scope.user)
-    .then(response => $scope.logIn())
-    .catch(error => {
+    if (
+        !$scope.user.password ||
+        !$scope.user.passwordConfirmation ||
+        $scope.user.password.length < 6 ||
+        $scope.user.password !== $scope.user.passwordConfirmation
+       ) {
       $scope.loginError = true;
-      $scope.errors = errorService.renderErrors(error.data);
-      console.log('$scope.errors ', $scope.errors);
-    });
+      $scope.errors.types = ['Fix your password.'];
+      $scope.user.password = '';
+      $scope.user.passwordConfirmation = '';
+    } else {
+      userFactory.signUp($scope.user)
+      .then(response => $scope.logIn())
+      .catch(error => {
+        $scope.loginError = true;
+        $scope.errors = errorService.renderErrors(error.data);
+        console.log('$scope.errors ', $scope.errors);
+      });
+    }
   };
 
   // takes email and password from user model
@@ -47,7 +59,7 @@ module.exports = function(
   // destroys current auth token
   $scope.logOut = () => {
     userFactory.logOut()
-    .then(() => $window.location.href = '/')
+    .then(() => $window.location.href = '#!/home')
     .catch((error => console.log(error)));
   };
 

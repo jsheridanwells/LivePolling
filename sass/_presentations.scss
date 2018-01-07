@@ -101,8 +101,8 @@ a.new-presentation-button:hover {
     }
 
   }
-  a {
-    color: $blue !important;
+  a.create-message {
+    color: $blue;
     font-size: 1.0em;
     margin-left: 3em;
   }
