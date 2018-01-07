@@ -47,7 +47,7 @@ module.exports = function(
   // destroys current auth token
   $scope.logOut = () => {
     userFactory.logOut()
-    .then(() => $window.location.href = '/')
+    .then(() => $window.location.href = '#!/home')
     .catch((error => console.log(error)));
   };
 
