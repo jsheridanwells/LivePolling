@@ -5,7 +5,13 @@
        New Presentation
       </a>
     </div>
-    <div class="presentations-list-frame">
+    <div class="presentations-list-frame" ng-if=" loading ">
+      <div class="single-presentation-frame">
+        <p class="blue">We're loading your presentations...</p>
+        <img src="assets/img/gear.gif" alt="Loading..." />
+      </div>
+    </div>
+    <div class="presentations-list-frame" ng-if=" !loading ">
       <!-- SHOW ALL PRESENTATIONS ASSOCIATED WITH A USER IF THERE ARE PRESENTATIONS -->
       <div ng-if="presentations.length !== 0">
         <ul class="presentation-list">
