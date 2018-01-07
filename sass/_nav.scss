@@ -33,6 +33,14 @@ a.nav-logo:hover {
   text-decoration: none;
 }
 
+p.user-nav {
+  display: inline-block;
+  text-align: center;
+  padding: 1em;
+  font-size: 1em;
+  color: $medGray;
+}
+
 .nav-list {
   list-style-type: none;
 }

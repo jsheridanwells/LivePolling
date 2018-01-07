@@ -22,4 +22,11 @@ module.exports = function(
     $window.location.href = '/';
   };
 
+  const getUserInfo = () => {
+    $scope.user = userFactory.getCurrentUser();
+    console.log($scope.user);
+  };
+
+  $scope.$on('$viewContentLoaded', getUserInfo());
+
 };
