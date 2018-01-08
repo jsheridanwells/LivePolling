@@ -48,21 +48,26 @@
           <div ng-if="poll.response_type == 2">
 
             <div ng-repeat=" item in trueFalse ">
-              <h4>
-                {{item.content}}
-              </h4>
-              <label for="correct">
-                <input type="checkbox" class="form-check-input" ng-model="item.correct">
-                Correct
-              </label>
+              <div class="row">
+                <div class="col-6">
+                  <h4>
+                    {{item.content}}
+                  </h4>
+                </div>
+                <div class="col-6">
+                <label for="correct">
+                  <input type="checkbox" class="form-check-input" ng-model="item.correct">
+                  Correct
+                </label>
+                </div>
+              </div>
               <hr>
             </div>
-
           </div>
           <!-- IF WRITTEN RESPONSE -->
-          <div ng-if="poll.response_type == 3">
+          <!-- <div ng-if="poll.response_type == 3">
             <textarea name="written-response-box" id="" cols="30" rows="10" placeholder="The audience's written responses will go here" readonly></textarea>
-          </div>
+          </div> -->
         </div>
         <div class="col-md-4 select-box">
           <!-- SELECT RESPONSE TYPE IF NEW POLL-->
@@ -74,12 +79,12 @@
               <select class="custom-select" ng-model="poll.response_type">
                 <option value="1">Multiple Choice</option>
                 <option value="2">True / False</option>
-                <option value="3">Written Response</option>
+                <!-- <option value="3">Written Response</option> -->
               </select>
             </div>
           </div>
           <!-- SELECT FEEDBACK TYPE -->
-          <div class="poll-selector-box">
+          <!-- <div class="poll-selector-box">
             <p class="select-label">
               Feedback Type:
             </p>
@@ -87,16 +92,16 @@
               <option value="1">Live Results</option>
               <option value="2">Results on Next Slide</option>
               <option value="3">Do Not Show Results</option>s
-            </select>
+            </select> -->
             <!-- DESCRIPTIONS OF FEEDBACK TYPES -->
-            <div class="feedback-type-explanation">
+            <!-- <div class="feedback-type-explanation">
               <p ng-if="poll.feedback_type == 1">
                 The audience will see the results of the poll as it is being displayed.
               </p>
               <p ng-if="poll.feedback_type == 2">The audience will see the poll after all responses have been submitted.</p>
               <p ng-if="poll.feedbackType == 3">The results of this poll will not be shown to the audience.</p>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
       <div class="row">

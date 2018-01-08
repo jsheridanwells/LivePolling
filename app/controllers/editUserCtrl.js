@@ -12,7 +12,6 @@ module.exports = function(
 
   const getUser = () => {
     $scope.user = userFactory.getCurrentUser();
-    console.log($scope.user);
   };
 
   $scope.toggleEdit = () => $scope.edit = !$scope.edit;
