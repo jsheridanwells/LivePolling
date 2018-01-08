@@ -1,39 +1,45 @@
 <div class="container">
   <div id="home">
     <div class="jumbotron mt-5 splash">
-      <div ng-if="loginError" class="flash-space">
-      <!-- SPACE FOR ERROR MESSAGES -->
-        <h3 class="error-title">
-          Whoops!
-        </h3>
-        <p class="error-text">
-          We can't sign you up yet. Please fix the following errors:
-        </p>
-        <div ng-repeat=" errorType in errors.types ">
-          <p class="error-text ml-5">
-            {{errorType}}:
-            <span ng-repeat=" error in errors.values[$index] ">
-              {{error}},
-            </span>
+      <div ng-if=" !loading ">
+        <div ng-if="loginError" class="flash-space">
+        <!-- SPACE FOR ERROR MESSAGES -->
+          <h3 class="error-title">
+            Whoops!
+          </h3>
+          <p class="error-text">
+            We can't sign you up yet. Please fix the following errors:
+          </p>
+          <div ng-repeat=" errorType in errors.types ">
+            <p class="error-text ml-5">
+              {{errorType}}:
+              <span ng-repeat=" error in errors.values[$index] ">
+                {{error}},
+              </span>
+            </p>
+          </div>
+        </div>
+        <!-- SIGN UP FORM -->
+        <h1 class="display-3">LivePolling</h1>
+        <div class="form-group">
+          <input type="text" class="form-control signup-form" ng-model="user.firstName" placeholder="First Name">
+          <input type="text" class="form-control signup-form" ng-model="user.lastName" placeholder="Last Name">
+          <input type="email" class="form-control signup-form" ng-model="user.email" placeholder="Email">
+          <input type="password" class="form-control signup-form" ng-model="user.password" placeholder="Password">
+          <input type="password" class="form-control signup-form" ng-model="user.passwordConfirmation" placeholder="Password Confirmation">
+          <div class="button-field d-flex justify-content-end">
+            <a href="" class="splash-button" ng-click="signUp()">Sign Up</a>
+          </div>
+        </div>
+        <div class="login-redirect">
+          <p class="redirect-text">
+            Already have an account? <a class="traditional" ng-href="#!/login">Log in here</a>.
           </p>
         </div>
       </div>
-      <!-- SIGN UP FORM -->
-      <h1 class="display-3">LivePolling</h1>
-      <div class="form-group">
-        <input type="text" class="form-control signup-form" ng-model="user.firstName" placeholder="First Name">
-        <input type="text" class="form-control signup-form" ng-model="user.lastName" placeholder="Last Name">
-        <input type="email" class="form-control signup-form" ng-model="user.email" placeholder="Email">
-        <input type="password" class="form-control signup-form" ng-model="user.password" placeholder="Password">
-        <input type="password" class="form-control signup-form" ng-model="user.passwordConfirmation" placeholder="Password Confirmation">
-        <div class="button-field d-flex justify-content-end">
-          <a href="" class="splash-button" ng-click="signUp()">Sign Up</a>
-        </div>
-      </div>
-      <div class="login-redirect">
-        <p class="redirect-text">
-          Already have an account? <a class="traditional" ng-href="#!/login">Log in here</a>.
-        </p>
+      <div ng-if=" loading ">
+        <p class="blue">Signing you up...</p>
+        <img src="assets/img/gear.gif" alt="Loading..." />
       </div>
     </div>
   </div>

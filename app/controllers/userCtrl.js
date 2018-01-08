@@ -36,12 +36,15 @@ module.exports = function(
       $scope.user.password = '';
       $scope.user.passwordConfirmation = '';
     } else {
-      userFactory.signUp($scope.user)
-      .then(response => $scope.logIn())
-      .catch(error => {
-        $scope.loginError = true;
-        $scope.errors = errorService.renderErrors(error.data);
-      });
+      $scope.loading = true;
+      window.setTimeout(() => {
+        userFactory.signUp($scope.user)
+        .then(response => $scope.logIn())
+        .catch(error => {
+          $scope.loginError = true;
+          $scope.errors = errorService.renderErrors(error.data);
+        });
+      }, 200);
     }
   };
 
@@ -56,7 +59,7 @@ module.exports = function(
         $window.location.href = '#!/presentations';
       })
       .catch(() => $scope.loginError = true);
-    }, 500);
+    }, 200);
   };
 
   // destroys current auth token
