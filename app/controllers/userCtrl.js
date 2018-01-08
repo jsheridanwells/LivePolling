@@ -20,6 +20,7 @@ module.exports = function(
 
   $scope.loginError = false;
   $scope.errors = {};
+  $scope.loading = false;
 
   // posts user data to db endpoint post 'signup' 'users#create'
   // calls login() function on return to generate auth token for user
@@ -48,11 +49,14 @@ module.exports = function(
   // calls post 'authenticate' 'authentication#authenticate' endpoint
   // redirects to /presentations #index view
   $scope.logIn = () => {
-    userFactory.logIn($scope.user).
-    then(userData => {
-      $window.location.href = '#!/presentations';
-    })
-    .catch(() => $scope.loginError = true);
+    $scope.loading = true;
+    window.setTimeout(() => {
+      userFactory.logIn($scope.user).
+      then(userData => {
+        $window.location.href = '#!/presentations';
+      })
+      .catch(() => $scope.loginError = true);
+    }, 500);
   };
 
   // destroys current auth token
