@@ -40,7 +40,6 @@ module.exports = function(
       .catch(error => {
         $scope.loginError = true;
         $scope.errors = errorService.renderErrors(error.data);
-        console.log('$scope.errors ', $scope.errors);
       });
     }
   };
