@@ -140,8 +140,6 @@ module.exports = function(
 
   $scope.showPollForm = (type) => {
     $rootScope.holdSlide = $scope.currentPresentation.current_slide;
-    console.log('show poll form', $rootScope.holdSlide);
-    console.log('current presentation id', $scope.currentPresentation.id);
     if (type === 'new') {
       $window.location.href = `#!/new-poll/${$scope.currentPresentation.id}`;
     } else if (type === 'edit') {
