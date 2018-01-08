@@ -25,7 +25,7 @@ module.exports = function(
     }
     slideService.setSlideNumber(0, $rootScope.currentPresentationId, userFactory.getCurrentUserToken());
     userFactory.logOut();
-    $window.location.href = '/';
+    $window.location.href = '#!/home';
   };
 
 };

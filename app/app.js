@@ -20,7 +20,7 @@ let getAuthorization = (userFactory, $window) => new Promise((resolve, reject) =
       resolve();
     } else {
       reject();
-      $window.location.href = '/';
+      $window.location.href = '#!/home';
     }
   });
 });
@@ -75,6 +75,5 @@ app.config(($routeProvider, api) => {
     templateUrl: 'views/show-participant-presentation.html',
     controller: 'participantCtrl'
   })
-  // .otherwise(api.clientUrl);
-  .otherwise('/');
+  .otherwise('/home');
 });
