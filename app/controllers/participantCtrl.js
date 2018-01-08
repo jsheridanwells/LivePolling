@@ -44,7 +44,7 @@ module.exports = function(
         }
       });
     })
-    .catch(error => console.log(error));
+    .catch(error => $scope.message = 'Sorry, we cannot find this presentation.');
   };
 
   // calls 'respond/:presentation_id/:poll_id' 'responses#add' endpoint
