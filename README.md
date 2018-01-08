@@ -18,7 +18,7 @@ Easily share links with an audience using a URL shortener and QR codes.
 
 <img src="/documentation/live-polling2.png" width="500" />
  
-An audience can easily follow a presentation and respond to questions using any device.
+An audience can follow a presentation and respond to questions using any device.
 
 <img src="/documentation/live-polling3.png" width="500" />
  
@@ -30,7 +30,7 @@ An audience can easily follow a presentation and respond to questions using any 
  * [Node Package Manager](https://www.npmjs.com/get-npm)
  * [Sass](http://sass-lang.com/install)
  
- Additionally you will need to clone the LivePolling Rails backend in another directory. Follow the installation instructions at [the backend repo](https://github.com/jsheridanwells/LivePollingAPI).
+ Additionally you will need to clone the LivePolling Rails backend in another directory. Follow the installation instructions from [the backend repo](https://github.com/jsheridanwells/LivePollingAPI).
  
  __Client Side Installation__:
  
