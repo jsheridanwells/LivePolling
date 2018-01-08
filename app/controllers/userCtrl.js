@@ -3,6 +3,7 @@
 module.exports = function(
   $scope,
   $window,
+  $timeout,
   userFactory,
   errorService
 ) {
@@ -13,9 +14,9 @@ module.exports = function(
   $scope.user = {
     firstName: '',
     lastName: '',
-    email: 'example@example.com',
-    password: '123456',
-    passwordConfirmation: '123456'
+    email: '',
+    password: '',
+    passwordConfirmation: ''
   };
 
   $scope.loginError = false;
@@ -64,9 +65,9 @@ module.exports = function(
 
   // destroys current auth token
   $scope.logOut = () => {
-    userFactory.logOut()
-    .then(() => $window.location.href = '#!/home')
-    .catch((error => console.log(error)));
+    userFactory.logOut();
+    $window.location.href = '#!/home';
+    $timeout();
   };
 
 };

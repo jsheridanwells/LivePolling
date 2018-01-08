@@ -4,6 +4,7 @@ module.exports = function(
   $scope,
   $window,
   $rootScope,
+  $timeout,
   slideService,
   presentationFactory,
   userFactory
@@ -23,9 +24,12 @@ module.exports = function(
     if ($rootScope.broadcasting) {
       presentationFactory.toggleBroadcasting($rootScope.currentPresentationId, token);
     }
-    slideService.setSlideNumber(0, $rootScope.currentPresentationId, userFactory.getCurrentUserToken());
+    if ($rootScope.currentPresentationId) {
+      slideService.setSlideNumber(0, $rootScope.currentPresentationId, userFactory.getCurrentUserToken());
+    }
     userFactory.logOut();
-    $window.location.href = '/';
+    $window.location.href = '#!/home';
+    $timeout();
   };
 
 };
