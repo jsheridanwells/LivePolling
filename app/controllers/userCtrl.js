@@ -59,7 +59,10 @@ module.exports = function(
       then(userData => {
         $window.location.href = '#!/presentations';
       })
-      .catch(() => $scope.loginError = true);
+      .catch(() => {
+        $scope.loginError = true;
+        $scope.loading = false;
+      });
     }, 200);
   };
 
