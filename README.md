@@ -56,7 +56,7 @@ An audience can follow a presentation and respond to questions using any device.
  6. Copy the following code block into the googleCreds.js file, replacing 'YOUR API KEY' with the API key copied from Google:
  ```
  'use strict';
-  module.exports = {api: 'YOU API KEY'};
+  module.exports = {api: 'YOUR API KEY'};
  ```
  7. From the `lib` directory, run Grunt. This will built the `dist/built.js` file and the `css/main.css` files. It was also launch your browser at `http://localhost:8080`:
  
@@ -64,7 +64,7 @@ An audience can follow a presentation and respond to questions using any device.
  
  That should be all for compiling the client-side code for LivePolling. Again you will have to compile the [Rails code](https://github.com/jsheridanwells/LivePollingAPI) in a separate directory in order for the app to fully function.
 
-## Build With:
+## Built With:
 
 [Angular JS](https://angularjs.org/)
 
