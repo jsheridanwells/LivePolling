@@ -36,22 +36,22 @@ An audience can follow a presentation and respond to questions using any device.
  
  1. Clone the Github repository:
  
- ``` $ git clone https://github.com/jsheridanwells/LivePolling.git```
+ > ``` $ git clone https://github.com/jsheridanwells/LivePolling.git```
  
  2. Navigate to the LivePolling lib directory
  
- ```$ cd LivePolling/lib```
+ > ```$ cd LivePolling/lib```
  
  3. Install the NPM dependencies
  
- ```$ npm install```
+ > ```$ npm install```
  
  4. You will need to add a Google API key.  This key does not need to be kept secret in the source code. [Follow these instructions for obtaining an API key](https://www.bloggingocean.com/create-google-url-shortener-api-key/).
  
  5. Create a credentials file to hold your Google API key:
  
  
- ```$ touch app/creds/googleCreds.js```
+ > ```$ touch app/creds/googleCreds.js```
  
  6. Copy the following code block into the googleCreds.js file, replacing 'YOUR API KEY' with the API key copied from Google:
  ```
@@ -60,7 +60,7 @@ An audience can follow a presentation and respond to questions using any device.
  ```
  7. From the `lib` directory, run Grunt. This will built the `dist/built.js` file and the `css/main.css` files. It was also launch your browser at `http://localhost:8080`:
  
- ```$ grunt```
+>  ```$ grunt```
  
  That should be all for compiling the client-side code for LivePolling. Again you will have to compile the [Rails code](https://github.com/jsheridanwells/LivePollingAPI) in a separate directory in order for the app to fully function.
 
