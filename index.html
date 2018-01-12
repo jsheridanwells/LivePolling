@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
-    <div ng-app="LivePolling">
-        <div class="row" ng-controller="navCtrl">
+    <div ng-app="LivePolling" ng-controller="navCtrl">
+        <div class="row">
             <div ng-if="loggedIn()">
                 <div class="col-sm-3 col-md-2 d-none d-sm-block sidebar">
                     <div ng-include="'views/nav.html'"></div>
@@ -24,6 +24,7 @@
                 <div class="main-view" ng-view></div>
             </div>
         </div>
+        <div ng-if=" !loggedIn() " ng-include=" 'views/footer.html' "></div>
         <div ng-include=" 'views/modal-space.html' "></div>
 
     </div>
