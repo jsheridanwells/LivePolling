@@ -4,4 +4,4 @@ dist/
 lib/.sass-cache/
 lib/package-lock.json
 offline/
-creds/googleCreds.js
+app/creds/googleCreds.js
